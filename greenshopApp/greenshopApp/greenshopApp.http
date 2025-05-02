@@ -1,0 +1,6 @@
+@greenshopApp_HostAddress = http://localhost:5211
+
+GET {{greenshopApp_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
