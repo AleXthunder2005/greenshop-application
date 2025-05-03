@@ -1,8 +1,9 @@
 ﻿using System;
+using greenshopApp.Persistence.Interfaces;
 
 namespace greenshopApp.Persistence.Models
 {
-    public class PlantEntity
+    public class PlantEntity : IEntity
     {
         //Обязательные поля
         public Guid Id { get; set; }
@@ -15,8 +16,8 @@ namespace greenshopApp.Persistence.Models
         public string Description { get; set; } = string.Empty;
         public string PictureFileName { get; set; } = string.Empty;
         public int RemainingCount { get; set; } = 0;
-
-        public float Rate { get; set; } = 0;
+        public int NoteCount { get; set; } = 0;
+        public long SummaryNote { get; set; } = 0;
         public List<OrderEntity> Orders { get; set; } = [];
     }
 }

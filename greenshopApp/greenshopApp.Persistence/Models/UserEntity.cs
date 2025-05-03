@@ -1,7 +1,8 @@
 ﻿using System;
+using greenshopApp.Persistence.Interfaces;
 namespace greenshopApp.Persistence.Models
 {
-    public class UserEntity
+    public class UserEntity : IEntity
     {
         public Guid Id { get; set; } 
         public string FirstName { get; set; } = string.Empty;
