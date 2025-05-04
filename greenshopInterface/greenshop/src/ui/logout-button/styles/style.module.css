@@ -1,0 +1,26 @@
+.logout-button 
+{
+    background-color: var(--primary-green-color);
+    cursor: pointer;
+    margin: 20px 20px 20px 0;
+    border-radius: 7px;
+    display: flex;
+}
+
+.logout-button:hover
+{
+    background-color: var(--light-green-color);
+    transition: background-color linear 0.3s;
+}
+
+.logout-button__title {
+    font-family: var(--font-family);
+    font-weight: 500;
+    font-size: 16px;
+    color: var(--primary-white-color);
+    padding: 8px 17px;
+}
+
+.logout-bitton__logout-icon {
+    padding: 8px 0px 8px 17px;
+}

@@ -1,0 +1,4 @@
+.application-management-panel {
+    display: flex;
+    column-gap: 30px;
+}
