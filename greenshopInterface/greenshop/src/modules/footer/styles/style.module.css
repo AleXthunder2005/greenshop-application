@@ -1,0 +1,24 @@
+.footer-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding: 30px;
+    background-color: var(--light-background-green-color);
+}
+
+.footer-container__block {
+    display: flex;
+    flex-direction: row;
+    width: 205px;
+}
+
+.block__text-content {
+    font-family: var(--font-family);
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 157%;
+    color: var(--primary-gray-color);
+
+    margin-left: 10px;
+}
