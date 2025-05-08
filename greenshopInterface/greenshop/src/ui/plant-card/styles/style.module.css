@@ -1,0 +1,101 @@
+.plant-card-container {
+    display: flex;
+    flex-direction: column;
+    height: 350px;
+    border-top: 1px solid transparent;
+    transition:
+            border-top-color 0.3s ease,
+            box-shadow 0.3s ease;
+    box-shadow: none;
+    border-radius: 5px;
+}
+
+.plant-card-container__image-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    height: 300px;
+    width: 250px;
+
+    position: relative;
+}
+.image-container__sale-block {
+    position: absolute;
+    top: 0;
+    left: 0;
+    padding: 7px;
+    background-color: var(--primary-green-color);
+
+    font-family: var(--font-family);
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 100%;
+    color: var(--primary-white-color);
+}
+
+.image-container__image {
+    width: 250px;
+    height: 250px;
+}
+.image-container__icons-container {
+    display: none;
+}
+
+.plant-card-container__info-container {
+    padding: 0 15px 15px 15px;
+}
+
+.plant-card-container__name {
+    font-family: var(--font-family);
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 100%;
+    color: var(--primary-gray-color);
+    margin-top: 10px;
+}
+
+.plant-card-container__price-container {
+    display: flex;
+    gap: 15px;
+    align-items: center;
+    margin-top: 10px;
+}
+
+.price-container__price {
+    font-family: var(--font-family);
+    font-weight: 700;
+    font-size: 18px;
+    line-height: 89%;
+    color: var(--primary-green-color);
+}
+
+.price-container__salePrice {
+    font-family: var(--font-family);
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 89%;
+    color: var(--primary-light-gray-color);
+    text-decoration: line-through;
+}
+
+.plant-card-container:hover {
+    .image-container__icons-container {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        gap: 10px;
+        width: 100%;
+        background-color: var(--primary-white-color);
+        padding: 10px;
+
+        position: absolute;
+        bottom: 0;
+    }
+
+    box-shadow: 0 6px 30px rgba(0, 0, 0, 0.1);
+    cursor: pointer;
+    border-top: 1px solid var(--primary-green-color);
+}
+
+
+

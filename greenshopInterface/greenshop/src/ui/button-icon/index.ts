@@ -1,2 +1,2 @@
-export {default as ButtonIcon} from './ButtonIcon';
-export type {IconType, IconPosition} from './ButtonIcon';
+export {default as Icon} from './Icon.tsx';
+export type {IconType, IconPosition} from './Icon.tsx';

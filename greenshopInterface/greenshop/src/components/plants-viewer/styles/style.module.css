@@ -1,0 +1,7 @@
+.plants-viewer-container {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 70px 40px;
+    width: 840px;
+}

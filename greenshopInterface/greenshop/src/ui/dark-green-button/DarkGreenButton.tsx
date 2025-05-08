@@ -1,6 +1,6 @@
 import { ButtonHTMLAttributes } from 'react';
 import styles from './styles/style.module.css';
-import { ButtonIcon, IconPosition, IconType } from "@ui/button-icon";
+import { Icon, IconPosition, IconType } from "@ui/button-icon";
 
 interface DarkGreenButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
     iconType?: IconType;
@@ -15,7 +15,7 @@ const DarkGreenButton = ({ children, iconType, iconPosition = 'left', ...props }
 
     return (
         <button className={buttonClassNames} {...props}>
-            {iconType && <ButtonIcon iconType={iconType} />}
+            {iconType && <Icon iconType={iconType} />}
             {children}
         </button>
     );
