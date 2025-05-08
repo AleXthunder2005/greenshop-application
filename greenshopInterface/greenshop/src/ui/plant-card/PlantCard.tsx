@@ -15,6 +15,8 @@ const PlantCard = ({ name, iconPath, price, sale, salePrice }: PlantCardProps) =
         return value.toFixed(2); // Всегда 2 знака после запятой
     };
 
+    const actualPrice = salePrice ? salePrice : price;
+
     return (
         <div className={styles['plant-card-container']}>
             <div className={styles['plant-card-container__image-container']}>
@@ -38,11 +40,11 @@ const PlantCard = ({ name, iconPath, price, sale, salePrice }: PlantCardProps) =
                 <p className={styles['plant-card-container__name']}>{name}</p>
                 <div className={styles['plant-card-container__price-container']}>
                     <p className={styles['price-container__price']}>
-                        ${formatPrice(price)}
+                        ${formatPrice(actualPrice)}
                     </p>
                     {salePrice && (
                         <p className={styles['price-container__salePrice']}>
-                            ${formatPrice(salePrice)}
+                            ${formatPrice(price)}
                         </p>
                     )}
                 </div>

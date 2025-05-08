@@ -2,6 +2,8 @@ import styles from './styles/style.module.css'
 import {PlantCardInfo} from "@ui/plant-card";
 import {PlantsViewer} from "@components/plants-viewer";
 import {Filter} from "@modules/filter";
+import {useState} from "react";
+import {Pagination} from "@components/pagination";
 const plantsData: PlantCardInfo[] = [
     {
         name: "Barberton Daisy",
@@ -22,10 +24,17 @@ const plantsData: PlantCardInfo[] = [
     }
 ];
 const PlantsModule = () => {
+    const [currentPage, setCurrentPage] = useState(1);
+
     return (
         <div className={styles['plants-module-container']}>
             <Filter/>
-            <PlantsViewer plants={plantsData}/>
+            <div>
+                <PlantsViewer plants={plantsData}/>
+                <div className={styles['pagination-container']}>
+                    <Pagination currentPage={currentPage} totalPages={10} onPageChange={setCurrentPage} />
+                </div>
+            </div>
         </div>
     );
 };

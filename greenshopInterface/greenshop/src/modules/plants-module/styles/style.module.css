@@ -4,3 +4,9 @@
     justify-content: space-between;
     margin-top: 50px;
 }
+
+.pagination-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+}
