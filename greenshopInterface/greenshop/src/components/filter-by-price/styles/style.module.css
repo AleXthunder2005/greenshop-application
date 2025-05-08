@@ -1,0 +1,6 @@
+.filter-by-price-container {
+    display:flex;
+    flex-direction: column;
+    padding-left: 35px;
+    gap: 10px;
+}

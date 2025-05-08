@@ -6,7 +6,9 @@
     --primary-light-gray-color: #727272;
     --primary-green-color: #46a358;
     --primary-white-color: #ffffff;
-    --light-green-color: rgba(70, 163, 88, 0.3);
+    --dirty-white-color: #f4f4f4;
+    --light-green-color: rgba(15, 100, 32, 0.93);
+    --light-transparent-color: rgba(70, 163, 88, 0.2);
     --hover-gray-color: #1a1a1a;
   }
 
