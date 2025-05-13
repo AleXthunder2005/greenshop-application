@@ -1,0 +1,48 @@
+.plant-gallery-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+
+    width: 550px;
+    height: 450px;
+}
+
+.plant-gallery-container__active-image-container {
+    width: 420px;
+    height: 420px;
+
+    object-fit: contain;
+}
+
+.plant-gallery-container__all-images-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    width: 100px;
+    gap: 15px;
+}
+
+.all-images-container__image {
+    width: 100%;
+    border: 1px solid transparent;
+    transition: border-color ease-in-out 0.3s;
+}
+
+.all-images-container__image:hover:not(.active-image) {
+    cursor: pointer;
+    border-color : var(--light-transparent-color);
+
+}
+
+.active-image {
+    border: 1px solid var(--primary-green-color);
+}
+
+
+.active-image-container__image {
+    object-fit: contain;
+    width: 100%;
+    height: 100%;
+}

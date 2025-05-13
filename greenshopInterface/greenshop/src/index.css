@@ -4,13 +4,15 @@
 
     --primary-gray-color: #3d3d3d;
     --primary-light-gray-color: #727272;
+    --secondary-light-gray-color: #a5a5a5;
     --primary-green-color: #46a358;
     --primary-white-color: #ffffff;
     --dirty-white-color: #f4f4f4;
     --light-green-color: rgba(15, 100, 32, 0.93);
-    --light-transparent-color: rgba(70, 163, 88, 0.2);
+    --light-transparent-color: rgba(95, 184, 112, 0.51);
     --hover-gray-color: #1a1a1a;
     --light-background-green-color: rgba(70, 163, 88, 0.1);
+
   }
 
 * {

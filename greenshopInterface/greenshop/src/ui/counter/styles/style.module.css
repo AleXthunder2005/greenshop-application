@@ -1,0 +1,14 @@
+.counter {
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+    align-items: center;
+}
+
+.counter__value {
+    font-family: var(--font-family);
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 50%;
+    color: var(--primary-gray-color);
+}

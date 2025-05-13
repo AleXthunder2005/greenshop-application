@@ -1,0 +1,14 @@
+.size-icon {
+    border-radius: 50%;
+    border: 1px solid var(--primary-green-color);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 28px;
+    height: 28px;
+
+    font-family: var(--font-family);
+    font-weight: 700;
+    font-size: 18px;
+    color: var(--primary-green-color);
+}

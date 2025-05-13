@@ -1,0 +1,130 @@
+.about-plant-viewer-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.about-plant-container {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.about-plant-container__title {
+    font-family: var(--font-family);
+    font-weight: 700;
+    font-size: 28px;
+    line-height: 57%;
+    color: var(--primary-gray-color);
+}
+
+
+.about-plant-container__info-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.info-container__price-container {
+    display: flex;
+    flex-direction: row;
+    gap: 40px;
+}
+
+.price-container__price{
+    font-family: var(--font-family);
+    font-weight: 700;
+    font-size: 22px;
+    line-height: 73%;
+    color: var(--primary-green-color);
+}
+
+.price-container__sale-price {
+    font-family: var(--font-family);
+    font-weight: 400;
+    font-size: 22px;
+    line-height: 73%;
+    color: var(--primary-gray-color);
+    text-decoration: line-through;
+}
+
+.about-plant-container__description-container {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.description-container_title {
+    font-family: var(--font-family);
+    font-weight: 700;
+    font-size: 15px;
+    line-height: 107%;
+    color: var(--primary-gray-color);
+}
+
+.description-container__description {
+    font-family: var(--font-family);
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 171%;
+    color: var(--primary-light-gray-color);
+}
+
+.about-plant-container__size-container {
+    display: flex;
+    flex-direction: column;
+}
+
+.about-plant-container__size-container {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.size-container_title {
+    font-family: var(--font-family);
+    font-weight: 700;
+    font-size: 15px;
+    line-height: 107%;
+    color: var(--primary-gray-color);
+}
+
+.about-plant-container__buttons-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 10px;
+}
+
+.about-plant-container__additional-info-container {
+    display: flex;
+    flex-direction: column;
+    gap: 10px
+}
+
+.additional-info-container__id {
+    font-family: var(--font-family);
+    font-weight: 400;
+    font-size: 15px;
+    line-height: 107%;
+    color: var(--secondary-light-gray-color);
+}
+
+.additional-info-container__id__value {
+    color: var(--primary-light-gray-color);
+}
+
+.additional-info-container__categories {
+    font-family: var(--font-family);
+    font-weight: 400;
+    font-size: 15px;
+    line-height: 107%;
+    color: var(--secondary-light-gray-color);
+}
+
+.additional-info-container__categories__value {
+    color: var(--primary-light-gray-color);
+}
