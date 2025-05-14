@@ -3,7 +3,8 @@
     flex-direction: column;
     justify-content: flex-start;
     align-items: flex-start;
-    width: 330px;
+    flex: 1;
+    width: 100%;
 }
 
 .cart-totals-container__title {
@@ -52,6 +53,10 @@
     width: 100%;
 }
 
+.buttons-container__accept-button {
+    width: 100%;
+}
+
 .buttons-container__continue-shopping-button {
     font-family: var(--font-family);
     font-weight: 400;
@@ -66,5 +71,4 @@
 }
 
 .buttons-container__continue-shopping-button:hover {
-    background-color: var(--dirty-white-color);
 }

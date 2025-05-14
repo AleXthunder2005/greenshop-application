@@ -1,0 +1,79 @@
+.billing-form {
+    font-family: var(--font-family);
+    flex: 1;
+    width: 100%
+}
+
+.billing-form__title {
+    font-family: var(--font-family);
+    font-weight: 700;
+    font-size: 17px;
+    line-height: 94%;
+    color: var(--primary-gray-color);
+    margin: 10px 0;
+}
+.billing-form__title:after{
+    content: "";
+    display: block;
+    height: 1px;
+    background-color: var(--light-transparent-color);
+    margin: 10px 0 23px;
+}
+
+.billing-form__row {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    gap: 25px;
+    margin-bottom: 20px;
+    width: 100%;
+}
+
+.billing-form__column {
+    min-width: 200px;
+    flex: 1;
+}
+
+.billing-form__field {
+    min-width: 200px;
+    margin-bottom: 20px;
+    flex: 1;
+}
+
+.billing-form__input {
+    width: 100%;
+}
+
+.billing-form__notes {
+    margin-top: 20px;
+}
+
+.billing-form__notes-label {
+    font-family: var(--font-family);
+    font-weight: 400;
+    font-size: 15px;
+    line-height: 100%;
+    color: var(--primary-gray-color);
+}
+
+.billing-form__notes-textarea {
+    font-family: var(--font-family);
+    width: 100%;
+    min-height: 6rem;
+    padding: 0.75rem;
+    border: 1px solid var(--light-transparent-color);
+    border-radius: 3px;
+    font-size: 15px;
+    resize: vertical;
+    transition: border-color 0.2s;
+    margin-top: 10px;
+}
+
+.billing-form__notes-textarea:hover {
+    cursor: pointer;
+}
+
+.billing-form__notes-textarea:focus {
+    outline: none;
+    border-color: var(--primary-gray-color);
+}

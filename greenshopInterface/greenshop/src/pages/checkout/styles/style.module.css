@@ -1,0 +1,25 @@
+.checkout-page-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: flex-start;
+    width: 100%;
+    gap: 30px;
+}
+
+.cart-container__title {
+    font-family: var(--font-family);
+    font-weight: 700;
+    font-size: 17px;
+    line-height: 94%;
+    color: var(--primary-gray-color);
+    margin: 10px 0;
+}
+
+.cart-container__title:after {
+    content: "";
+    display: block;
+    height: 1px;
+    background-color: var(--light-transparent-color);
+    margin-top: 10px;
+}

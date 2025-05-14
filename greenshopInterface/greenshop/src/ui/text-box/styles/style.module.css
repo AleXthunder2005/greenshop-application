@@ -1,0 +1,48 @@
+.text-box {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    width: 100%;
+}
+
+.text-box__label {
+    font-family: var(--font-family);
+    font-weight: 400;
+    font-size: 15px;
+    line-height: 100%;
+    color: var(--primary-gray-color);
+}
+
+.text-box__required {
+    color: var(--primary-red-color);
+    margin-left: 4px;
+}
+
+.text-box__input {
+    border: 1px solid var(--light-transparent-color);
+    border-radius: 3px;
+    height: 40px;
+    width: 100%;
+    padding: 0 10px;
+    font-family: var(--font-family);
+    font-size: 15px;
+}
+
+.text-box__input:hover {
+    cursor: pointer;
+}
+
+.text-box__input:focus {
+    outline: none;
+    border-color: var(--primary-gray-color);
+}
+
+.text-box__input_invalid {
+    border-color: var(--primary-red-color);
+}
+
+.text-box__error-message {
+    color: var(--primary-red-color);
+    font-size: 12px;
+    margin-top: -4px;
+}

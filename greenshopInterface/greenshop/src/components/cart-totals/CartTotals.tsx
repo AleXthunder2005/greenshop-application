@@ -3,9 +3,10 @@ import {DarkGreenButton} from "@ui/dark-green-button";
 
 interface CartTotalsProps {
     totalPrice: number;
+    isShortMode?: boolean;
 }
 
-const CartTotals = ({totalPrice} : CartTotalsProps) => {
+const CartTotals = ({totalPrice, isShortMode = false} : CartTotalsProps) => {
     const formatPrice = (price: number) => price.toFixed(2)
 
     return (
@@ -15,10 +16,18 @@ const CartTotals = ({totalPrice} : CartTotalsProps) => {
                 <h4 className={styles['total-container__title']}>Total</h4>
                 <p className={styles['total-container__value']}>{`$${formatPrice(totalPrice)}`}</p>
             </div>
-            <div className={styles['cart-totals-container__buttons-container']}>
-                <DarkGreenButton>Proceed To Checkout</DarkGreenButton>
-                <a href='##' className={styles['buttons-container__continue-shopping-button']}>Continue Shopping</a>
-            </div>
+            {isShortMode
+                ?
+                (<div className={styles['cart-totals-container__buttons-container']}>
+                    <DarkGreenButton className={styles['buttons-container__accept-button']}>Accept order</DarkGreenButton>
+                    <a href='##' className={styles['buttons-container__continue-shopping-button']}>Continue Shopping</a>
+                </div>)
+                :
+                (<div className={styles['cart-totals-container__buttons-container']}>
+                    <DarkGreenButton className={styles['buttons-container__accept-button']}>Proceed To Checkout</DarkGreenButton>
+                    <a href='##' className={styles['buttons-container__continue-shopping-button']}>Continue Shopping</a>
+                </div>)
+            }
         </div>
     );
 };

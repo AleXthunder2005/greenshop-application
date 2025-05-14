@@ -14,8 +14,22 @@
     border: none;
     cursor: pointer;
     transition: background-color 0.3s linear;
+    position: relative;
 }
 
+/* Стили для содержимого кнопки */
+.button-content {
+    display: inline-block;
+}
+
+/* Стили для иконки внутри кнопки */
+.button-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Модификаторы для позиции иконки */
 .with-icon-left {
     padding-left: 15px;
     flex-direction: row;
@@ -28,6 +42,13 @@
     gap: 10px;
 }
 
+/* Состояние hover */
 .dark-green-button:hover {
     background-color: var(--light-green-color);
+}
+
+.dark-green-button.outline {
+    background-color: transparent;
+    border: 2px solid var(--primary-green-color);
+    color: var(--primary-green-color);
 }

@@ -5,18 +5,30 @@ import { Icon, IconPosition, IconType } from "@ui/button-icon";
 interface DarkGreenButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
     iconType?: IconType;
     iconPosition?: IconPosition;
+    className?: string;
 }
 
-const DarkGreenButton = ({ children, iconType, iconPosition = 'left', ...props }: DarkGreenButtonProps) => {
+const DarkGreenButton = ({
+                             children,
+                             iconType,
+                             iconPosition = 'left',
+                             className = '',
+                             ...props
+                         }: DarkGreenButtonProps) => {
     const buttonClassNames = [
         styles['dark-green-button'],
-        iconType && styles[`with-icon-${iconPosition}`]
+        iconType && styles[`with-icon-${iconPosition}`],
+        className
     ].filter(Boolean).join(' ');
 
     return (
         <button className={buttonClassNames} {...props}>
-            {iconType && <Icon iconType={iconType} />}
-            {children}
+            {iconType && (
+                <span className={styles['button-icon']}>
+                    <Icon iconType={iconType} />
+                </span>
+            )}
+            <span className={styles['button-content']}>{children}</span>
         </button>
     );
 };

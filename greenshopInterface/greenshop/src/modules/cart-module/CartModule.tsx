@@ -5,9 +5,10 @@ import {CartTotals} from "@components/cart-totals";
 
 interface CartModuleProps {
     initialPlants: PlantInCartOptions[];
+    isShortMode?: boolean;
 }
 
-const CartModule = ({ initialPlants }: CartModuleProps) => {
+const CartModule = ({ initialPlants, isShortMode = false }: CartModuleProps) => {
     const [plants, setPlants] = useState<PlantInCartOptions[]>(
         initialPlants.map(plant => ({
             ...plant,
@@ -38,14 +39,15 @@ const CartModule = ({ initialPlants }: CartModuleProps) => {
 
 
     return (
-        <div className={styles['cart-module-container']}>
+        <div className={`${styles['cart-module-container']} ${isShortMode ? styles['short-cart'] : ''}`}>
             <CartViewer
+                isShortMode={isShortMode}
                 plants={plants}
                 onQuantityChange={handleQuantityChange}
                 onRemove={handleRemove}
             />
 
-            <CartTotals totalPrice={totalPrice}/>
+            <CartTotals totalPrice={totalPrice} isShortMode={isShortMode} />
         </div>
     );
 };

@@ -1,5 +1,5 @@
 .cart-viewer-container {
-    flex: 1;
+    flex: 2;
 }
 
 /* Стили таблицы */
@@ -19,7 +19,7 @@
     font-size: 16px;
     line-height: 100%;
     color: var(--primary-gray-color);
-    text-align: center;
+    text-align: left;
     padding: 10px
 }
 
@@ -74,6 +74,15 @@
 
 .description-container__id-title {
     color: var(--secondary-light-gray-color);
+}
+
+.short-quantity {
+    font-family: var(--font-family);
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 114%;
+    text-align: right;
+    color: var(--primary-light-gray-color);
 }
 
 .counter-container {
