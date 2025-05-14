@@ -8,6 +8,7 @@ interface CounterProps {
     onDecrement: () => void;
     min?: number;
     max?: number;
+    size?: number;
 }
 
 const Counter = ({
@@ -15,24 +16,25 @@ const Counter = ({
                      onIncrement,
                      onDecrement,
                      min = 1,
-                     max = 100
+                     max = 100,
+                     size = 20,
                  }: CounterProps) => {
     return (
         <div className={styles['counter']}>
             <DarkGreenButton
                 onClick={onDecrement}
                 disabled={value <= min}
-                style={{ padding: '10px', borderRadius: '29px', width: '35px' }}
+                style={{ padding: '10px', borderRadius: '29px', width: '35px', fontSize: `${size}px}`}}
             >
                 -
             </DarkGreenButton>
 
-            <span className={styles['counter__value']}>{value}</span>
+            <span className={styles['counter__value']} style={{fontSize: `${size}px}`}}>{value}</span>
 
             <DarkGreenButton
                 onClick={onIncrement}
                 disabled={value >= max}
-                style={{ padding: '10px', borderRadius: '29px', width: '35px' }}
+                style={{ padding: '10px', borderRadius: '29px', width: '35px', fontSize: `${size}px}` }}
             >
                 +
             </DarkGreenButton>

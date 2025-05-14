@@ -9,10 +9,9 @@
     --primary-white-color: #ffffff;
     --dirty-white-color: #f4f4f4;
     --light-green-color: rgba(15, 100, 32, 0.93);
-    --light-transparent-color: rgba(95, 184, 112, 0.51);
+    --light-transparent-color: #eee;
     --hover-gray-color: #1a1a1a;
     --light-background-green-color: rgba(70, 163, 88, 0.1);
-
   }
 
 * {
@@ -28,4 +27,12 @@ a, a:link, a:visited  {
 
 a:hover  {
     text-decoration: none;
+}
+
+button {
+    border: none;
+    outline: none;
+    background: none;
+    color: inherit;
+    cursor: pointer;
 }

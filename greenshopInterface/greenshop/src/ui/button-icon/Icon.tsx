@@ -1,3 +1,5 @@
+import styles from './styles/style.module.css'
+
 import cartIcon from "./assets/cart-icon.svg";
 import doorIcon from "./assets/door-icon.svg";
 import loupeIcon from "./assets/loupe-icon.svg";
@@ -6,6 +8,7 @@ import heartIcon from "./assets/heart-icon.svg"
 import locationIcon from "./assets/location-icon.svg"
 import messageIcon from "./assets/message-icon.svg"
 import callingIcon from "./assets/calling-icon.svg"
+import deleteIcon from "./assets/delete-icon.svg"
 
 export type IconType =
     'cart' |
@@ -15,7 +18,8 @@ export type IconType =
     'heart'|
     'location'|
     'message'|
-    'calling';
+    'calling'|
+    'delete';
 
 export type IconPosition =
     'left' |
@@ -36,11 +40,12 @@ const Icon = ({iconType} : ButtonIconProps) => {
         location: locationIcon,
         message: messageIcon,
         calling: callingIcon,
+        delete: deleteIcon,
     };
     const iconSrc = icons[iconType];
 
     return (
-        <img
+        <img className={styles['icon-image']}
             src={iconSrc}
             alt={`${iconType}-icon`}
         />

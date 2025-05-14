@@ -1,0 +1,124 @@
+.cart-viewer-container {
+    flex: 1;
+}
+
+/* Стили таблицы */
+.cart-viewer-container__table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+/* Стили заголовка таблицы */
+.table__head {
+    border-bottom: 1px solid var(--light-transparent-color);
+}
+
+.table__head-row__cell {
+    font-family: var(--font-family);
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 100%;
+    color: var(--primary-gray-color);
+    text-align: center;
+    padding: 10px
+}
+
+/* Стили строк товаров */
+.table__product-info-container {
+    border-bottom: 1px solid var(--light-transparent-color);
+    transition: background-color 0.3s ease-in-out;
+}
+
+.table__product-info-container:hover {
+    background-color: var(--dirty-white-color);
+    cursor: pointer;
+}
+
+.product-info-container__cell {
+    text-align: left;
+    padding: 10px;
+    vertical-align: middle;
+}
+
+/* Стили изображения товара */
+.product-info-container__image {
+    width: 70px;
+    height: 70px;
+    object-fit: contain;
+    border-radius: 10px;
+    mix-blend-mode: multiply;
+}
+
+/* Стили описания товара */
+.product-info-container__description-container {
+    display: flex;
+    flex-direction: column;
+    gap: 7px;
+}
+
+.description-container__name {
+    font-family: var(--font-family);
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 100%;
+    color: var(--primary-gray-color);
+}
+
+.description-container__id {
+    font-family: var(--font-family);
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 114%;
+    color: var(--primary-light-gray-color);
+}
+
+.description-container__id-title {
+    color: var(--secondary-light-gray-color);
+}
+
+.counter-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Стили цены */
+.product-info-container__price-container {
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+}
+
+.price-container__actual-price {
+    font-family: var(--font-family);
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 100%;
+    color: var(--primary-light-gray-color);
+}
+
+.price-container__price-without-sale {
+    font-size: 15px;
+    color: var(--secondary-light-gray-color);
+    text-decoration: line-through;
+}
+
+.delete-button {
+    cursor: pointer;
+    padding: 10px;
+    border-radius: 50%;
+    transition: background-color 0.2s;
+}
+
+.delete-button:hover {
+    background-color: var(--primary-white-color);
+}
+
+.total-price {
+    font-family: var(--font-family);
+    font-weight: 700;
+    font-size: 16px;
+    line-height: 100%;
+    color: var(--primary-green-color);
+}
