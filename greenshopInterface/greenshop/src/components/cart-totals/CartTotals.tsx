@@ -1,14 +1,24 @@
 import styles from './styles/style.module.css'
-import {DarkGreenButton} from "@ui/dark-green-button";
+import {PlantInCartOptions} from "@components/cart-viewer";
+import {useMemo} from "react";
 
 interface CartTotalsProps {
-    totalPrice: number;
-    isShortMode?: boolean;
+    plants: PlantInCartOptions[];
+    onTotalPriceChanged?: () => void;
 }
 
-const CartTotals = ({totalPrice, isShortMode = false} : CartTotalsProps) => {
+const CartTotals = ({plants} : CartTotalsProps) => {
     const formatPrice = (price: number) => price.toFixed(2)
+    const calculateTotalPrice = (plants: PlantInCartOptions[]) => {
+        const currTotalPrice = plants.reduce((total, plant) => {
+            return total + ((plant.salePrice || plant.price) * plant.quantity);
+        }, 0);
+        // onTotalPriceChanged(currTotalPrice);
+        return currTotalPrice;
+    };
 
+
+    const totalPrice = useMemo(() => calculateTotalPrice(plants), [plants]);
     return (
         <div className={styles['cart-totals-container']}>
             <h3 className={styles['cart-totals-container__title']}>Cart Totals</h3>
@@ -16,18 +26,6 @@ const CartTotals = ({totalPrice, isShortMode = false} : CartTotalsProps) => {
                 <h4 className={styles['total-container__title']}>Total</h4>
                 <p className={styles['total-container__value']}>{`$${formatPrice(totalPrice)}`}</p>
             </div>
-            {isShortMode
-                ?
-                (<div className={styles['cart-totals-container__buttons-container']}>
-                    <DarkGreenButton className={styles['buttons-container__accept-button']}>Accept order</DarkGreenButton>
-                    <a href='##' className={styles['buttons-container__continue-shopping-button']}>Continue Shopping</a>
-                </div>)
-                :
-                (<div className={styles['cart-totals-container__buttons-container']}>
-                    <DarkGreenButton className={styles['buttons-container__accept-button']}>Proceed To Checkout</DarkGreenButton>
-                    <a href='##' className={styles['buttons-container__continue-shopping-button']}>Continue Shopping</a>
-                </div>)
-            }
         </div>
     );
 };

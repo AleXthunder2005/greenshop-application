@@ -44,31 +44,3 @@
     text-align: right;
     color: var(--primary-green-color)
 }
-
-.cart-totals-container__buttons-container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 5px;
-    width: 100%;
-}
-
-.buttons-container__accept-button {
-    width: 100%;
-}
-
-.buttons-container__continue-shopping-button {
-    font-family: var(--font-family);
-    font-weight: 400;
-    font-size: 15px;
-    line-height: 107%;
-    color: var(--primary-green-color);
-    width: 100%;
-    padding: 7px;
-    text-align: center;
-    background-color: transparent;
-    transition: background-color 0.3s ease-in-out;
-}
-
-.buttons-container__continue-shopping-button:hover {
-}

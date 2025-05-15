@@ -4,8 +4,8 @@ import { DarkGreenButton } from "@ui/dark-green-button";
 
 interface CounterProps {
     value: number;
-    onIncrement: () => void;
-    onDecrement: () => void;
+    onIncrement?: () => void;
+    onDecrement?: () => void;
     min?: number;
     max?: number;
     size?: number;

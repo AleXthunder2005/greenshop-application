@@ -1,7 +1,11 @@
 .billing-form {
     font-family: var(--font-family);
-    flex: 1;
-    width: 100%
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    gap: 35px;
+
 }
 
 .billing-form__title {
@@ -76,4 +80,64 @@
 .billing-form__notes-textarea:focus {
     outline: none;
     border-color: var(--primary-gray-color);
+}
+
+.billing-form__billing-info-container {
+    flex: 2;
+}
+
+.billing-form__orders-info-container {
+    flex: 1;
+    gap: 25px;
+}
+
+.orders-info-container__title {
+    font-family: var(--font-family);
+    font-weight: 700;
+    font-size: 17px;
+    line-height: 94%;
+    color: var(--primary-gray-color);
+    margin: 10px 0;
+}
+
+.orders-info-container__title:after {
+    content: "";
+    display: block;
+    height: 1px;
+    background-color: var(--light-transparent-color);
+    margin-top: 10px;
+}
+
+.orders-info-container__orders {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    gap: 30px;
+}
+
+.orders-info-container__orders__buttons-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 5px;
+    width: 100%;
+    margin-top: -35px;
+}
+
+.buttons-container__submit-button {
+    width: 100%;
+}
+
+.buttons-container__continue-shopping-button {
+    font-family: var(--font-family);
+    font-weight: 400;
+    font-size: 15px;
+    line-height: 107%;
+    color: var(--primary-green-color);
+    width: 100%;
+    padding: 7px;
+    text-align: center;
+    background-color: transparent;
+    transition: background-color 0.3s ease-in-out;
+
 }

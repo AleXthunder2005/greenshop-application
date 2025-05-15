@@ -1,1 +1,1 @@
-export {default as Checkout} from './Checkout';
+export {default as CheckoutModule} from './CheckoutModule.tsx';

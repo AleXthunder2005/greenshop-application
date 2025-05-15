@@ -14,8 +14,8 @@ export type PlantInCartOptions = {
 
 interface CartViewerProps {
     plants: PlantInCartOptions[];
-    onQuantityChange: (id: number, newQuantity: number) => void;
-    onRemove: (id: number) => void;
+    onQuantityChange?: (id: number, newQuantity: number) => void;
+    onRemove?: (id: number) => void;
     isShortMode?: boolean;
 }
 
@@ -78,8 +78,10 @@ const CartViewer = ({ plants, onQuantityChange, onRemove, isShortMode = false }:
                                 (<div className={styles['counter-container']}>
                                     <Counter
                                         value={plant.quantity}
-                                        onIncrement={() => onQuantityChange(plant.id, plant.quantity + 1)}
-                                        onDecrement={() => onQuantityChange(plant.id, plant.quantity - 1)}
+
+
+                                        onIncrement={onQuantityChange ? () => onQuantityChange(plant.id, plant.quantity + 1) : undefined}
+                                        onDecrement={onQuantityChange ? () => onQuantityChange(plant.id, plant.quantity - 1) : undefined}
                                         min={1}
                                         max={100}
                                         size={10}
@@ -95,7 +97,7 @@ const CartViewer = ({ plants, onQuantityChange, onRemove, isShortMode = false }:
                         {!isShortMode && (
                             <td className={styles['product-info-container__cell']}>
                                 <button
-                                    onClick={() => onRemove(plant.id)}
+                                    onClick={onRemove ? () => onRemove(plant.id) : undefined}
                                     className={styles['delete-button']}
                                     aria-label="Remove item"
                                 >

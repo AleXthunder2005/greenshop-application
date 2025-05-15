@@ -1,4 +1,3 @@
-import syles from './styles/style.module.css'
 import {List, ListItem} from '@ui/list'
 import { useState } from 'react';
 

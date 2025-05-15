@@ -1,6 +1,5 @@
 import styles from './styles/style.module.css'
-import {Checkout} from "@modules/checkout";
-import {CartModule} from "@modules/cart-module";
+import {CheckoutModule} from "@modules/checkout";
 import { PlantInCartOptions } from '@components/cart-viewer';
 
 const plantsInCart: PlantInCartOptions[] = [
@@ -34,12 +33,7 @@ const plantsInCart: PlantInCartOptions[] = [
 const CheckoutPage = () => {
     return (
         <div className={styles['checkout-page-container']}>
-            <Checkout/>
-            <div className={styles['checkout-page-container__cart-container']}>
-                <h2 className={styles['cart-container__title']}>Your Order</h2>
-                <CartModule initialPlants={plantsInCart} isShortMode={true}/>
-            </div>
-
+            <CheckoutModule plants={plantsInCart}/>
         </div>
     );
 };
