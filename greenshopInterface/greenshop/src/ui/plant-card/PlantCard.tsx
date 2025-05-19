@@ -1,34 +1,25 @@
 import styles from './styles/style.module.css';
 import { Icon } from "@ui/button-icon";
+import {PlantCardData} from "@/types/plants.types.ts";
+import {formatPrice, getActualPrice} from "@/helpers/plant.helpers.ts";
 
-export type PlantCardProps = {
-    name: string;
-    iconPath: string;
-    price: number;
-    sale?: number;
-    salePrice?: number;
+interface PlantCardProps {
+    plant: PlantCardData;
 }
 
-const PlantCard = ({ name, iconPath, price, sale, salePrice }: PlantCardProps) => {
-    // Функция для форматирования цены
-    const formatPrice = (value: number) => {
-        return value.toFixed(2); // Всегда 2 знака после запятой
-    };
-
-    const actualPrice = salePrice ? salePrice : price;
-
+const PlantCard = ({ plant }: PlantCardProps) => {
     return (
         <div className={styles['plant-card-container']}>
             <div className={styles['plant-card-container__image-container']}>
-                {sale && (
+                {plant.sale && (
                     <div className={styles['image-container__sale-block']}>
-                        {sale}% OFF
+                        {plant.sale}% OFF
                     </div>
                 )}
                 <img
                     className={styles['image-container__image']}
-                    src={iconPath}
-                    alt={name}
+                    src={plant.images[0]}
+                    alt={plant.name}
                 />
                 <div className={styles['image-container__icons-container']}>
                     <Icon iconType={'cartGreen'}/>
@@ -37,14 +28,14 @@ const PlantCard = ({ name, iconPath, price, sale, salePrice }: PlantCardProps) =
             </div>
 
             <div className={styles['plant-card-container__info-container']}>
-                <p className={styles['plant-card-container__name']}>{name}</p>
+                <p className={styles['plant-card-container__name']}>{plant.name}</p>
                 <div className={styles['plant-card-container__price-container']}>
                     <p className={styles['price-container__price']}>
-                        ${formatPrice(actualPrice)}
+                        {formatPrice(getActualPrice(plant.price, plant.sale))}
                     </p>
-                    {salePrice && (
+                    {plant.sale && (
                         <p className={styles['price-container__salePrice']}>
-                            ${formatPrice(price)}
+                            {formatPrice(plant.price)}
                         </p>
                     )}
                 </div>

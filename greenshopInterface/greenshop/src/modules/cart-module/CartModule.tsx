@@ -1,17 +1,18 @@
 import {useState} from 'react';
 import styles from './styles/style.module.css';
-import {CartViewer, PlantInCartOptions} from "@components/cart-viewer";
+import {CartViewer} from "@components/cart-viewer";
 import {CartTotals} from "@components/cart-totals";
 import {DarkGreenButton} from "@ui/dark-green-button";
+import {OrderedPlantData} from "@/types/plants.types.ts";
 
 interface CartModuleProps {
-    initialPlants: PlantInCartOptions[];
+    orderedPlants: OrderedPlantData[];
     isShortMode?: boolean;
 }
 
-const CartModule = ({ initialPlants, isShortMode = false }: CartModuleProps) => {
-    const [plants, setPlants] = useState<PlantInCartOptions[]>(
-        initialPlants.map(plant => ({
+const CartModule = ({ orderedPlants, isShortMode = false }: CartModuleProps) => {
+    const [plants, setPlants] = useState<OrderedPlantData[]>(
+        orderedPlants.map(plant => ({
             ...plant,
             quantity: 1
         }))

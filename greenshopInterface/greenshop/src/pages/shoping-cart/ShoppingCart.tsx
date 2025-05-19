@@ -33,7 +33,7 @@ const plantsInCart: PlantInCartOptions[] = [
 const ShoppingCart = () => {
     return (
         <div>
-            <CartModule initialPlants={plantsInCart} />
+            <CartModule orderedPlants={plantsInCart} />
         </div>
     );
 };

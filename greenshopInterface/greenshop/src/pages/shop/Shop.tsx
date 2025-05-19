@@ -1,10 +1,10 @@
-import {AboutPlantViewer, PlantInfo} from "@modules/about-plant-viewer";
+import {AboutPlantViewer} from "@modules/about-plant-viewer";
+import {PlantData} from '@/types/plants.types.ts'
 
-const plantInfo: PlantInfo = {
+const plantInfo: PlantData = {
     name: "Barberton Daisy",
     price: 119.00,
     sale: 13,
-    salePrice: 0.87 * 119.00,
     rate: 4,
     shortDescription: 'The ceramic cylinder planters come with ' +
         'a wooden stand to help elevate your plants off the ground. ' +
@@ -22,7 +22,7 @@ const plantInfo: PlantInfo = {
 const Shop = () => {
     return (
         <div>
-            <AboutPlantViewer plantInfo={plantInfo}/>
+            <AboutPlantViewer plantData={plantInfo}/>
         </div>
     );
 };

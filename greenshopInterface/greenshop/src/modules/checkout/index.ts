@@ -1,1 +1,0 @@
-export {default as CheckoutModule} from './CheckoutModule.tsx';

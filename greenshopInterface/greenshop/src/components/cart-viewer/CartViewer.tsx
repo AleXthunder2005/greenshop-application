@@ -1,30 +1,20 @@
 import styles from './styles/style.module.css';
 import { Counter } from "@ui/counter";
 import { Icon } from "@ui/button-icon";
-
-export type PlantInCartOptions = {
-    name: string;
-    price: number;
-    sale?: number;
-    salePrice?: number;
-    id: number;
-    image: string;
-    quantity: number;
-}
+import {formatID, formatPrice, getActualPrice} from "@/helpers/plant.helpers.ts";
+import {OrderedPlantData} from "@/types/plants.types.ts";
 
 interface CartViewerProps {
-    plants: PlantInCartOptions[];
+    plants: OrderedPlantData[];
     onQuantityChange?: (id: number, newQuantity: number) => void;
     onRemove?: (id: number) => void;
     isShortMode?: boolean;
+    className?: string;
 }
 
-const CartViewer = ({ plants, onQuantityChange, onRemove, isShortMode = false }: CartViewerProps) => {
-    const formatPrice = (price: number) => `$${price.toFixed(2)}`;
-    const formatID = (id: number) => id.toString().padStart(13, '0');
-
+const CartViewer = ({ plants, onQuantityChange, onRemove, isShortMode = false, className }: CartViewerProps) => {
     return (
-        <div className={styles['cart-viewer-container']}>
+        <div className={`${styles['cart-viewer-container']} ${className || ''}`}>
             <table className={styles['cart-viewer-container__table']}>
                 <thead className={styles['table__head']}>
                 <tr className={styles['table__head-row']}>
@@ -61,9 +51,9 @@ const CartViewer = ({ plants, onQuantityChange, onRemove, isShortMode = false }:
                             (<td className={styles['product-info-container__cell']}>
                             <div className={styles['product-info-container__price-container']}>
                                 <span className={styles['price-container__actual-price']}>
-                                    {formatPrice(plant.salePrice || plant.price)}
+                                    {formatPrice(getActualPrice(plant.price, plant.sale))}
                                 </span>
-                                {plant.salePrice && (
+                                {plant.sale && (
                                     <span className={styles['price-container__price-without-sale']}>
                                         {formatPrice(plant.price)}
                                     </span>
@@ -91,7 +81,7 @@ const CartViewer = ({ plants, onQuantityChange, onRemove, isShortMode = false }:
                         </td>
                         <td className={styles['product-info-container__cell']}>
                             <span className={styles['total-price']}>
-                                {formatPrice((plant.salePrice || plant.price) * plant.quantity)}
+                                {formatPrice(getActualPrice(plant.price, plant.sale) * plant.quantity)}
                             </span>
                         </td>
                         {!isShortMode && (

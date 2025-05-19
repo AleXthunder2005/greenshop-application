@@ -1,8 +1,8 @@
 import styles from './styles/style.module.css'
+import {PlantSize} from "@/types/plants.types.ts";
 
-export type sizeType = 'small' | 'medium' | 'large';
 interface SizeIconProps {
-    size: sizeType;
+    size: PlantSize;
 }
 
 const SizeIcon = ({size} : SizeIconProps) => {

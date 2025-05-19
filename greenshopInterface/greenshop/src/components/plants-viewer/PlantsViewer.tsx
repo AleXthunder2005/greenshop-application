@@ -1,21 +1,18 @@
 import styles from './styles/style.module.css'
-import {PlantCard, PlantCardInfo} from "@ui/plant-card";
+import {PlantCard} from "@ui/plant-card";
+import {PlantCardData} from "@/types/plants.types.ts";
 
 interface PlantsViewerProps {
-    plants: PlantCardInfo[];
+    plants: PlantCardData[];
 }
 
 const PlantsViewer = ({ plants }: PlantsViewerProps) => {
     return (
         <div className={styles['plants-viewer-container']}>
-            {plants.map((plant: PlantCardInfo) => (
+            {plants.map((plant: PlantCardData) => (
                 <PlantCard
-                    key={plant.name}
-                    name={plant.name}
-                    iconPath={plant.iconPath}
-                    price={plant.price}
-                    sale={plant.sale}
-                    salePrice={plant.salePrice}
+                    key={plant.id}
+                    plant={plant}
                 />
             ))}
         </div>

@@ -3,17 +3,17 @@ import { useState } from "react";
 import {NotFoundImg} from "@ui/not-found-img";
 
 interface PlantGalleryProps {
-    imageUrls: string[];
+    images: string[];
     initialActiveIndex?: number;
 }
 
-const PlantGallery = ({ imageUrls, initialActiveIndex = 0 }: PlantGalleryProps) => {
+const PlantGallery = ({ images, initialActiveIndex = 0 }: PlantGalleryProps) => {
     const [activeImageIndex, setActiveImageIndex] = useState(initialActiveIndex);
 
     return (
         <div className={styles['plant-gallery-container']}>
             <div className={styles['plant-gallery-container__all-images-container']}>
-                {imageUrls.map((url, index) => (
+                {images.map((url, index) => (
                     <img
                         className={`${styles['all-images-container__image']} ${
                             activeImageIndex === index ? styles['active-image'] : ''
@@ -27,11 +27,11 @@ const PlantGallery = ({ imageUrls, initialActiveIndex = 0 }: PlantGalleryProps) 
             </div>
             <div className={styles['plant-gallery-container__active-image-container']}>
                 {
-                    imageUrls.length
+                    images.length
                     ?
                         <img
                             className={styles['active-image-container__image']}
-                            src={imageUrls[activeImageIndex]}
+                            src={images[activeImageIndex]}
                             alt={`Plant image ${activeImageIndex}`}
                         />
                     :

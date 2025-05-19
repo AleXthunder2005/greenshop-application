@@ -36,14 +36,14 @@
 
 .product-info-container__cell {
     text-align: left;
-    padding: 10px;
+    padding: 5px 10px;
     vertical-align: middle;
 }
 
 /* Стили изображения товара */
 .product-info-container__image {
-    width: 70px;
-    height: 70px;
+    width: 60px;
+    height: 60px;
     object-fit: contain;
     border-radius: 10px;
     mix-blend-mode: multiply;

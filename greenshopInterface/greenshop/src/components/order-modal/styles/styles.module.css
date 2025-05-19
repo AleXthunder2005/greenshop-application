@@ -1,0 +1,121 @@
+.order-modal-content {
+    margin: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    max-width: 500px;
+}
+
+.order-modal-content__content-title {
+    font-family: var(--font-family);
+    font-weight: 700;
+    font-size: 15px;
+    line-height: 107%;
+    color: var(--primary-gray-color);
+    padding: 5px
+}
+
+.order-modal-content__orders-viewer {
+    width: 100%;
+}
+
+.order-modal-content__button {
+    margin: 0 0 10px;
+    width: 70%;
+}
+
+.order-modal-content__footer-text {
+    font-family: var(--font-family);
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 157%;
+    text-align: center;
+    color: var(--primary-light-gray-color);
+    padding: 15px 0;
+}
+
+
+
+.header-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.header-container__header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+    width: 100%;
+    background-color: var(--light-transparent-color);
+    padding: 15px;
+}
+
+.header-container__header-text {
+    font-family: var(--font-family);
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 100%;
+    text-align: center;
+    color: var(--primary-light-gray-color);
+}
+
+.header-container__header-info-container {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+
+}
+
+.header-info-container__order-info-table {
+    width: 100%;
+    padding: 15px 15px;
+    border-top: 1px solid var(--secondary-light-gray-color);
+    border-bottom: 1px solid var(--secondary-light-gray-color);
+}
+
+.order-info-table__row {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    position: relative;
+}
+
+.order-info-table__cell{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+
+    font-family: var(--font-family);
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 114%;
+    color: var(--primary-light-gray-color);
+    position: relative;
+    padding: 0 20px;
+}
+
+.order-info-table__cell:not(:last-child)::after {
+    content: "";
+    position: absolute;
+    right: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    height: 30px;
+    width: 1px;
+    background-color: var(--secondary-light-gray-color);
+}
+
+.order-modal-content__orders-viewer {
+    overflow: auto;
+    max-height: 275px;
+}
+
+.order-info-table__cell-value {
+    font-weight: 700;
+}
