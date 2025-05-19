@@ -26,15 +26,17 @@
     padding: 0 10px;
     font-family: var(--font-family);
     font-size: 15px;
+    transition: border-color ease-in-out .3s
 }
 
 .text-box__input:hover {
-    cursor: pointer;
+    cursor: text;
+    border-color: var(--secondary-light-gray-color);
 }
 
 .text-box__input:focus {
     outline: none;
-    border-color: var(--primary-gray-color);
+    border-color: var(--primary-green-color);
 }
 
 .text-box__input_invalid {

@@ -69,17 +69,18 @@
     border-radius: 3px;
     font-size: 15px;
     resize: vertical;
-    transition: border-color 0.2s;
+    transition: border-color 0.3s;
     margin-top: 10px;
 }
 
 .billing-form__notes-textarea:hover {
-    cursor: pointer;
+    cursor: text;
+    border-color: var(--secondary-light-gray-color);
 }
 
 .billing-form__notes-textarea:focus {
     outline: none;
-    border-color: var(--primary-gray-color);
+    border-color: var(--primary-green-color);
 }
 
 .billing-form__billing-info-container {

@@ -1,0 +1,84 @@
+.modal-container {
+    width: 500px;
+    padding: 50px 70px;
+}
+
+.tabs-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.tab {
+    padding: 0 12px;
+    margin-bottom: 20px;
+    font-family: var(--font-family);
+    font-weight: 500;
+    font-size: 20px;
+    line-height: 80%;
+    color: var(--primary-light-gray-color);
+    transition: all 0.3s ease;
+}
+
+.tab:hover {
+    cursor: pointer;
+    color: var(--primary-gray-color);
+}
+
+.tab.active {
+    color: var(--primary-green-color);
+}
+
+.form-container {
+    position: relative;
+    overflow: hidden;
+    width: 100%;
+    min-height: 420px;
+}
+
+/* Общие стили для форм */
+.form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    width: 100%;
+}
+
+.form-title {
+    font-family: var(--font-family);
+    font-weight: 400;
+    font-size: 13px;
+    line-height: 123%;
+    color: var(--primary-gray-color);
+    text-align: center;
+}
+
+
+/* Дополнительные элементы */
+.forgot-password {
+    text-align: right;
+    margin-top: -12px;
+}
+
+.forgot-password a {
+    color: var(--primary-gray-color);
+    font-size: 13px;
+    text-decoration: none;
+    transition: color 0.2s;
+}
+
+.forgot-password a:hover {
+    color: var(--primary-green-color);
+    text-decoration: underline;
+}
+
+/* Анимации */
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+@keyframes slideFromRight {
+    from { transform: translateX(20px); opacity: 0; }
+    to { transform: translateX(0); opacity: 1; }
+}

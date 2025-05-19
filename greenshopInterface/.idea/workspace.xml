@@ -5,24 +5,14 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="3c661422-b22c-495b-a3a4-baa5776a26b1" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/greenshop/src/components/cart-totals/CartTotals.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/greenshop/src/components/cart-totals/CartTotals.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/greenshop/src/components/cart-viewer/CartViewer.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/greenshop/src/components/cart-viewer/CartViewer.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/greenshop/src/components/cart-viewer/styles/style.module.css" beforeDir="false" afterPath="$PROJECT_DIR$/greenshop/src/components/cart-viewer/styles/style.module.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/greenshop/src/components/plant-galery/PlantGallery.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/greenshop/src/components/plant-galery/PlantGallery.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/greenshop/src/components/plants-viewer/PlantsViewer.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/greenshop/src/components/plants-viewer/PlantsViewer.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/greenshop/src/modules/about-plant-viewer/AboutPlantViewer.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/greenshop/src/modules/about-plant-viewer/AboutPlantViewer.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/greenshop/src/modules/cart-module/CartModule.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/greenshop/src/modules/cart-module/CartModule.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/greenshop/src/modules/checkout/CheckoutModule.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/greenshop/src/modules/checkout-module/CheckoutModule.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/greenshop/src/modules/checkout/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/greenshop/src/modules/checkout-module/index.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/greenshop/src/modules/checkout/styles/style.module.css" beforeDir="false" afterPath="$PROJECT_DIR$/greenshop/src/modules/checkout-module/styles/style.module.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/greenshop/src/modules/plants-module/PlantsModule.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/greenshop/src/modules/plants-module/PlantsModule.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/greenshop/src/pages/checkout/CheckoutPage.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/greenshop/src/pages/checkout/CheckoutPage.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/greenshop/src/pages/shop/Shop.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/greenshop/src/pages/shop/Shop.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/greenshop/src/pages/shoping-cart/ShoppingCart.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/greenshop/src/pages/shoping-cart/ShoppingCart.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/greenshop/src/ui/plant-card/PlantCard.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/greenshop/src/ui/plant-card/PlantCard.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/greenshop/src/ui/size-icon/SizeIcon.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/greenshop/src/ui/size-icon/SizeIcon.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/greenshop/src/components/application-managment-panel/ApplicationManagementPanel.tsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/greenshop/src/components/application-managment-panel/index.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/greenshop/src/components/application-managment-panel/styles/style.module.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/greenshop/src/modules/checkout-module/styles/style.module.css" beforeDir="false" afterPath="$PROJECT_DIR$/greenshop/src/modules/checkout-module/styles/style.module.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/greenshop/src/modules/header/Header.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/greenshop/src/modules/header/Header.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/greenshop/src/modules/header/styles/style.module.css" beforeDir="false" afterPath="$PROJECT_DIR$/greenshop/src/modules/header/styles/style.module.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/greenshop/src/ui/text-box/styles/style.module.css" beforeDir="false" afterPath="$PROJECT_DIR$/greenshop/src/ui/text-box/styles/style.module.css" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -60,6 +50,11 @@
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\projects\greenshop-application\greenshopInterface\greenshop\src\modules\login-register-module\components" />
+    </key>
+  </component>
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
@@ -75,7 +70,7 @@
       <option name="presentableId" value="Default" />
       <updated>1747661855605</updated>
       <workItem from="1747661857411" duration="153000" />
-      <workItem from="1747662020402" duration="4745000" />
+      <workItem from="1747662020402" duration="16592000" />
     </task>
     <servers />
   </component>

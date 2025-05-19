@@ -1,0 +1,1 @@
+export {default as LoginRegisterModule} from './LoginRegisterModule'
