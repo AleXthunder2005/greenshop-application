@@ -1,0 +1,62 @@
+.account-details {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+    margin-bottom: 20px;
+}
+.account-details-form {
+
+}
+
+.billing-info-form {
+    font-family: var(--font-family);
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    margin-bottom: 20px;
+}
+
+.billing-info-form__title {
+    font-family: var(--font-family);
+    font-weight: 700;
+    font-size: 17px;
+    line-height: 94%;
+    color: var(--primary-gray-color);
+    margin: 10px 0 0;
+}
+
+.billing-info-form__title:after {
+    content: "";
+    display: block;
+    height: 1px;
+    background-color: var(--light-transparent-color);
+    margin: 10px 0 0;
+}
+
+.billing-info-form__row {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    gap: 25px;
+    width: 100%;
+}
+
+.billing-info-form__column {
+    min-width: 200px;
+    flex: 1;
+}
+
+.billing-info-form__field {
+    min-width: 200px;
+    flex: 1;
+}
+
+.billing-info-form__input {
+    width: 100%;
+}
+
+.billing-info-form__button {
+    width: 40%
+}

@@ -6,13 +6,14 @@
   <component name="ChangeListManager">
     <list default="true" id="3c661422-b22c-495b-a3a4-baa5776a26b1" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/greenshop/src/components/application-managment-panel/ApplicationManagementPanel.tsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/greenshop/src/components/application-managment-panel/index.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/greenshop/src/components/application-managment-panel/styles/style.module.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/greenshop/src/app/App.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/greenshop/src/app/App.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/greenshop/src/components/order-modal/OrderModal.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/greenshop/src/components/order-modal/OrderModal.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/greenshop/src/modules/checkout-module/CheckoutModule.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/greenshop/src/modules/checkout-module/CheckoutModule.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/greenshop/src/modules/checkout-module/styles/style.module.css" beforeDir="false" afterPath="$PROJECT_DIR$/greenshop/src/modules/checkout-module/styles/style.module.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/greenshop/src/modules/header/Header.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/greenshop/src/modules/header/Header.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/greenshop/src/modules/header/styles/style.module.css" beforeDir="false" afterPath="$PROJECT_DIR$/greenshop/src/modules/header/styles/style.module.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/greenshop/src/ui/text-box/styles/style.module.css" beforeDir="false" afterPath="$PROJECT_DIR$/greenshop/src/ui/text-box/styles/style.module.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/greenshop/src/pages/shoping-cart/ShoppingCart.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/greenshop/src/pages/shoping-cart/ShoppingCart.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/greenshop/src/types/order.types.ts" beforeDir="false" afterPath="$PROJECT_DIR$/greenshop/src/types/order.types.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/greenshop/src/ui/button-icon/Icon.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/greenshop/src/ui/button-icon/Icon.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/greenshop/src/ui/button-icon/styles/style.module.css" beforeDir="false" afterPath="$PROJECT_DIR$/greenshop/src/ui/button-icon/styles/style.module.css" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -52,6 +53,7 @@
 }]]></component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\projects\greenshop-application\greenshopInterface\greenshop\src\types" />
       <recent name="C:\projects\greenshop-application\greenshopInterface\greenshop\src\modules\login-register-module\components" />
     </key>
   </component>
@@ -70,11 +72,22 @@
       <option name="presentableId" value="Default" />
       <updated>1747661855605</updated>
       <workItem from="1747661857411" duration="153000" />
-      <workItem from="1747662020402" duration="16592000" />
+      <workItem from="1747662020402" duration="42915000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="javascript">
+          <url>file://$PROJECT_DIR$/greenshop/src/modules/checkout-module/CheckoutModule.tsx</url>
+          <properties lambdaOrdinal="-1" />
+          <option name="timeStamp" value="1" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>

@@ -1,14 +1,13 @@
 // import styles from './styles/style.module.css'
 import {CartModule} from "@modules/cart-module";
-import { PlantInCartOptions } from '@components/cart-viewer';
+import {OrderedPlantData} from "@/types/plants.types.ts";
 
-const plantsInCart: PlantInCartOptions[] = [
+const plantsInCart: OrderedPlantData[] = [
     {
         id: 1,
         name: "Barberton Daisy",
         price: 119.00,
         sale: 13,
-        salePrice: 103.53, // 0.87 * 119.00
         image: "../../assets/plants/plant_1/plant_1.png",
         quantity: 1,
     },
@@ -24,7 +23,6 @@ const plantsInCart: PlantInCartOptions[] = [
         name: "African Violet",
         price: 229.00,
         sale: 13,
-        salePrice: 199.00,
         image: "../../assets/plants/plant_3/plant_3.png",
         quantity: 1,
     }

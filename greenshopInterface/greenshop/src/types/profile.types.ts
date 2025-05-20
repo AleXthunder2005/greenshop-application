@@ -1,0 +1,1 @@
+export type TabTypes = "AccountDetails" | "Address" | "Orders" | "Wishlist";

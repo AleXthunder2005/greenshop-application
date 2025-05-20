@@ -1,3 +1,6 @@
-.icon-image:hover{
-    background: none;
+.icon-image {
+    --icon-color: currentColor;
+    --icon-hover-color: var(--icon-color);
+    width: 20px;
+    height: 20px;
 }

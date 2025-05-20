@@ -9,6 +9,7 @@ import locationIcon from "./assets/location-icon.svg"
 import messageIcon from "./assets/message-icon.svg"
 import callingIcon from "./assets/calling-icon.svg"
 import deleteIcon from "./assets/delete-icon.svg"
+import userIcon from "./assets/user-icon.svg"
 
 export type IconType =
     'cart' |
@@ -19,7 +20,8 @@ export type IconType =
     'location'|
     'message'|
     'calling'|
-    'delete';
+    'delete'|
+    'user';
 
 export type IconPosition =
     'left' |
@@ -41,6 +43,7 @@ const Icon = ({iconType} : ButtonIconProps) => {
         message: messageIcon,
         calling: callingIcon,
         delete: deleteIcon,
+        user: userIcon,
     };
     const iconSrc = icons[iconType];
 

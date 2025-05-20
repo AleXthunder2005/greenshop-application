@@ -16,10 +16,18 @@ export interface OrderData {
     orderNumber: number;
     deliveryDate: Date;
     paymentMethod: PaymentMethod
+
+}
+
+export interface DBOrder extends OrderData {
+    status: OrderStatus;
+    total: number;
 }
 
 export interface FullOrderData extends OrderData, BillingFormData {
 
 }
+
+export type OrderStatus = 'delivered' | 'in transit' | 'is processed';
 
 export type PaymentMethod = 'Cash on delivery'
