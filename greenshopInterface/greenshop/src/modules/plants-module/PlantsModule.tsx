@@ -25,14 +25,20 @@ const plantsData: PlantCardData[] = [
         sale: 13,
     }
 ];
-const PlantsModule = () => {
+
+interface PlantsModuleProps {
+    withFilters? : boolean;
+    likedPlants?: PlantCardData[];
+}
+
+const PlantsModule = ({withFilters = true, likedPlants} : PlantsModuleProps) => {
     const [currentPage, setCurrentPage] = useState(1);
 
     return (
         <div className={styles['plants-module-container']}>
-            <Filter/>
-            <div>
-                <PlantsViewer plants={plantsData}/>
+            {withFilters && (<Filter/>)}
+            <div className={styles['plants-viewer-container']}>
+                <PlantsViewer plants={likedPlants || plantsData}/>
                 <div className={styles['pagination-container']}>
                     <Pagination currentPage={currentPage} totalPages={10} onPageChange={setCurrentPage} />
                 </div>

@@ -3,5 +3,7 @@
     flex-direction: row;
     flex-wrap: wrap;
     gap: 70px 40px;
-    width: 840px;
+    justify-content: flex-start;
+    width: 100%;
+    /*width: 840px;*/
 }

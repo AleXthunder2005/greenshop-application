@@ -5,6 +5,7 @@ import {useState} from "react";
 import {TabTypes} from "@/types/profile.types.ts";
 import {Icon} from "@ui/button-icon";
 import {UserOrdersModule} from "@modules/user-orders-module";
+import {WishlistModule} from "@modules/wishlist-module";
 
 const sideMenuItems = [
     {
@@ -38,7 +39,7 @@ const Profile = () => {
 
             {activeTab === "AccountDetails" && (<ProfileModule />)}
             {activeTab === "Orders" && (<UserOrdersModule />)}
-
+            {activeTab === 'Wishlist' && (<WishlistModule />)}
         </div>
     );
 };

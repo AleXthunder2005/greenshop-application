@@ -3,10 +3,17 @@
     flex-direction: row;
     justify-content: space-between;
     margin-top: 50px;
+    width: 100%;
 }
 
 .pagination-container {
     display: flex;
     flex-direction: row;
     justify-content: flex-end;
+    width: 100%;
+}
+
+.plants-viewer-container {
+    width: 100%;
+    padding: 0 50px;
 }
