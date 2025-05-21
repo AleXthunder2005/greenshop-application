@@ -117,7 +117,7 @@ const PlantsEditorModal = ({initialPlant, isOpen, onSave, onClose}: PlantsEditor
         <Modal isOpen={isOpen} onClose={onClose}>
             <form className={styles['plants-editor-modal']} onSubmit={handleSubmit}>
                 <h2 className={styles['plants-editor-modal__title']}>
-                    {initialPlant ? 'Edit Plant' : 'Add New Plant'}
+                    {initialPlant ? 'Plant editor' : 'Plant creator'}
                 </h2>
 
                 <div className={styles['plants-editor-modal__row']}>

@@ -1,0 +1,22 @@
+.user-orders {
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+    width: 100%;
+}
+
+.user-orders__title {
+    font-family: var(--font-family);
+    font-weight: 700;
+    font-size: 17px;
+    line-height: 94%;
+    color: var(--primary-gray-color);
+}
+
+.user-orders__title:after {
+    content: "";
+    display: block;
+    height: 1px;
+    background-color: var(--light-transparent-color);
+    margin: 10px;
+}

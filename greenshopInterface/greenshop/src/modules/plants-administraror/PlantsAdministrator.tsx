@@ -2,7 +2,7 @@ import  styles from './styles/styles.module.css'
 import {PlantsViewer} from "@components/plants-viewer";
 import {DBPlant, PlantCardData} from "@/types/plants.types.ts";
 import {PlantsEditorModal} from "@components/plants-editor-modal";
-import React, {useState} from "react";
+import {useState} from "react";
 
 const plantsData: PlantCardData[] = [
     {
@@ -27,7 +27,7 @@ const plantsData: PlantCardData[] = [
 ];
 
 const PlantsAdministrator = () => {
-    const [isModalOpen, setIsModalOpen] = React.useState(true);
+    const [isModalOpen, setIsModalOpen] = useState(true);
     const closeModal = () => setIsModalOpen(false);
     const [editedPlant, setEditedPlant] = useState<DBPlant | null>(null)
 

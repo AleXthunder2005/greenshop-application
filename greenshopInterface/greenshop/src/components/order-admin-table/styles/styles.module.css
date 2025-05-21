@@ -1,0 +1,104 @@
+.user-orders__table {
+    width: 100%;
+    border-collapse: collapse;
+    overflow: hidden;
+    border-radius: 8px;
+    display: block;
+}
+
+.user-orders__table__head-row {
+    border-bottom: 1px solid var(--secondary-light-gray-color);
+    display: table;
+    width: 100%;
+    table-layout: fixed;
+}
+
+.user-orders__table__head-cell {
+    font-family: var(--font-family);
+    font-weight: 700;
+    font-size: 14px;
+    line-height: 114%;
+    padding: 15px 20px;
+    color: var(--primary-white-color);
+    position: relative;
+    background-color: var(--primary-green-color);
+}
+
+.user-orders__table__head-cell:not(:last-child)::after {
+    content: "";
+    position: absolute;
+    right: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    height: 25px;
+    width: 1px;
+    background-color: var(--primary-white-color);
+}
+
+.user-orders__table__body {
+    overflow-y: auto;
+    max-height: 400px;
+    display: block;
+}
+
+.user-orders__table__row {
+    border-bottom: 1px solid var(--light-transparent-color);
+    background-color: transparent;
+    transition: background-color ease-in-out 0.3s;
+
+    display: table;
+    width: 100%;
+    table-layout: fixed;
+}
+
+.user-orders__table__row:hover {
+    border-bottom: 1px solid var(--light-transparent-color);
+    background-color: var(--dirty-white-color);
+    cursor: pointer;
+
+    .user-orders__table__cell {
+        color: var(--primary-green-color);
+    }
+
+}
+
+.user-orders__table__cell {
+    padding: 15px 20px;
+    font-family: var(--font-family);
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 114%;
+    color: var(--primary-gray-color);
+    position: relative;
+}
+
+/*.user-orders__table__cell:not(:last-child)::after {*/
+/*    content: "";*/
+/*    position: absolute;*/
+/*    right: 0;*/
+/*    top: 50%;*/
+/*    transform: translateY(-50%);*/
+/*    height: 25px;*/
+/*    width: 1px;*/
+/*    background-color: var(--secondary-light-gray-color);*/
+/*}*/
+
+.user-orders__action-button {
+    font-family: var(--font-family);
+    font-weight: 700;
+    font-size: 13px;
+    line-height: 100%;
+    color: var(--primary-white-color);
+    padding: 5px;
+    border-radius: 10px;
+    background-color: var(--primary-green-color);
+    transition: background-color ease-in-out 0.3s;
+    display: block;
+    text-align: center;
+}
+
+.user-orders__action-button:hover {
+    color: var(--primary-white-color);
+    background-color: var(--light-green-color);
+    transition: background-color ease-in-out 0.3s;
+}

@@ -4,6 +4,7 @@ import {Icon} from "@ui/button-icon";
 import {useState} from "react";
 import {TabTypes} from "@/types/profile.types.ts";
 import {PlantsAdministrator} from "@modules/plants-administraror";
+import {OrderAdministrator} from "@modules/order-administrator";
 
 const sideMenuItems = [
     {
@@ -36,7 +37,7 @@ const AdminProfile = () => {
             />
 
             {activeTab === "Products Administrate" && (<PlantsAdministrator />)}
-            {/*{activeTab === "Orders" && (<UserOrdersModule />)}*/}
+            {activeTab === "Orders" && (<OrderAdministrator />)}
             {/*{activeTab === 'Logout' && (<WishlistModule />)}*/}
         </div>
     );

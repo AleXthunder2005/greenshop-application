@@ -6,14 +6,10 @@
   <component name="ChangeListManager">
     <list default="true" id="3c661422-b22c-495b-a3a4-baa5776a26b1" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/greenshop/src/app/App.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/greenshop/src/app/App.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/greenshop/src/components/plants-viewer/PlantsViewer.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/greenshop/src/components/plants-viewer/PlantsViewer.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/greenshop/src/components/plants-viewer/styles/style.module.css" beforeDir="false" afterPath="$PROJECT_DIR$/greenshop/src/components/plants-viewer/styles/style.module.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/greenshop/src/modules/plants-module/PlantsModule.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/greenshop/src/modules/plants-module/PlantsModule.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/greenshop/src/modules/wishlist-module/WishlistModule.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/greenshop/src/modules/wishlist-module/WishlistModule.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/greenshop/src/modules/wishlist-module/styles/styles.module.css" beforeDir="false" afterPath="$PROJECT_DIR$/greenshop/src/modules/wishlist-module/styles/styles.module.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/greenshop/src/types/plants.types.ts" beforeDir="false" afterPath="$PROJECT_DIR$/greenshop/src/types/plants.types.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/greenshop/src/types/profile.types.ts" beforeDir="false" afterPath="$PROJECT_DIR$/greenshop/src/types/profile.types.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/greenshop/src/components/order-modal/OrderModal.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/greenshop/src/components/order-modal/OrderModal.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/greenshop/src/components/plants-editor-modal/PlantsEditorModal.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/greenshop/src/components/plants-editor-modal/PlantsEditorModal.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/greenshop/src/modules/plants-administraror/PlantsAdministrator.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/greenshop/src/modules/plants-administraror/PlantsAdministrator.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/greenshop/src/pages/admin-profile/AdminProfile.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/greenshop/src/pages/admin-profile/AdminProfile.tsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -35,22 +31,22 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "ModuleVcsDetector.initialDetectionPerformed": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.git.unshallow": "true",
-    "git-widget-placeholder": "main",
-    "ignore.virus.scanning.warn.message": "true",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "ts.external.directory.path": "C:\\projects\\greenshop-application\\greenshopInterface\\greenshop\\node_modules\\typescript\\lib",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;ts.external.directory.path&quot;: &quot;C:\\projects\\greenshop-application\\greenshopInterface\\greenshop\\node_modules\\typescript\\lib&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\projects\greenshop-application\greenshopInterface\greenshop\src\types" />
@@ -72,7 +68,8 @@
       <option name="presentableId" value="Default" />
       <updated>1747661855605</updated>
       <workItem from="1747661857411" duration="153000" />
-      <workItem from="1747662020402" duration="64971000" />
+      <workItem from="1747662020402" duration="65740000" />
+      <workItem from="1747850757398" duration="2924000" />
     </task>
     <servers />
   </component>
@@ -84,7 +81,6 @@
       <breakpoints>
         <line-breakpoint enabled="true" type="javascript">
           <url>file://$PROJECT_DIR$/greenshop/src/modules/checkout-module/CheckoutModule.tsx</url>
-          <properties lambdaOrdinal="-1" />
           <option name="timeStamp" value="1" />
         </line-breakpoint>
       </breakpoints>

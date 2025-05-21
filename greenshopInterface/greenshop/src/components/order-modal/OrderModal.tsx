@@ -10,6 +10,7 @@ interface OrderModalProps {
     order: DBOrder;
     isOpen: boolean;
     onClose: () => void;
+    isUserModal?: boolean;
 }
 
 interface OrderModalVariant {
@@ -40,9 +41,34 @@ const orderModalVariants: Record<OrderStatus, OrderModalVariant> = {
     }
 };
 
-const OrderModal = ({ order, isOpen, onClose }: OrderModalProps) => {
+const orderAdminModalVariants: Record<OrderStatus, OrderModalVariant> = {
+    "is processed": {
+        orderStatus: "is processed",
+        headerText: "This order has been received",
+        footerText: "This order is currently being processed.",
+        buttonText: "Leave Review",
+    },
+    "in transit": {
+        orderStatus: "in transit",
+        headerText: "This order is on the way!",
+        footerText: "This order has been shipped and is on its way to customer.",
+        buttonText: "Leave Review",
+    },
+    "delivered": {
+        orderStatus: "delivered",
+        headerText: "This order has been delivered!",
+        footerText: "This order has been delivered to customer.",
+        buttonText: "Leave Review",
+    }
+};
+
+const OrderModal = ({ order, isOpen, onClose, isUserModal = true }: OrderModalProps) => {
     // Получаем вариант модалки по статусу заказа
-    const modalVariant = orderModalVariants[order.status] || orderModalVariants["is processed"];
+    const modalVariant = isUserModal
+        ?
+        orderModalVariants[order.status] || orderModalVariants["is processed"]
+        :
+        orderAdminModalVariants[order.status] || orderAdminModalVariants["is processed"];
 
     return (
         <Modal isOpen={isOpen} onClose={onClose}>
