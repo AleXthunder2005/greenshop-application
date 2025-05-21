@@ -1,7 +1,7 @@
 import styles from './styles/styles.module.css'
 
-import {PlantsModule} from "@modules/plants-module";
 import {PlantCardData} from "@/types/plants.types.ts";
+import {PlantsViewer} from "@components/plants-viewer";
 
 const likedPlants: PlantCardData[] = [
     {
@@ -21,7 +21,7 @@ const likedPlants: PlantCardData[] = [
 const WishlistModule = () => {
     return (
         <div className={styles['wishlist']}>
-            <PlantsModule withFilters={false} likedPlants={likedPlants} />
+            <PlantsViewer plants={likedPlants} />
         </div>
     );
 };

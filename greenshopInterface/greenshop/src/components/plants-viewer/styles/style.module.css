@@ -1,3 +1,10 @@
+.plants-viewer {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    width: 100%;
+}
+
 .plants-viewer-container {
     display: flex;
     flex-direction: row;
@@ -6,4 +13,10 @@
     justify-content: flex-start;
     width: 100%;
     /*width: 840px;*/
+}
+
+.pagination-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
 }

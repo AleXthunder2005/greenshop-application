@@ -1,1 +1,1 @@
-export type TabTypes = "AccountDetails" | "Orders" | "Wishlist";
+export type TabTypes = "AccountDetails" | "Orders" | "Wishlist" | "Products Administrate" | "Logout";

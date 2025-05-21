@@ -1,0 +1,41 @@
+.text-box {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    width: 100%;
+}
+
+.text-box__label {
+    font-family: var(--font-family);
+    font-weight: 400;
+    font-size: 15px;
+    line-height: 100%;
+    color: var(--primary-gray-color);
+}
+
+.text-box__input {
+    border: 1px solid var(--light-transparent-color);
+    border-radius: 3px;
+    width: 100%;
+    padding: 10px;
+    font-family: var(--font-family);
+    font-size: 15px;
+    transition: border-color ease-in-out 0.3s;
+    resize: vertical;
+    min-height: 40px;
+}
+
+.text-box__input:hover {
+    cursor: text;
+    border-color: var(--secondary-light-gray-color);
+}
+
+.text-box__input:focus {
+    outline: none;
+    border-color: var(--primary-green-color);
+}
+
+.text-box__input:disabled {
+    background-color: var(--light-gray-color);
+    cursor: not-allowed;
+}

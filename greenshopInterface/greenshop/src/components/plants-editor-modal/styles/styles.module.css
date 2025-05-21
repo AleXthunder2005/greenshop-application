@@ -1,0 +1,24 @@
+.plants-editor-modal {
+    padding: 50px 50px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.plants-editor-modal__title {
+    font-family: var(--font-family);
+    font-weight: 700;
+    font-size: 17px;
+    line-height: 94%;
+    color: var(--primary-gray-color);
+    width: 100%;
+    border-bottom: 1px solid var(--light-transparent-color);
+    padding: 10px 0;
+}
+
+.plants-editor-modal__row{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    gap: 20px;
+}

@@ -7,7 +7,19 @@ export interface PlantData {
     shortDescription: string,
     size: PlantSize,
     categories: string[],
-    images: string[]
+    images?: string[]
+}
+
+export interface DBPlant {
+    id: number,
+    name: string,
+    price: number,
+    sale?: number,
+    rate: number,
+    shortDescription: string,
+    size: PlantSize,
+    categories: string[],
+    images: File[]
 }
 
 export interface OrderedPlantData {
@@ -28,3 +40,4 @@ export interface PlantCardData {
     images: string[];
 }
 export type PlantSize = 'small' | 'medium' | 'large';
+export const PLANT_SIZES = ['Small', 'Medium', 'Large'];

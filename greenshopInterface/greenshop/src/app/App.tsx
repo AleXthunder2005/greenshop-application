@@ -5,6 +5,7 @@ import { Layout } from "@/app/layout";
 import { ShoppingCart } from '@/pages/shoping-cart';
 import {CheckoutPage} from "@pages/checkout";
 import {Profile} from "@pages/profile";
+import {AdminProfile} from "@pages/admin-profile/insex.ts";
 
 function App() {
   return (
@@ -16,6 +17,7 @@ function App() {
             <Route path={"/shopping-cart"} element={<ShoppingCart/>}/>
             <Route path={"/checkout"} element={<CheckoutPage/>}/>
             <Route path={"/profile"} element={<Profile/>}/>
+            <Route path={"/admin"} element={<AdminProfile/>}/>
           </Routes>
         </BrowserRouter>
       </Layout>

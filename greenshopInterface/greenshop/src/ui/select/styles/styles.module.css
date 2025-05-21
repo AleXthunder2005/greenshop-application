@@ -1,0 +1,55 @@
+.select-container {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    width: 100%;
+}
+
+.select-container__label {
+    font-family: var(--font-family);
+    font-weight: 400;
+    font-size: 15px;
+    line-height: 100%;
+    color: var(--primary-gray-color);
+}
+
+.select {
+    border: 1px solid var(--light-transparent-color);
+    border-radius: 3px;
+    height: 40px;
+    width: 100%;
+    padding: 0 10px;
+    font-family: var(--font-family);
+    font-size: 15px;
+    color: var(--secondary-light-gray-color);
+    background-color: white;
+    transition: border-color ease-in-out 0.3s;
+}
+
+.select:hover {
+    cursor: pointer;
+    border-color: var(--secondary-light-gray-color);
+}
+
+.select:focus {
+    outline: none;
+    border-color: var(--primary-green-color);
+}
+
+.select:disabled {
+    background-color: var(--primary-light-gray-color);
+    cursor: not-allowed;
+}
+
+.select option {
+    font-family: var(--font-family);
+    font-weight: 400;
+    font-size: 15px;
+    color: var(--primary-gray-color);
+    padding: 8px;
+}
+
+/* Стили для состояния ошибки (опционально) */
+.select_error {
+    border-color: var(--primary-red-color);
+}

@@ -1,8 +1,6 @@
 import styles from './styles/style.module.css'
 import {PlantsViewer} from "@components/plants-viewer";
 import {Filter} from "@modules/filter";
-import {useState} from "react";
-import {Pagination} from "@components/pagination";
 import {PlantCardData} from "@/types/plants.types.ts";
 const plantsData: PlantCardData[] = [
     {
@@ -28,20 +26,14 @@ const plantsData: PlantCardData[] = [
 
 interface PlantsModuleProps {
     withFilters? : boolean;
-    likedPlants?: PlantCardData[];
 }
 
-const PlantsModule = ({withFilters = true, likedPlants} : PlantsModuleProps) => {
-    const [currentPage, setCurrentPage] = useState(1);
-
+const PlantsModule = ({withFilters = true} : PlantsModuleProps) => {
     return (
         <div className={styles['plants-module-container']}>
             {withFilters && (<Filter/>)}
             <div className={styles['plants-viewer-container']}>
-                <PlantsViewer plants={likedPlants || plantsData}/>
-                <div className={styles['pagination-container']}>
-                    <Pagination currentPage={currentPage} totalPages={10} onPageChange={setCurrentPage} />
-                </div>
+                <PlantsViewer plants={plantsData}/>
             </div>
         </div>
     );
