@@ -4,6 +4,7 @@ import {CartViewer} from "@components/cart-viewer";
 import {CartTotals} from "@components/cart-totals";
 import {DarkGreenButton} from "@ui/dark-green-button";
 import {OrderedPlantData} from "@/types/plants.types.ts";
+import {useNavigate} from "react-router-dom";
 
 interface CartModuleProps {
     orderedPlants: OrderedPlantData[];
@@ -17,6 +18,11 @@ const CartModule = ({ orderedPlants, isShortMode = false }: CartModuleProps) => 
             quantity: 1
         }))
     );
+    const navigate = useNavigate(); // Хук для программной навигации
+
+    const handleCheckout = () => {
+        navigate('/checkout'); // Переходим на страницу /checkout
+    };
     //
     // const [totalPrice, setTotalPrice] = useState<number>(0);
     // console.log(totalPrice);
@@ -49,8 +55,8 @@ const CartModule = ({ orderedPlants, isShortMode = false }: CartModuleProps) => 
                 />
 
                 <div className={styles['cart-totals-container__buttons-container']}>
-                    <DarkGreenButton className={styles['buttons-container__accept-button']}>Proceed To Checkout</DarkGreenButton>
-                    <a href='##' className={styles['buttons-container__continue-shopping-button']}>Continue Shopping</a>
+                    <DarkGreenButton className={styles['buttons-container__accept-button']} onClick={handleCheckout}>Proceed To Checkout</DarkGreenButton>
+                    <a href='/home' className={styles['buttons-container__continue-shopping-button']}>Continue Shopping</a>
                 </div>
             </div>
         </div>

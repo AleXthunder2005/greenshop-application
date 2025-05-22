@@ -4,11 +4,20 @@
     left: 0;
     right: 0;
     bottom: 0;
-    background-color: rgba(0, 0, 0, 0.5);
+    background-color: rgba(0, 0, 0, 0);
     display: flex;
     justify-content: center;
     align-items: center;
     z-index: 1000;
+    opacity: 0;
+    transition: background-color 0.3s ease, opacity 0.3s ease;
+    pointer-events: none;
+}
+
+.modal-overlay-visible {
+    background-color: rgba(0, 0, 0, 0.5);
+    opacity: 1;
+    pointer-events: all;
 }
 
 .modal-wrapper {
@@ -17,15 +26,24 @@
     background-color: var(--primary-white-color);
     border-radius: 8px;
     position: relative;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0);
     max-width: 90%;
     max-height: 90%;
-    overflow: hidden; /* Скрываем прокрутку за пределами обертки */
+    overflow: hidden;
+    transform: translateY(20px);
+    opacity: 0;
+    transition: transform 0.3s ease, opacity 0.3s ease, box-shadow 0.3s ease;
+}
+
+.modal-wrapper-visible {
+    transform: translateY(0);
+    opacity: 1;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
 .modal-content {
-    flex: 1; /* Заставляем содержимое занимать все доступное пространство */
-    overflow: hidden; /* Добавляем прокрутку для контента */
+    flex: 1;
+    overflow: hidden;
 }
 
 .modal-close-button {

@@ -1,0 +1,45 @@
+.error-page {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 70vh;
+    text-align: center;
+    color: var(--primary-gray-color);
+}
+
+.error-icon {
+    width: 100px;
+    height: 100px;
+    margin-bottom: 1rem;
+    fill: var(--primary-light-gray-color);
+}
+
+.error-page h1 {
+    font-family: var(--font-family);
+    font-size: 3rem;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+}
+
+.error-page h2 {
+    font-family: var(--font-family);
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin-bottom: 1rem;
+}
+
+.error-message {
+    font-size: 1.2rem;
+    font-weight: 400;
+    font-family: var(--font-family);
+    color: var(--primary-light-gray-color);
+    margin-bottom: 1rem;
+}
+
+.error-support {
+    font-size: 1rem;
+    font-weight: 300;
+    font-family: var(--font-family);
+    color: var(--primary-light-gray-color);
+}

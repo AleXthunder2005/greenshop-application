@@ -1,6 +1,6 @@
 import styles from './styles/styles.module.css'
 import {OrderedPlantData} from "@/types/plants.types.ts";
-import {DBOrder} from "@/types/order.types.ts";
+import {DBOrder, OrderStatus} from "@/types/order.types.ts";
 import {calculateTotalPrice} from "@/helpers/order.helpers.ts";
 import {OrderAdminTable} from "@components/order-admin-table";
 import {useState} from "react";

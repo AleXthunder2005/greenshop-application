@@ -3,11 +3,11 @@ import { useState } from "react";
 import {NotFoundImg} from "@ui/not-found-img";
 
 interface PlantGalleryProps {
-    images: string[];
+    images?: string[];
     initialActiveIndex?: number;
 }
 
-const PlantGallery = ({ images, initialActiveIndex = 0 }: PlantGalleryProps) => {
+const PlantGallery = ({ images = [], initialActiveIndex = 0 }: PlantGalleryProps) => {
     const [activeImageIndex, setActiveImageIndex] = useState(initialActiveIndex);
 
     return (

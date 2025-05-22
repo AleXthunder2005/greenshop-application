@@ -1,5 +1,6 @@
 import {OrderModal} from "@components/order-modal";
-import {OrderData} from "@/types/order.types.ts";
+import {DBOrder, OrderData} from "@/types/order.types.ts";
+import {calculateTotalPrice} from "@/helpers/order.helpers.ts";
 
 interface OrderManagerModuleProps {
     orderData: OrderData;
@@ -10,9 +11,15 @@ interface OrderManagerModuleProps {
 const OrderManagerModule = ({orderData, isOpen, onClose}: OrderManagerModuleProps) => {
     //По идее отправка должна быть здесь, принимаем тут только BillingFormData и plants
 
+    const preparedOrderData :DBOrder = {
+        ...orderData,
+        status: "is processed",
+        total: calculateTotalPrice(orderData.plants)
+    };
+
     return (
         <OrderModal
-            order={orderData}
+            order={preparedOrderData}
             isOpen={isOpen}
             onClose={onClose}
         />

@@ -5,6 +5,7 @@ import {DarkGreenButton} from "@ui/dark-green-button";
 import thankYouImage from "@components/order-modal/assets/thank-you.svg";
 import {DBOrder, OrderStatus} from "@/types/order.types.ts";
 import {prepareOrderDateForTable} from "@components/order-modal/helpers/orderModal.helpers.ts";
+import {useNavigate} from "react-router-dom";
 
 interface OrderModalProps {
     order: DBOrder;
@@ -18,6 +19,7 @@ interface OrderModalVariant {
     headerText: string;
     footerText: string;
     buttonText: string;
+    locationTo?: string;
 }
 
 const orderModalVariants: Record<OrderStatus, OrderModalVariant> = {
@@ -26,6 +28,7 @@ const orderModalVariants: Record<OrderStatus, OrderModalVariant> = {
         headerText: "Your order has been received",
         footerText: "Your order is currently being processed. You will receive an order confirmation email shortly with the expected delivery date for your items.",
         buttonText: "Continue Shopping",
+        locationTo: "/home"
     },
     "in transit": {
         orderStatus: "in transit",
@@ -70,6 +73,13 @@ const OrderModal = ({ order, isOpen, onClose, isUserModal = true }: OrderModalPr
         :
         orderAdminModalVariants[order.status] || orderAdminModalVariants["is processed"];
 
+    const navigate = useNavigate();
+
+    const handleButtonClick = () => {
+        onClose();
+        if (modalVariant.locationTo) {navigate(modalVariant.locationTo)}
+    }
+
     return (
         <Modal isOpen={isOpen} onClose={onClose}>
             <div className={styles['header-container']}>
@@ -103,7 +113,7 @@ const OrderModal = ({ order, isOpen, onClose, isUserModal = true }: OrderModalPr
                     {modalVariant.footerText}
                 </p>
                 <DarkGreenButton
-                    onClick={onClose}
+                    onClick={handleButtonClick}
                     className={styles['order-modal-content__button']}
                 >
                     {modalVariant.buttonText}

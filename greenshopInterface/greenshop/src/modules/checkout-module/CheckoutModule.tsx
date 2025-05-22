@@ -49,7 +49,7 @@ const CheckoutModule = ({ plants, onSubmit, initialBillingData }: CheckoutModule
                         >
                             Place Order
                         </DarkGreenButton>
-                        <a href="#" className={styles['buttons-container__continue-shopping-button']}>
+                        <a href="/home" className={styles['buttons-container__continue-shopping-button']}>
                             Continue Shopping
                         </a>
                     </div>

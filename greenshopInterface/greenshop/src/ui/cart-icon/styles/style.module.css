@@ -1,5 +1,14 @@
 .cart-icon {
     cursor: pointer;
-    width: 20px;
-    height: 20px;
+    width: 35px;
+    height: 35px;
+    padding: 5px;
+    border-radius: 50%;
+    background-color: transparent;
+    transition: background-color ease-in-out 0.3s;
+}
+
+.cart-icon:hover {
+    cursor: pointer;
+    background-color: var(--light-transparent-color);
 }

@@ -14,7 +14,7 @@
     position: relative;
 }
 
-.nav-menu__item:hover {
+.nav-menu__item:not(.nav-menu__item_active):hover {
     color: var(--hover-gray-color);
     transition: color linear 0.3s;
 }
@@ -29,8 +29,8 @@
     background-color: var(--primary-white-color);
     border-radius: 1px;
 }
-.nav-menu__item:hover::after {
-    background-color: var(--hover-gray-color);
+.nav-menu__item:not(.nav-menu__item_active):hover::after {
+    background-color: var(--secondary-light-gray-color);
     transition: background-color linear 0.5s;
 }
 

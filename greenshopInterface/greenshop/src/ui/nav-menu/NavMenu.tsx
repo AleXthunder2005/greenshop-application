@@ -2,11 +2,12 @@ import styles from './styles/style.module.css';
 import cn from 'classnames';
 
 interface NavMenuProps {
-  activeItem: string; // или более конкретный тип
+  activeItem: string;
+  onChangeActiveTab: (activeTab: string) => void;
 }
 
-export function NavMenu({ activeItem }: NavMenuProps) {
-  const menuItems = ['Home', 'Shop', 'Plant Care', 'Blogs'];
+export function NavMenu({ activeItem, onChangeActiveTab }: NavMenuProps) {
+  const menuItems = ['Home', 'Cart', 'Blogs'];
 
   return (
     <ul className={styles['nav-menu__items']}>
@@ -17,7 +18,15 @@ export function NavMenu({ activeItem }: NavMenuProps) {
             [styles['nav-menu__item_active']]: activeItem === item,
           })}
         >
-          {item}
+          <a
+              href={`/${item.toLowerCase()}`}
+              className={cn(styles['nav-menu__item'], {
+                [styles['nav-menu__item_active']]: activeItem === item,
+              })}
+              onClick={(e) => (item === activeItem ? e.preventDefault() : onChangeActiveTab(item))}
+          >
+            {item}
+          </a>
         </li>
       ))}
     </ul>
