@@ -13,14 +13,13 @@ interface LoginRegisterModalProps {
     onClose: () => void;
     onLogin: (email: string, password: string) => void;
     onRegister: (data: RegisterData) => void;
+    isPage?: boolean;
 }
 
-const LoginRegisterModal = ({ isOpen, onClose, onLogin, onRegister }: LoginRegisterModalProps) => {
+const LoginRegisterModal = ({ isOpen, onClose, onLogin, onRegister, isPage = false}: LoginRegisterModalProps) => {
     const [activeTab, setActiveTab] = useState<'login' | 'register'>('login');
-    // const [direction, setDirection] = useState<'left' | 'right'>('left');
 
     const handleTabChange = (tab: 'login' | 'register') => {
-        // setDirection(tab === 'register' ? 'right' : 'left');
         setActiveTab(tab);
     };
 
@@ -40,11 +39,11 @@ const LoginRegisterModal = ({ isOpen, onClose, onLogin, onRegister }: LoginRegis
                     ) : (
                         <RegisterForm onSubmit={onRegister} />
                     )}
-                    <DarkGreenButton className={styles['form-container__button']}
-                                     onClick={() => navigate('/home')}
+                    {isPage && (<DarkGreenButton className={styles['form-container__button']}
+                                      onClick={() => navigate('/home')}
                     >
                         Continue Shopping
-                    </DarkGreenButton>
+                    </DarkGreenButton>)}
                 </div>
 
 

@@ -10,7 +10,7 @@ const plantInfo: PlantData = {
         'a wooden stand to help elevate your plants off the ground. ' +
         'The ceramic cylinder planters come with a wooden stand to ' +
         'help elevate your plants off the ground.',
-    size: 'small',
+    size: 'Small',
     id: 1,
     categories: ['Potter plants'],
     images: ["../../assets/plants/plant_1/plant_1.png",

@@ -1,36 +1,32 @@
-import {List, ListItem} from '@ui/list'
-import { useState } from 'react';
+import { List, ListItem } from '@ui/list';
 
-interface SizeItem
-{
+interface SizeItem {
     size: string;
     count: number;
 }
 
-interface SizesList 
-{
+interface SizesList {
     sizes: SizeItem[];
+    onSizeChange: (size: string) => void;
+    activeSize?: string; // Добавляем пропс для активного размера
 }
 
-export function FilterBySize({ sizes }: SizesList) {
-    const [activeSize, setActiveSize] = useState(sizes.length ? { label: sizes[0].size, count: sizes[0].count } : undefined);
-  
+export function FilterBySize({ sizes, onSizeChange, activeSize }: SizesList) {
     const listItems = sizes.map(s => ({
-      label: s.size,
-      count: s.count
+        label: s.size,
+        count: s.count
     }));
-  
+
     const handleSizeClick = (item: ListItem) => {
-        setActiveSize(item);
-        // Здесь можно добавить дополнительную логику фильтрации
-      };
+        onSizeChange(item.label);
+    };
 
     return (
-      <List
-        listTitle="Size"
-        items={listItems}
-        activeItem={activeSize}
-        onItemClick={handleSizeClick}
-      />
+        <List
+            listTitle="Size"
+            items={listItems}
+            activeItem={activeSize ? { label: activeSize, count: 0 } : undefined}
+            onItemClick={handleSizeClick}
+        />
     );
 }

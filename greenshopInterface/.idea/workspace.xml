@@ -6,10 +6,22 @@
   <component name="ChangeListManager">
     <list default="true" id="3c661422-b22c-495b-a3a4-baa5776a26b1" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/greenshop/src/app/App.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/greenshop/src/app/App.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/greenshop/src/components/filter-by-category/FilterByCategories.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/greenshop/src/components/filter-by-category/FilterByCategories.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/greenshop/src/components/filter-by-price/FilterByPrice.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/greenshop/src/components/filter-by-price/FilterByPrice.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/greenshop/src/components/filter-by-size/FilterBySize.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/greenshop/src/components/filter-by-size/FilterBySize.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/greenshop/src/components/plants-editor-modal/PlantsEditorModal.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/greenshop/src/components/plants-editor-modal/PlantsEditorModal.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/greenshop/src/components/plants-viewer/PlantsViewer.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/greenshop/src/components/plants-viewer/PlantsViewer.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/greenshop/src/components/plants-viewer/styles/style.module.css" beforeDir="false" afterPath="$PROJECT_DIR$/greenshop/src/components/plants-viewer/styles/style.module.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/greenshop/src/contexts/auth-context/AuthContext.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/greenshop/src/contexts/auth-context/AuthContext.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/greenshop/src/modules/filter/Filter.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/greenshop/src/modules/filter/Filter.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/greenshop/src/modules/login-register-module/LoginRegisterModule.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/greenshop/src/modules/login-register-module/LoginRegisterModule.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/greenshop/src/modules/login-register-module/components/login-register-modal/LoginRegisterModal.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/greenshop/src/modules/login-register-module/components/login-register-modal/LoginRegisterModal.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/greenshop/src/modules/login-register-module/components/styles/styles.module.css" beforeDir="false" afterPath="$PROJECT_DIR$/greenshop/src/modules/login-register-module/components/styles/styles.module.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/greenshop/src/types/user.types.ts" beforeDir="false" afterPath="$PROJECT_DIR$/greenshop/src/types/user.types.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/greenshop/src/modules/plants-module/PlantsModule.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/greenshop/src/modules/plants-module/PlantsModule.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/greenshop/src/pages/login-page/LoginPage.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/greenshop/src/pages/login-page/LoginPage.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/greenshop/src/pages/shop/Shop.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/greenshop/src/pages/shop/Shop.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/greenshop/src/types/plants.types.ts" beforeDir="false" afterPath="$PROJECT_DIR$/greenshop/src/types/plants.types.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/greenshop/src/ui/range-regulator/RangeRegulator.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/greenshop/src/ui/range-regulator/RangeRegulator.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/greenshop/src/ui/size-icon/SizeIcon.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/greenshop/src/ui/size-icon/SizeIcon.tsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -79,7 +91,7 @@
       <workItem from="1747662020402" duration="65740000" />
       <workItem from="1747850757398" duration="3189000" />
       <workItem from="1747853973106" duration="8358000" />
-      <workItem from="1747905892591" duration="13903000" />
+      <workItem from="1747905892591" duration="25326000" />
     </task>
     <servers />
   </component>

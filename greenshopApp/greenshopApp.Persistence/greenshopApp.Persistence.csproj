@@ -7,7 +7,9 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Configurations\BillingInfoConfigurations.cs" />
     <Compile Remove="Interfaces\IRepository.cs" />
+    <Compile Remove="Models\BillingInfoEntity.cs" />
     <Compile Remove="Repositories\PlantsRepository.cs" />
   </ItemGroup>
 

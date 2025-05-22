@@ -1,31 +1,47 @@
 import { FilterByCategories } from '@/components/filter-by-category';
-import styles from './styles/style.module.css'
+import styles from './styles/style.module.css';
 import { FilterBySize } from '@/components/filter-by-size';
 import FilterByPrice from "@components/filter-by-price/FilterByPrice.tsx";
 
-const categoriesData = [
-    { category: "House Plants", count: 33 },
-    { category: "Potter Plants", count: 12 },
-    { category: "Seeds", count: 65 },
-    { category: "Small Plants", count: 39 },
-    { category: "Big Plants", count: 23 },
-    { category: "Succulents", count: 17 },
-    { category: "Terrariums", count: 19 },
-    { category: "Gardening", count: 13 },
-    { category: "Accessories", count: 18 }
-  ];
-const sizesData = [
-    { size: "Small", count: 119 },
-    { size: "Medium", count: 86 },
-    { size: "Large", count: 78 }
-  ];
+export interface FilterState {
+    category?: string;
+    priceRange?: [number, number];
+    size?: string;
+}
 
-export function Filter() {
+interface FilterProps {
+    categories: { category: string; count: number }[];
+    sizes: { size: string; count: number }[];
+    onCategoryChange: (category: string) => void;
+    onSizeChange: (size: string) => void;
+    onPriceChange: (priceRange: [number, number]) => void;
+    currentFilters: FilterState; // Добавляем текущие фильтры
+}
+
+export function Filter({
+                           categories,
+                           sizes,
+                           onCategoryChange,
+                           onSizeChange,
+                           onPriceChange,
+                           currentFilters
+                       }: FilterProps) {
     return (
         <div className={styles['filter-container']}>
-            <FilterByCategories categories={categoriesData}/>
-            <FilterByPrice/>
-            <FilterBySize sizes={sizesData}/>
+            <FilterByCategories
+                categories={categories}
+                onCategoryChange={onCategoryChange}
+                activeCategory={currentFilters.category} // Передаем активную категорию
+            />
+            <FilterByPrice
+                onPriceChange={onPriceChange}
+                currentRange={currentFilters.priceRange} // Передаем текущий диапазон
+            />
+            <FilterBySize
+                sizes={sizes}
+                onSizeChange={onSizeChange}
+                activeSize={currentFilters.size} // Передаем активный размер
+            />
         </div>
     );
 }

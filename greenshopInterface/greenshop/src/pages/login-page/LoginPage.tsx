@@ -20,6 +20,7 @@ const LoginPage = () => {
                 onClose={() => undefined}
                 onLogin={handleLogin}
                 onRegister={handleRegister}
+                isPage={true}
             />
         </div>
     );

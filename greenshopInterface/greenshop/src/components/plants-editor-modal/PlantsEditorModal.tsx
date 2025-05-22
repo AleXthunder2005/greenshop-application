@@ -23,7 +23,7 @@ const PlantsEditorModal = ({initialPlant, isOpen, onSave, onClose}: PlantsEditor
         sale: undefined,
         rate: 0,
         shortDescription: '',
-        size: 'small',
+        size: 'Small',
         categories: [],
         images: []
     });
@@ -51,7 +51,7 @@ const PlantsEditorModal = ({initialPlant, isOpen, onSave, onClose}: PlantsEditor
                 sale: undefined,
                 rate: 0,
                 shortDescription: '',
-                size: 'small',
+                size: 'Small',
                 categories: [],
                 images: []
             });

@@ -1,37 +1,32 @@
-import { List , ListItem} from '@ui/list';
-import { useState } from 'react';
+import { List, ListItem } from '@ui/list';
 
-
-interface CategoryItem
-{
+interface CategoryItem {
     category: string;
     count: number;
 }
 
-interface CategoriesList
-{
+interface CategoriesList {
     categories: CategoryItem[];
+    onCategoryChange: (category: string) => void;
+    activeCategory?: string; // Добавляем пропс для активной категории
 }
 
-export function FilterByCategories({ categories }: CategoriesList) {
-    const [activeCategory, setActiveCategory] = useState(categories.length ? { label: categories[0].category, count: categories[0].count } : undefined);
+export function FilterByCategories({ categories, onCategoryChange, activeCategory }: CategoriesList) {
+    const listItems = categories.map(c => ({
+        label: c.category,
+        count: c.count
+    }));
 
-  const listItems = categories.map(c => ({
-    label: c.category,
-    count: c.count
-  }));
+    const handleCategoryClick = (item: ListItem) => {
+        onCategoryChange(item.label);
+    };
 
-  const handleCategoryClick = (item: ListItem) => {
-    setActiveCategory(item);
-    // Здесь можно добавить дополнительную логику фильтрации
-  };
-
-  return (
-    <List
-      listTitle="Categories"
-      items={listItems}
-      activeItem={activeCategory}
-      onItemClick={handleCategoryClick}
-    />
-  );
+    return (
+        <List
+            listTitle="Categories"
+            items={listItems}
+            activeItem={activeCategory ? { label: activeCategory, count: 0 } : undefined}
+            onItemClick={handleCategoryClick}
+        />
+    );
 }

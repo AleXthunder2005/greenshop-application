@@ -6,4 +6,8 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\greenshopApp.Persistence\greenshopApp.Persistence.csproj" />
+  </ItemGroup>
+
 </Project>

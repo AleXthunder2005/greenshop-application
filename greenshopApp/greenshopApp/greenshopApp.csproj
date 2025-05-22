@@ -17,6 +17,8 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\greenshopApp.Application\greenshopApp.Application.csproj" />
+    <ProjectReference Include="..\greenshopApp.Infrastructure\greenshopApp.Infrastructure.csproj" />
     <ProjectReference Include="..\greenshopApp.Persistence\greenshopApp.Persistence.csproj" />
   </ItemGroup>
 

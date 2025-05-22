@@ -36,8 +36,10 @@ export interface PlantCardData {
     id: number;
     name: string;
     price: number;
+    category?: string;
+    size?: PlantSize;
     sale?: number;
     images: string[];
 }
-export type PlantSize = 'small' | 'medium' | 'large';
+export type PlantSize = 'Small' | 'Medium' | 'Large';
 export const PLANT_SIZES = ['Small', 'Medium', 'Large'];
