@@ -1,21 +1,23 @@
 import styles from './styles/style.module.css';
 import { DarkGreenButton } from "@ui/dark-green-button";
 import { LightGreenButton } from "@ui/light-green-button";
-import { SizeIcon} from "@ui/size-icon";
+import { SizeIcon } from "@ui/size-icon";
 import { PlantGallery } from "@components/plant-galery";
 import { Counter } from "@ui/counter";
 import { useState } from "react";
-import { PlantData } from '@/types/plants.types.ts'
-import {formatPrice, getActualPrice} from "@/helpers/plant.helpers.ts";
-
+import { PlantData } from '@/types/plants.types.ts';
+import { formatPrice, getActualPrice } from "@/helpers/plant.helpers.ts";
+import { useNavigate } from "react-router-dom";
+import { useCart } from "@/contexts/cart-context/CartContext.tsx";
 
 interface AboutPlantViewerProps {
     plantData: PlantData;
-    onAddToCart?: (productId: number, quantity: number) => void;
 }
 
 const AboutPlantViewer = ({ plantData }: AboutPlantViewerProps) => {
     const [quantity, setQuantity] = useState(1);
+    const navigate = useNavigate();
+    const { dispatch } = useCart(); // Выносим хук на верхний уровень компонента
 
     const handleIncrement = () => {
         setQuantity(prev => Math.min(prev + 1, 100));
@@ -23,6 +25,25 @@ const AboutPlantViewer = ({ plantData }: AboutPlantViewerProps) => {
 
     const handleDecrement = () => {
         setQuantity(prev => Math.max(prev - 1, 1));
+    };
+
+    const handleAddToCartClick = () => {
+        dispatch({
+            type: 'ADD_ITEM',
+            payload: {
+                id: plantData.id,
+                name: plantData.name,
+                price: plantData.price,
+                sale: plantData.sale,
+                image: plantData.images[0],
+                quantity: quantity
+            }
+        });
+    };
+
+    const handleBuyClick = () => {
+        handleAddToCartClick();
+        navigate("/cart");
     };
 
     return (
@@ -35,14 +56,15 @@ const AboutPlantViewer = ({ plantData }: AboutPlantViewerProps) => {
                 <h2 className={styles['about-plant-container__title']}>{plantData.name}</h2>
                 <div className={styles['about-plant-container__info-container']}>
                     <div className={styles['info-container__price-container']}>
-                        <p className={styles['price-container__price']}>{formatPrice(getActualPrice(plantData.price, plantData.sale))}</p>
+                        <p className={styles['price-container__price']}>
+                            {formatPrice(getActualPrice(plantData.price, plantData.sale))}
+                        </p>
                         {plantData.sale && (
                             <p className={styles['price-container__sale-price']}>
                                 {formatPrice(plantData.price)}
                             </p>
                         )}
                     </div>
-                    {/* рейтинг */}
                 </div>
                 <div className={styles['about-plant-container__description-container']}>
                     <h3 className={styles['description-container_title']}>Short description</h3>
@@ -60,9 +82,8 @@ const AboutPlantViewer = ({ plantData }: AboutPlantViewerProps) => {
                         onIncrement={handleIncrement}
                         onDecrement={handleDecrement}
                     />
-
-                    <DarkGreenButton>BUY NOW</DarkGreenButton>
-                    <LightGreenButton>
+                    <DarkGreenButton onClick={handleBuyClick}>BUY NOW</DarkGreenButton>
+                    <LightGreenButton onClick={handleAddToCartClick}>
                         ADD TO CART
                     </LightGreenButton>
                     <LightGreenButton iconType="heart" />

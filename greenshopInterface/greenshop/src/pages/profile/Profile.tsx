@@ -18,11 +18,11 @@ const sideMenuItems = [
         title: "Orders",
         tabKey: "Orders" as const
     },
-    {
-        icon: <Icon iconType="heart" />,
-        title: "Wishlist",
-        tabKey: "Wishlist" as const
-    }
+    // {
+    //     icon: <Icon iconType="heart" />,
+    //     title: "Wishlist",
+    //     tabKey: "Wishlist" as const
+    // }
 ];
 
 
@@ -39,7 +39,7 @@ const Profile = () => {
 
             {activeTab === "AccountDetails" && (<ProfileModule />)}
             {activeTab === "Orders" && (<UserOrdersModule />)}
-            {activeTab === 'Wishlist' && (<WishlistModule />)}
+            {/*{activeTab === 'Wishlist' && (<WishlistModule />)}*/}
         </div>
     );
 };

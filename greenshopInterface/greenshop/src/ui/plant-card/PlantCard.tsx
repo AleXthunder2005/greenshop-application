@@ -21,10 +21,10 @@ const PlantCard = ({ plant }: PlantCardProps) => {
                     src={plant.images[0]}
                     alt={plant.name}
                 />
-                <div className={styles['image-container__icons-container']}>
-                    <Icon iconType={'cartGreen'}/>
-                    <Icon iconType={'heart'}/>
-                </div>
+                {/*<div className={styles['image-container__icons-container']}>*/}
+                {/*    <Icon iconType={'cartGreen'}/>*/}
+                {/*    <Icon iconType={'heart'}/>*/}
+                {/*</div>*/}
             </div>
 
             <div className={styles['plant-card-container__info-container']}>
