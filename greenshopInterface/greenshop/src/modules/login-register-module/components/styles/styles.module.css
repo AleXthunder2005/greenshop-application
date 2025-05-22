@@ -34,6 +34,15 @@
     overflow: hidden;
     width: 100%;
     min-height: 420px;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+}
+
+.form-container__button {
+    width: 100%;
 }
 
 /* Общие стили для форм */

@@ -5,6 +5,8 @@ import {TabsSwitcher} from '../tabs-switcher';
 import {LoginForm} from '../login-form';
 import {RegisterForm} from '../register-form';
 import {RegisterData} from "@/types/user.types.ts";
+import {DarkGreenButton} from "@ui/dark-green-button";
+import {useNavigate} from "react-router-dom";
 
 interface LoginRegisterModalProps {
     isOpen: boolean;
@@ -22,6 +24,8 @@ const LoginRegisterModal = ({ isOpen, onClose, onLogin, onRegister }: LoginRegis
         setActiveTab(tab);
     };
 
+    const navigate = useNavigate();
+
     return (
         <Modal isOpen={isOpen} onClose={onClose}>
             <div className={styles['modal-container']}>
@@ -36,7 +40,14 @@ const LoginRegisterModal = ({ isOpen, onClose, onLogin, onRegister }: LoginRegis
                     ) : (
                         <RegisterForm onSubmit={onRegister} />
                     )}
+                    <DarkGreenButton className={styles['form-container__button']}
+                                     onClick={() => navigate('/home')}
+                    >
+                        Continue Shopping
+                    </DarkGreenButton>
                 </div>
+
+
             </div>
         </Modal>
     );

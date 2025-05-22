@@ -1,44 +1,27 @@
-import {
-    BrowserRouter,
-    Routes,
-    Route,
-    Navigate,
-} from 'react-router-dom';
-import { Home } from '@pages/home';
-import { Shop } from "@pages/shop";
+import { BrowserRouter } from 'react-router-dom';
 import { Layout } from "@/app/layout";
-import { ShoppingCart } from '@/pages/shoping-cart';
-import { CheckoutPage } from "@pages/checkout";
-import { Profile } from "@pages/profile";
-import { AdminProfile } from "@pages/admin-profile/insex.ts";
-import { Blogs } from "@pages/blogs";
-import { ErrorPage } from "@pages/error-page";
+import {AuthProvider, useAuth} from "@/contexts/auth-context/AuthContext.tsx";
+import { AdminRouter } from "@/app/routers/admin-router/AdminRouter.tsx";
+import { UserRouter } from "@/app/routers/user-router/UserRouter.tsx";
+import { GuestRouter } from "@/app/routers/guest-router/GuestRouter.tsx";
 
 function App() {
+    const { isAuthenticated, isAdmin } = useAuth();
+
     return (
-        <BrowserRouter>
-            <Layout>
-                <Routes>
-                    {/* Перенаправление с корневой страницы на /home */}
-                    <Route path="/" element={<Navigate to="/home" />} />
-
-                    {/* Маршруты для существующих страниц */}
-                    <Route path="/home" element={<Home />} />
-                    <Route path="/shop" element={<Shop />} />
-                    <Route path="/cart" element={<ShoppingCart />} />
-                    <Route path="/checkout" element={<CheckoutPage />} />
-                    <Route path="/profile" element={<Profile />} />
-                    <Route path="/admin" element={<AdminProfile />} />
-                    <Route path="/blogs" element={<Blogs />} />
-
-                    {/* Маршрут для страницы ошибок */}
-                    <Route path="/error/:errorCode" element={<ErrorPage errorCode={'404'}/>} />
-
-                    {/* Маршрут для всех остальных (несуществующих) страниц */}
-                    <Route path="*" element={<ErrorPage errorCode="404" />} />
-                </Routes>
-            </Layout>
-        </BrowserRouter>
+        <AuthProvider>
+            <BrowserRouter>
+                <Layout>
+                    {isAdmin ? (
+                        <AdminRouter />
+                    ) : isAuthenticated ? (
+                        <UserRouter />
+                    ) : (
+                        <GuestRouter />
+                    )}
+                </Layout>
+            </BrowserRouter>
+        </AuthProvider>
     );
 }
 
