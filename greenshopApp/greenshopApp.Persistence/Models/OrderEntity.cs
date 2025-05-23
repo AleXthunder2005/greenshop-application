@@ -4,7 +4,7 @@ using greenshopApp.Persistence.Interfaces;
 
 namespace greenshopApp.Persistence.Models
 {
-    public class OrderEntity: IEntity
+    public class OrderEntity : IEntity
     {
         public Guid Id { get; set; }
         public DateTime OrderDate { get; set; } = DateTime.Now;
@@ -13,6 +13,7 @@ namespace greenshopApp.Persistence.Models
         public UserEntity Customer { get; set; }
         public Guid CustomerID { get; set; }
 
-        public List<PlantEntity> Plants { get; set; } = [];
+        // Новый список для связи "Растение-Количество"
+        public List<OrderPlantEntity> OrderPlants { get; set; } = new();
     }
 }

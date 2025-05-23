@@ -45,24 +45,21 @@ namespace greenshopApp.Endpoints
 
 
         private static async Task<IResult> AddOrder(
-            OrderRepositoryService orderService,
-            PlantRepositoryService plantService,
-            UserRepositoryService userService,
-            OrderAddRequest request)
+     OrderRepositoryService orderService,
+     PlantRepositoryService plantService,
+     UserRepositoryService userService,
+     OrderAddRequest request)
         {
-            // Валидация запроса
             if (request is null)
                 return Results.BadRequest("Request cannot be null");
 
             if (request.Plants is null || !request.Plants.Any())
                 return Results.BadRequest("Order must contain at least one plant");
 
-            // Проверка существования пользователя
             var user = await userService.GetByIdAsync(request.UserId);
             if (user is null)
                 return Results.NotFound($"User with id {request.UserId} not found");
 
-            // Создание заказа
             var order = new OrderEntity
             {
                 Id = Guid.NewGuid(),
@@ -70,25 +67,24 @@ namespace greenshopApp.Endpoints
                 DeliveryDate = DateTime.UtcNow.AddDays(3),
                 CustomerID = request.UserId,
                 Customer = user,
-                Plants = new List<PlantEntity>()
+                OrderPlants = new List<OrderPlantEntity>()
             };
 
-            // Добавление растений в заказ с учетом количества
             foreach (var plantItem in request.Plants)
             {
                 var plant = await plantService.GetByIdAsync(plantItem.PlantId);
                 if (plant is null)
                     return Results.NotFound($"Plant with id {plantItem.PlantId} not found");
 
-                // Проверка допустимого количества
                 if (plantItem.Quantity <= 0)
                     return Results.BadRequest($"Quantity for plant {plantItem.PlantId} must be greater than 0");
 
-                // Добавляем растение указанное количество раз
-                for (int i = 0; i < plantItem.Quantity; i++)
+                order.OrderPlants.Add(new OrderPlantEntity
                 {
-                    order.Plants.Add(plant);
-                }
+                    Plant = plant,
+                    PlantId = plant.Id,
+                    Quantity = plantItem.Quantity
+                });
             }
 
             try
@@ -107,26 +103,22 @@ namespace greenshopApp.Endpoints
 
         private static OrderResponse MapToOrderResponse(OrderEntity order)
         {
-            // Группировка растений по ID для подсчета количества
-            var plantGroups = order.Plants
-                .GroupBy(p => p.Id)
-                .Select(g => new PlantInOrderResponse
-                {
-                    Id = g.Key,
-                    Name = g.First().Name,
-                    Price = g.First().Price,
-                    Sale = g.First().Sale,
-                    Size = g.First().Size,
-                    Quantity = g.Count()
-                })
-                .ToList();
+            var plantResponses = order.OrderPlants.Select(op => new PlantInOrderResponse
+            {
+                Id = op.Plant.Id,
+                Name = op.Plant.Name,
+                Price = op.Plant.Price,
+                Sale = op.Plant.Sale,
+                Size = op.Plant.Size,
+                Quantity = op.Quantity
+            }).ToList();
 
             return new OrderResponse
             {
                 Id = order.Id,
                 OrderDate = order.OrderDate,
                 DeliveryDate = order.DeliveryDate,
-                Plants = plantGroups,
+                Plants = plantResponses,
                 User = new UserInOrderResponse
                 {
                     Id = order.Customer.Id,

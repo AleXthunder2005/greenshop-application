@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 using greenshopApp.Persistence;
@@ -11,9 +12,11 @@ using greenshopApp.Persistence;
 namespace greenshopApp.Persistence.Migrations
 {
     [DbContext(typeof(GreenshopDbContext))]
-    partial class GreenshopDbContextModelSnapshot : ModelSnapshot
+    [Migration("20250523224635_AddQuantityForOrderedPlant")]
+    partial class AddQuantityForOrderedPlant
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

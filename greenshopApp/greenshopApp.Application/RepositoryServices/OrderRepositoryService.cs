@@ -23,7 +23,8 @@ namespace greenshopApp.Application.RepositoryServices
         {
             return await _repository.GetQueryable()
                 .Include(o => o.Customer)
-                .Include(o => o.Plants)
+                .Include(o => o.OrderPlants)
+                    .ThenInclude(op => op.Plant)
                 .AsNoTracking()
                 .ToListAsync();
         }
@@ -31,7 +32,9 @@ namespace greenshopApp.Application.RepositoryServices
         public async Task<List<OrderEntity>> GetByCustomerAsync(Guid customerId)
         {
             return await _repository.GetQueryable()
-                .Include(o => o.Plants)
+                .Include(o => o.Customer)
+                .Include(o => o.OrderPlants)
+                    .ThenInclude(op => op.Plant)
                 .Where(o => o.CustomerID == customerId)
                 .AsNoTracking()
                 .ToListAsync();
@@ -39,22 +42,22 @@ namespace greenshopApp.Application.RepositoryServices
 
         public async Task AddAsync(OrderEntity order)
         {
-            // 1. Прикрепляем пользователя к контексту
+            // Прикрепляем пользователя к контексту
             if (_dbContext.Entry(order.Customer).State == EntityState.Detached)
             {
                 _dbContext.Users.Attach(order.Customer);
             }
 
-            // 2. Прикрепляем растения к контексту
-            foreach (var plant in order.Plants)
+            // Прикрепляем растения через OrderPlants
+            foreach (var orderPlant in order.OrderPlants)
             {
-                if (_dbContext.Entry(plant).State == EntityState.Detached)
+                if (_dbContext.Entry(orderPlant.Plant).State == EntityState.Detached)
                 {
-                    _dbContext.Plants.Attach(plant);
+                    _dbContext.Plants.Attach(orderPlant.Plant);
                 }
             }
 
-            // 3. Сохраняем заказ
+            // Сохраняем заказ
             await _repository.AddAsync(order);
         }
 

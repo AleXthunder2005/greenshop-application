@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using greenshopApp.Persistence.Interfaces;
 
 namespace greenshopApp.Persistence.Models
@@ -12,6 +13,8 @@ namespace greenshopApp.Persistence.Models
         public string Category { get; set; } = string.Empty;
         public string ShortDescription { get; set; } = string.Empty;
         public string Size { get; set; } = string.Empty;
-        public List<OrderEntity> Orders { get; set; } = [];
+
+        // Новый список для связи "Растение-Количество"
+        public List<OrderPlantEntity> OrderPlants { get; set; } = new();
     }
 }
