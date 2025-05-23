@@ -1,17 +1,12 @@
-﻿using System;
-using greenshopApp.Persistence.Interfaces;
-
-namespace greenshopApp.Persistence.Models
+﻿namespace greenshopApp.Contracts.Plants
 {
-    public class PlantEntity : IEntity
+    public class PlantAddRequest
     {
-        public Guid Id { get; set; }
         public string Name { get; set; } = string.Empty;
         public decimal Price { get; set; } = decimal.Zero;
         public int? Sale { get; set; }
         public string Category { get; set; } = string.Empty;
         public string ShortDescription { get; set; } = string.Empty;
         public string Size { get; set; } = string.Empty;
-        public List<OrderEntity> Orders { get; set; } = [];
     }
 }

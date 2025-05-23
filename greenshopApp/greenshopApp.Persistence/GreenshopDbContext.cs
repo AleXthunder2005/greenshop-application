@@ -14,10 +14,11 @@ namespace greenshopApp.Persistence
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            // Применяем конфигурации
             modelBuilder.ApplyConfiguration(new OrderConfiguration());
             modelBuilder.ApplyConfiguration(new UserConfiguration());
             modelBuilder.ApplyConfiguration(new PlantConfiguration());
-            
+
             base.OnModelCreating(modelBuilder);
         }
     }

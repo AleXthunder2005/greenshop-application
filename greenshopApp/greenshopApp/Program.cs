@@ -37,7 +37,11 @@ builder.Services.AddSwaggerGen(c =>
 builder.Services.Configure<JwtOptions>(configuration.GetSection("JwtOptions"));
 // Регистрация репозиториев и сервисов
 builder.Services.AddScoped<GenericRepository<UserEntity>>();
+builder.Services.AddScoped<GenericRepository<OrderEntity>>();
+builder.Services.AddScoped<GenericRepository<PlantEntity>>();
 builder.Services.AddScoped<UserRepositoryService>();
+builder.Services.AddScoped<OrderRepositoryService>();
+builder.Services.AddScoped<PlantRepositoryService>();
 // Добавьте регистрацию для IPasswordHasher и IJwtProvider
 builder.Services.AddScoped<IPasswordHasher, PasswordHasher>(); 
 builder.Services.AddScoped<IJwtProvider, JwtProvider>(); 
@@ -63,9 +67,11 @@ if (app.Environment.IsDevelopment())
 
 app.UseCors();
 
-app.UseHttpsRedirection();
+//app.UseHttpsRedirection();
 
 app.MapGet("/", () => "API is running. Use /swagger for documentation");
-app.MapUserEndpoints();
+app.MapUsersEndpoints();
+app.MapPlantsEndpoints();
+app.MapOrdersEndpoints();   
 app.MapPost("test", () => Results.Ok(new { Message = "Test OK" }));
 app.Run();

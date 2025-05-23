@@ -1,7 +1,5 @@
 ﻿using greenshopApp.Application.Interfaces.Auth;
-using greenshopApp.Application.StatusCodes;
 using greenshopApp.Persistence.Models;
-using greenshopApp.Persistence.Options;
 using greenshopApp.Persistence.Repositories;
 using Microsoft.EntityFrameworkCore;
 using static greenshopApp.Application.StatusCodes.UserStatusCodes;
@@ -31,7 +29,7 @@ namespace greenshopApp.Application.RepositoryServices
             if (emailUser == null)
             {
                 var hashedPassword = _passwordHasher.Generate(password);
-                UserEntity user = UserEntity.Create(username, email, hashedPassword); //Проверить email надо
+                UserEntity user = UserEntity.Create(username, email, hashedPassword);
                 await _repository.AddAsync(user);
                 return USER_STATUS_CODES.SUCCESSFUL_REGISTRATION;
             }
@@ -60,16 +58,9 @@ namespace greenshopApp.Application.RepositoryServices
             return (USER_STATUS_CODES.SUCCESSFUL_LOGIN, token);
         }
 
-        // Get services
-        public async Task<List<UserEntity>> GetByPageAsync(int page, int pageSize)
+        public async Task <UserEntity?> GetByIdAsync(Guid userId)
         {
-            return await _repository.GetQueryable()
-                .AsNoTracking()
-                .OrderBy(u => u.LastName)
-                .ThenBy(u => u.FirstName)
-                .Skip((page - 1) * pageSize)
-                .Take(pageSize)
-                .ToListAsync();
+                return await _repository.GetByIdAsync(userId);
         }
 
         public async Task<UserEntity?> GetByEmailAsync(string email)
@@ -79,46 +70,78 @@ namespace greenshopApp.Application.RepositoryServices
                 .FirstOrDefaultAsync(u => u.Email == email);
         }
 
-        // Update services
-        public async Task UpdateFieldsAsync(Guid id, UserEntityOptions options)
+        public async Task UpdateUserAsync(UserEntity user)
         {
-            var userEntity = await _repository.GetByIdAsync(id);
-            var entityType = typeof(UserEntity);
-
-            foreach (var optionProperty in typeof(UserEntityOptions).GetProperties())
-            {
-                var value = optionProperty.GetValue(options);
-                if (value == null) continue;
-
-                var entityProperty = entityType.GetProperty(optionProperty.Name);
-                if (entityProperty != null && entityProperty.CanWrite)
-                {
-                    entityProperty.SetValue(userEntity, value);
-                }
-            }
-
-            await _repository.UpdateAsync(userEntity);
+            await _repository.UpdateAsync(user);
         }
 
-        public async Task UpdatePasswordAsync(Guid id, string newPassword)
-        {
-            var userEntity = await _repository.GetByIdAsync(id);
-            userEntity.PasswordHash = newPassword;
-            await _repository.UpdateAsync(userEntity);
-        }
 
-        public async Task UpdateContactInfoAsync(Guid id, string? email, string? phoneNumber)
-        {
-            var userEntity = await _repository.GetByIdAsync(id);
 
-            if (email != null)
-                userEntity.Email = email;
 
-            if (phoneNumber != null)
-                userEntity.PhoneNumber = phoneNumber;
 
-            await _repository.UpdateAsync(userEntity);
-        }
+
+
+
+
+
+
+
+
+
+        // Get services
+        //public async Task<List<UserEntity>> GetByPageAsync(int page, int pageSize)
+        //{
+        //    return await _repository.GetQueryable()
+        //        .AsNoTracking()
+        //        .OrderBy(u => u.LastName)
+        //        .ThenBy(u => u.FirstName)
+        //        .Skip((page - 1) * pageSize)
+        //        .Take(pageSize)
+        //        .ToListAsync();
+        //}
+
+
+
+        //// Update services
+        //public async Task UpdateFieldsAsync(Guid id, UserEntityOptions options)
+        //{
+        //    var userEntity = await _repository.GetByIdAsync(id);
+        //    var entityType = typeof(UserEntity);
+
+        //    foreach (var optionProperty in typeof(UserEntityOptions).GetProperties())
+        //    {
+        //        var value = optionProperty.GetValue(options);
+        //        if (value == null) continue;
+
+        //        var entityProperty = entityType.GetProperty(optionProperty.Name);
+        //        if (entityProperty != null && entityProperty.CanWrite)
+        //        {
+        //            entityProperty.SetValue(userEntity, value);
+        //        }
+        //    }
+
+        //    await _repository.UpdateAsync(userEntity);
+        //}
+
+        //public async Task UpdatePasswordAsync(Guid id, string newPassword)
+        //{
+        //    var userEntity = await _repository.GetByIdAsync(id);
+        //    userEntity.PasswordHash = newPassword;
+        //    await _repository.UpdateAsync(userEntity);
+        //}
+
+        //public async Task UpdateContactInfoAsync(Guid id, string? email, string? phoneNumber)
+        //{
+        //    var userEntity = await _repository.GetByIdAsync(id);
+
+        //    if (email != null)
+        //        userEntity.Email = email;
+
+        //    if (phoneNumber != null)
+        //        userEntity.PhoneNumber = phoneNumber;
+
+        //    await _repository.UpdateAsync(userEntity);
+        //}
 
     }
 }

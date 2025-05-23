@@ -33,14 +33,12 @@ namespace greenshopApp.Persistence.Repositories
                 .ToListAsync();
         }
         
-        public virtual async Task<TEntity> GetByIdAsync(Guid id)
+        public virtual async Task<TEntity?> GetByIdAsync(Guid id)
         {
             var entity = await _dbContext.Set<TEntity>()
                 .AsNoTracking()
                 .FirstOrDefaultAsync(entity => entity.Id == id);
 
-            if (entity == null) throw new KeyNotFoundException($"{typeof(TEntity).Name} with ID {id} was not found in the database.");
-            
             return entity;
         }
 

@@ -9,8 +9,8 @@ interface AuthContextType {
 
 const guestContextValue = {
     user: null,
-    isAuthenticated: true,
-    isAdmin: false,
+    isAuthenticated: false,
+    isAdmin: true,
 }
 
 const AuthContext = createContext<AuthContextType>(guestContextValue);

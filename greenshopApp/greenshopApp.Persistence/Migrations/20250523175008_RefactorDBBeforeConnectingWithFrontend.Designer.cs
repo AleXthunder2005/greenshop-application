@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 using greenshopApp.Persistence;
@@ -11,9 +12,11 @@ using greenshopApp.Persistence;
 namespace greenshopApp.Persistence.Migrations
 {
     [DbContext(typeof(GreenshopDbContext))]
-    partial class GreenshopDbContextModelSnapshot : ModelSnapshot
+    [Migration("20250523175008_RefactorDBBeforeConnectingWithFrontend")]
+    partial class RefactorDBBeforeConnectingWithFrontend
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -34,7 +37,7 @@ namespace greenshopApp.Persistence.Migrations
 
                     b.HasIndex("PlantsId");
 
-                    b.ToTable("OrderEntityPlantEntity", (string)null);
+                    b.ToTable("OrderEntityPlantEntity");
                 });
 
             modelBuilder.Entity("greenshopApp.Persistence.Models.OrderEntity", b =>
@@ -56,7 +59,7 @@ namespace greenshopApp.Persistence.Migrations
 
                     b.HasIndex("CustomerID");
 
-                    b.ToTable("Orders", (string)null);
+                    b.ToTable("Orders");
                 });
 
             modelBuilder.Entity("greenshopApp.Persistence.Models.PlantEntity", b =>
@@ -89,7 +92,7 @@ namespace greenshopApp.Persistence.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Plants", (string)null);
+                    b.ToTable("Plants");
                 });
 
             modelBuilder.Entity("greenshopApp.Persistence.Models.UserEntity", b =>
@@ -135,7 +138,7 @@ namespace greenshopApp.Persistence.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Users", (string)null);
+                    b.ToTable("Users");
                 });
 
             modelBuilder.Entity("OrderEntityPlantEntity", b =>
