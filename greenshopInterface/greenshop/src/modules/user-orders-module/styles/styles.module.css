@@ -20,3 +20,11 @@
     background-color: var(--light-transparent-color);
     margin: 10px;
 }
+
+.no-orders {
+    font-family: var(--font-family);
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 94%;
+    color: var(--primary-gray-color);
+}

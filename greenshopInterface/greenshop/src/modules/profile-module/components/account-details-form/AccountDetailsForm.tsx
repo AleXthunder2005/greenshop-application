@@ -1,17 +1,93 @@
-import styles from './styles/styles.module.css'
+import styles from './styles/styles.module.css';
 import {BillingFormData} from "@/types/order.types.ts";
 import {TextBox} from "@ui/text-box";
 import {DarkGreenButton} from "@ui/dark-green-button";
+import {useEffect, useState} from "react";
+import {fetchUserProfile, updateUserProfile} from "@/services/userService";
+import {useAuth} from "@/contexts/auth-context/AuthContext.tsx";
+import {Loader} from "@ui/loader";
 
-interface AccountDetailsFormProps {
-    initialData?: Partial<BillingFormData>
+const AccountDetailsForm = () => {
+    const {userId} = useAuth();
+    const [formData, setFormData] = useState<BillingFormData>({
+        firstName: '',
+        lastName: '',
+        country: '',
+        city: '',
+        address: '',
+        email: '',
+        phone: '',
+    });
+    const [isLoading, setIsLoading] = useState(true);
+    const [isSubmitting, setIsSubmitting] = useState(false);
+    const [error, setError] = useState<string | null>(null);
+    const [success, setSuccess] = useState<string | null>(null);
 
-}
+    useEffect(() => {
+        const loadUserProfile = async () => {
+            if (!userId) return;
 
-const AccountDetailsForm = ({initialData} : AccountDetailsFormProps) => {
+            try {
+                const profileData = await fetchUserProfile(userId);
+                setFormData(profileData);
+            } catch (error) {
+                console.error('Failed to load user profile:', error);
+                setError('Failed to load profile data');
+            } finally {
+                setIsLoading(false);
+            }
+        };
+
+        loadUserProfile();
+    }, [userId]);
+
+    const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        const {name, value} = e.target;
+        setFormData(prev => ({
+            ...prev,
+            [name]: value,
+        }));
+        // Сбрасываем сообщения при изменении данных
+        setError(null);
+        setSuccess(null);
+    };
+
+    const handleSubmit = async (e: React.FormEvent) => {
+        e.preventDefault();
+
+        // Сбрасываем предыдущие сообщения
+        setError(null);
+        setSuccess(null);
+
+        // Валидация
+        if (!formData.firstName || !formData.lastName || !formData.country ||
+            !formData.city || !formData.address || !formData.email) {
+            setError('Please fill all required fields');
+            return;
+        }
+
+        setIsSubmitting(true);
+
+        try {
+            if (!userId) throw new Error('User not authenticated');
+
+            await updateUserProfile(userId, formData);
+            setSuccess('Profile updated successfully');
+        } catch (error) {
+            console.error('Failed to update profile:', error);
+            setError('Failed to update profile');
+        } finally {
+            setIsSubmitting(false);
+        }
+    };
+
+    if (isLoading) {
+        return <Loader/>;
+    }
+
     return (
         <div className={styles['account-details']}>
-            <form className={styles['account-details-form']}>
+            <form className={styles['account-details-form']} onSubmit={handleSubmit}>
                 <div className={styles['billing-info-form']}>
                     <h2 className={styles['billing-info-form__title']}>Account Details</h2>
                     <div className={styles['billing-info-form__row']}>
@@ -20,8 +96,8 @@ const AccountDetailsForm = ({initialData} : AccountDetailsFormProps) => {
                                 name="firstName"
                                 label="First Name"
                                 required
-                                value={initialData?.firstName || ''}
-                                // onChange={handleChange}
+                                value={formData.firstName}
+                                onChange={handleChange}
                                 className={styles['billing-info-form__input']}
                             />
                         </div>
@@ -30,8 +106,8 @@ const AccountDetailsForm = ({initialData} : AccountDetailsFormProps) => {
                                 name="lastName"
                                 label="Last Name"
                                 required
-                                value={initialData?.lastName || ''}
-                                // onChange={handleChange}
+                                value={formData.lastName}
+                                onChange={handleChange}
                                 className={styles['billing-info-form__input']}
                             />
                         </div>
@@ -44,8 +120,8 @@ const AccountDetailsForm = ({initialData} : AccountDetailsFormProps) => {
                                 label="Country / Region"
                                 required
                                 placeholder="Select a country / region"
-                                value={initialData?.country || ''}
-                                // onChange={handleChange}
+                                value={formData.country}
+                                onChange={handleChange}
                                 className={styles['billing-info-form__input']}
                             />
                         </div>
@@ -54,8 +130,8 @@ const AccountDetailsForm = ({initialData} : AccountDetailsFormProps) => {
                                 name="city"
                                 label="Town / City"
                                 required
-                                value={initialData?.city || ''}
-                                // onChange={handleChange}
+                                value={formData.city}
+                                onChange={handleChange}
                                 className={styles['billing-info-form__input']}
                             />
                         </div>
@@ -67,8 +143,8 @@ const AccountDetailsForm = ({initialData} : AccountDetailsFormProps) => {
                             label="Street Address"
                             required
                             placeholder="House number and street name"
-                            value={initialData?.address || ''}
-                            // onChange={handleChange}
+                            value={formData.address}
+                            onChange={handleChange}
                             className={styles['billing-info-form__input']}
                         />
                     </div>
@@ -80,8 +156,8 @@ const AccountDetailsForm = ({initialData} : AccountDetailsFormProps) => {
                                 label="Email address"
                                 required
                                 type="email"
-                                value={initialData?.email || ''}
-                                // onChange={handleChange}
+                                value={formData.email}
+                                disabled
                                 className={styles['billing-info-form__input']}
                             />
                         </div>
@@ -91,56 +167,29 @@ const AccountDetailsForm = ({initialData} : AccountDetailsFormProps) => {
                                 name="phone"
                                 label="Phone Number"
                                 type="tel"
-                                value={initialData?.phone || ''}
-                                // onChange={handleChange}
+                                value={formData.phone || ''}
+                                onChange={handleChange}
                                 className={styles['billing-info-form__input']}
                             />
                         </div>
                     </div>
-
                 </div>
-                <DarkGreenButton className={styles['billing-info-form__button']}>Save Changes</DarkGreenButton>
+
+                {/* Блок для отображения сообщений */}
+                <div className={styles['messages-container']}>
+                    {error && <div className={styles['error-message']}>{error}</div>}
+                    {success && <div className={styles['success-message']}>{success}</div>}
+                </div>
+
+                <DarkGreenButton
+                    type="submit"
+                    className={styles['billing-info-form__button']}
+                    disabled={isSubmitting}
+                >
+                    {isSubmitting ? 'Saving...' : 'Save Changes'}
+                </DarkGreenButton>
             </form>
-
-            {/*<form className={styles['password-change-form']}>*/}
-            {/*    <div className={styles['billing-info-form']}>*/}
-            {/*        <h2 className={styles['billing-info-form__title']}>Password Change</h2>*/}
-
-            {/*        <div className={styles['billing-info-form__field']}>*/}
-            {/*            <TextBox*/}
-            {/*                name="password"*/}
-            {/*                label="Current Password"*/}
-            {/*                type="password"*/}
-            {/*                // onChange={handleChange}*/}
-            {/*                className={styles['billing-info-form__input']}*/}
-            {/*            />*/}
-            {/*        </div>*/}
-
-            {/*        <div className={styles['billing-info-form__field']}>*/}
-            {/*            <TextBox*/}
-            {/*                name="newPassword"*/}
-            {/*                label="New Password"*/}
-            {/*                type="password"*/}
-            {/*                // onChange={handleChange}*/}
-            {/*                className={styles['billing-info-form__input']}*/}
-            {/*            />*/}
-            {/*        </div>*/}
-
-            {/*        <div className={styles['billing-info-form__field']}>*/}
-            {/*            <TextBox*/}
-            {/*                name="confirmPassword"*/}
-            {/*                label="Confirm New Password"*/}
-            {/*                type="password"*/}
-            {/*                // onChange={handleChange}*/}
-            {/*                className={styles['billing-info-form__input']}*/}
-            {/*            />*/}
-            {/*        </div>*/}
-            {/*    </div>*/}
-            {/*        <DarkGreenButton className={styles['billing-info-form__button']}>Save Password</DarkGreenButton>*/}
-
-            {/*</form>*/}
         </div>
-
     );
 };
 
