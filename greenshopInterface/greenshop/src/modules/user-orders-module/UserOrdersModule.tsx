@@ -1,136 +1,56 @@
+// src/modules/user-orders-module/UserOrdersModule.tsx
 import styles from './styles/styles.module.css'
-import {DBOrder} from "@/types/order.types.ts";
-import {OrderedPlantData} from "@/types/plants.types.ts";
-import {calculateTotalPrice} from "@/helpers/order.helpers.ts";
 import {OrderTable} from "@components/order-table";
-
-const plantsInCart: OrderedPlantData[] = [
-    {
-        id: 1,
-        name: "Barberton Daisy",
-        price: 119.00,
-        sale: 13,
-        image: "../../assets/plants/plant_1/plant_1.png",
-        quantity: 1,
-    },
-    {
-        id: 2, // Предполагаемый ID, так как в данных его нет
-        name: "Angel Wing Begonia",
-        price: 169.00,
-        image: "../../assets/plants/plant_2/plant_2.png",
-        quantity: 1,
-    },
-    {
-        id: 3, // Предполагаемый ID
-        name: "African Violet",
-        price: 229.00,
-        sale: 13,
-        image: "../../assets/plants/plant_3/plant_3.png",
-        quantity: 1,
-    }
-];
-
-const orders: DBOrder[] =
-    [
-        {
-            plants: plantsInCart,
-            deliveryDate: new Date(),
-            orderNumber: 1,
-            paymentMethod: "Cash on delivery",
-            total: calculateTotalPrice(plantsInCart),
-            status: "delivered",
-        },
-        {
-            plants: plantsInCart,
-            deliveryDate: new Date(),
-            orderNumber: 3,
-            paymentMethod: "Cash on delivery",
-            total: calculateTotalPrice(plantsInCart),
-            status: "in transit",
-        },
-        {
-            plants: plantsInCart,
-            deliveryDate: new Date(),
-            orderNumber: 5,
-            paymentMethod: "Cash on delivery",
-            total: calculateTotalPrice(plantsInCart),
-            status: "is processed",
-        },
-        {
-            plants: plantsInCart,
-            deliveryDate: new Date(),
-            orderNumber: 7,
-            paymentMethod: "Cash on delivery",
-            total: calculateTotalPrice(plantsInCart),
-            status: "delivered",
-        },
-        {
-            plants: plantsInCart,
-            deliveryDate: new Date(),
-            orderNumber: 8,
-            paymentMethod: "Cash on delivery",
-            total: calculateTotalPrice(plantsInCart),
-            status: "in transit",
-        },
-        {
-            plants: plantsInCart,
-            deliveryDate: new Date(),
-            orderNumber: 9,
-            paymentMethod: "Cash on delivery",
-            total: calculateTotalPrice(plantsInCart),
-            status: "is processed",
-        },
-        {
-            plants: plantsInCart,
-            deliveryDate: new Date(),
-            orderNumber: 11,
-            paymentMethod: "Cash on delivery",
-            total: calculateTotalPrice(plantsInCart),
-            status: "delivered",
-        },
-        {
-            plants: plantsInCart,
-            deliveryDate: new Date(),
-            orderNumber: 13,
-            paymentMethod: "Cash on delivery",
-            total: calculateTotalPrice(plantsInCart),
-            status: "in transit",
-        },
-        {
-            plants: plantsInCart,
-            deliveryDate: new Date(),
-            orderNumber: 15,
-            paymentMethod: "Cash on delivery",
-            total: calculateTotalPrice(plantsInCart),
-            status: "is processed",
-        },
-        {
-            plants: plantsInCart,
-            deliveryDate: new Date(),
-            orderNumber: 16,
-            paymentMethod: "Cash on delivery",
-            total: calculateTotalPrice(plantsInCart),
-            status: "delivered",
-        },
-        {
-            plants: plantsInCart,
-            deliveryDate: new Date(),
-            orderNumber: 37,
-            paymentMethod: "Cash on delivery",
-            total: calculateTotalPrice(plantsInCart),
-            status: "in transit",
-        },
-        {
-            plants: plantsInCart,
-            deliveryDate: new Date(),
-            orderNumber: 58,
-            paymentMethod: "Cash on delivery",
-            total: calculateTotalPrice(plantsInCart),
-            status: "is processed",
-        },
-    ]
+import {useEffect, useState} from "react";
+import {FullOrderData} from "@/types/order.types.ts";
+import {Loader} from "@ui/loader";
+import {fetchUserOrders} from "@/services/orderService.ts";
+import {useAuth} from "@/contexts/auth-context/AuthContext.tsx";
 
 const UserOrdersModule = () => {
+    const [orders, setOrders] = useState<FullOrderData[]>([]);
+    const [isLoading, setIsLoading] = useState(true);
+    const [error, setError] = useState<string | null>(null);
+    const {userId} = useAuth(); // Предполагается, что у вас есть хук useAuth
+
+    useEffect(() => {
+        if (!userId) {
+            setIsLoading(false);
+            return;
+        }
+
+        const loadOrders = async () => {
+            try {
+                const userOrders = await fetchUserOrders(userId);
+                setOrders(userOrders);
+            } catch (err) {
+                setError('Failed to load orders. Please try again later.');
+                console.error(err);
+            } finally {
+                setIsLoading(false);
+            }
+        };
+
+        loadOrders();
+    }, [userId]);
+
+    if (isLoading) {
+        return <Loader/>;
+    }
+
+    if (error) {
+        return <div className={styles.error}>{error}</div>;
+    }
+
+    if (orders.length === 0) {
+        return (
+            <div className={styles['user-orders']}>
+                <h2 className={styles['user-orders__title']}>Your Orders</h2>
+                <p className={styles['no-orders']}>You don't have any orders yet.</p>
+            </div>
+        );
+    }
+
     return (
         <div className={styles['user-orders']}>
             <h2 className={styles['user-orders__title']}>Your Orders</h2>

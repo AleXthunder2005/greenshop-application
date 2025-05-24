@@ -5,21 +5,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="3c661422-b22c-495b-a3a4-baa5776a26b1" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/../greenshopApp/greenshopApp.Application/RepositoryServices/PlantRepositoryService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../greenshopApp/greenshopApp.Application/RepositoryServices/PlantRepositoryService.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../greenshopApp/greenshopApp/Endpoints/PlantsEndpoints.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../greenshopApp/greenshopApp/Endpoints/PlantsEndpoints.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/greenshop/src/components/order-modal/styles/styles.module.css" beforeDir="false" afterPath="$PROJECT_DIR$/greenshop/src/components/order-modal/styles/styles.module.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/greenshop/src/components/plants-editor-modal/PlantsEditorModal.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/greenshop/src/components/plants-editor-modal/PlantsEditorModal.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/greenshop/src/components/plants-editor-modal/styles/styles.module.css" beforeDir="false" afterPath="$PROJECT_DIR$/greenshop/src/components/plants-editor-modal/styles/styles.module.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/greenshop/src/components/plants-viewer/PlantsViewer.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/greenshop/src/components/plants-viewer/PlantsViewer.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/greenshop/src/helpers/plant.helpers.ts" beforeDir="false" afterPath="$PROJECT_DIR$/greenshop/src/helpers/plant.helpers.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/greenshop/src/modules/plants-administraror/PlantsAdministrator.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/greenshop/src/modules/plants-administraror/PlantsAdministrator.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/greenshop/src/modules/plants-administraror/styles/styles.module.css" beforeDir="false" afterPath="$PROJECT_DIR$/greenshop/src/modules/plants-administraror/styles/styles.module.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/greenshop/src/modules/plants-module/PlantsModule.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/greenshop/src/modules/plants-module/PlantsModule.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/greenshop/src/services/plantService.ts" beforeDir="false" afterPath="$PROJECT_DIR$/greenshop/src/services/plantService.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/greenshop/src/types/plants.types.ts" beforeDir="false" afterPath="$PROJECT_DIR$/greenshop/src/types/plants.types.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/greenshop/src/ui/plant-card/PlantCard.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/greenshop/src/ui/plant-card/PlantCard.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/greenshop/src/ui/select/styles/styles.module.css" beforeDir="false" afterPath="$PROJECT_DIR$/greenshop/src/ui/select/styles/styles.module.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/greenshop/src/components/order-table/OrderTable.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/greenshop/src/components/order-table/OrderTable.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/greenshop/src/modules/profile-module/components/account-details-form/AccountDetailsForm.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/greenshop/src/modules/profile-module/components/account-details-form/AccountDetailsForm.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/greenshop/src/modules/user-orders-module/UserOrdersModule.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/greenshop/src/modules/user-orders-module/UserOrdersModule.tsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -90,7 +79,7 @@
       <workItem from="1747850757398" duration="3189000" />
       <workItem from="1747853973106" duration="8358000" />
       <workItem from="1747905892591" duration="30132000" />
-      <workItem from="1748009271518" duration="38927000" />
+      <workItem from="1748009271518" duration="41129000" />
     </task>
     <servers />
   </component>

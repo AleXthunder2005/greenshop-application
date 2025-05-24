@@ -9,8 +9,6 @@ interface AccountDetailsFormProps {
 }
 
 const AccountDetailsForm = ({initialData} : AccountDetailsFormProps) => {
-
-
     return (
         <div className={styles['account-details']}>
             <form className={styles['account-details-form']}>
@@ -104,43 +102,43 @@ const AccountDetailsForm = ({initialData} : AccountDetailsFormProps) => {
                 <DarkGreenButton className={styles['billing-info-form__button']}>Save Changes</DarkGreenButton>
             </form>
 
-            <form className={styles['password-change-form']}>
-                <div className={styles['billing-info-form']}>
-                    <h2 className={styles['billing-info-form__title']}>Password Change</h2>
+            {/*<form className={styles['password-change-form']}>*/}
+            {/*    <div className={styles['billing-info-form']}>*/}
+            {/*        <h2 className={styles['billing-info-form__title']}>Password Change</h2>*/}
 
-                    <div className={styles['billing-info-form__field']}>
-                        <TextBox
-                            name="password"
-                            label="Current Password"
-                            type="password"
-                            // onChange={handleChange}
-                            className={styles['billing-info-form__input']}
-                        />
-                    </div>
+            {/*        <div className={styles['billing-info-form__field']}>*/}
+            {/*            <TextBox*/}
+            {/*                name="password"*/}
+            {/*                label="Current Password"*/}
+            {/*                type="password"*/}
+            {/*                // onChange={handleChange}*/}
+            {/*                className={styles['billing-info-form__input']}*/}
+            {/*            />*/}
+            {/*        </div>*/}
 
-                    <div className={styles['billing-info-form__field']}>
-                        <TextBox
-                            name="newPassword"
-                            label="New Password"
-                            type="password"
-                            // onChange={handleChange}
-                            className={styles['billing-info-form__input']}
-                        />
-                    </div>
+            {/*        <div className={styles['billing-info-form__field']}>*/}
+            {/*            <TextBox*/}
+            {/*                name="newPassword"*/}
+            {/*                label="New Password"*/}
+            {/*                type="password"*/}
+            {/*                // onChange={handleChange}*/}
+            {/*                className={styles['billing-info-form__input']}*/}
+            {/*            />*/}
+            {/*        </div>*/}
 
-                    <div className={styles['billing-info-form__field']}>
-                        <TextBox
-                            name="confirmPassword"
-                            label="Confirm New Password"
-                            type="password"
-                            // onChange={handleChange}
-                            className={styles['billing-info-form__input']}
-                        />
-                    </div>
-                </div>
-                    <DarkGreenButton className={styles['billing-info-form__button']}>Save Password</DarkGreenButton>
+            {/*        <div className={styles['billing-info-form__field']}>*/}
+            {/*            <TextBox*/}
+            {/*                name="confirmPassword"*/}
+            {/*                label="Confirm New Password"*/}
+            {/*                type="password"*/}
+            {/*                // onChange={handleChange}*/}
+            {/*                className={styles['billing-info-form__input']}*/}
+            {/*            />*/}
+            {/*        </div>*/}
+            {/*    </div>*/}
+            {/*        <DarkGreenButton className={styles['billing-info-form__button']}>Save Password</DarkGreenButton>*/}
 
-            </form>
+            {/*</form>*/}
         </div>
 
     );
