@@ -5,7 +5,7 @@ interface NotFoundImgProps {
     className?: string
 }
 
-const NotFoundImg = ({className = ''}) : NotFoundImgProps => {
+const NotFoundImg = ({className = ''}: NotFoundImgProps)  => {
     return (
         <img className={`${styles['not-found-img']} ${className}`}
             src={notFoundImage}

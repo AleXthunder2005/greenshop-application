@@ -16,11 +16,6 @@ const sideMenuItems = [
         icon: <Icon iconType="cart" />,
         title: "Orders",
         tabKey: "Orders" as const
-    },
-    {
-        icon: <Icon iconType="user" />,
-        title: "Logout",
-        tabKey: "Logout" as const
     }
 ];
 
@@ -38,7 +33,6 @@ const AdminProfile = () => {
 
             {activeTab === "Products Administrate" && (<PlantsAdministrator />)}
             {activeTab === "Orders" && (<OrderAdministrator />)}
-            {/*{activeTab === 'Logout' && (<WishlistModule />)}*/}
         </div>
     );
 };

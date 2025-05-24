@@ -27,7 +27,7 @@ const plantsData: PlantCardData[] = [
 ];
 
 const PlantsAdministrator = () => {
-    const [isModalOpen, setIsModalOpen] = useState(true);
+    const [isModalOpen, setIsModalOpen] = useState(false);
     const closeModal = () => setIsModalOpen(false);
     const [editedPlant, setEditedPlant] = useState<DBPlant | null>(null)
 

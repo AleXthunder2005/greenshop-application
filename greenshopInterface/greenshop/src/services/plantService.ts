@@ -10,6 +10,7 @@ export const fetchPlants = async (): Promise<PlantCardData[]> => {
         const data = await response.json();
 
         // Преобразуем данные с бэкенда в формат PlantCardData
+        // @ts-ignore
         return data.map((plant) => ({
             id: plant.id,
             name: plant.name,

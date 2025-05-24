@@ -5,20 +5,29 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="3c661422-b22c-495b-a3a4-baa5776a26b1" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/../greenshopApp/greenshopApp/Program.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../greenshopApp/greenshopApp/Program.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../greenshopApp/greenshopApp.Application/RepositoryServices/UserRepositoryService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../greenshopApp/greenshopApp.Application/RepositoryServices/UserRepositoryService.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../greenshopApp/greenshopApp/Endpoints/UsersEndpoints.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../greenshopApp/greenshopApp/Endpoints/UsersEndpoints.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/greenshop/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/greenshop/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/greenshop/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/greenshop/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/greenshop/src/api/auth.api.ts" beforeDir="false" afterPath="$PROJECT_DIR$/greenshop/src/api/auth.api.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/greenshop/src/app/App.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/greenshop/src/app/App.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/greenshop/src/app/routers/admin-router/AdminRouter.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/greenshop/src/app/routers/admin-router/AdminRouter.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/greenshop/src/app/routers/guest-router/GuestRouter.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/greenshop/src/app/routers/guest-router/GuestRouter.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/greenshop/src/app/routers/user-router/UserRouter.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/greenshop/src/app/routers/user-router/UserRouter.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/greenshop/src/components/cart-viewer/CartViewer.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/greenshop/src/components/cart-viewer/CartViewer.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/greenshop/src/configures/server.config.ts" beforeDir="false" afterPath="$PROJECT_DIR$/greenshop/src/configures/server.config.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/greenshop/src/contexts/auth-context/AuthContext.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/greenshop/src/contexts/auth-context/AuthContext.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/greenshop/src/modules/about-plant-viewer/AboutPlantViewer.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/greenshop/src/modules/about-plant-viewer/AboutPlantViewer.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/greenshop/src/modules/plants-module/PlantsModule.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/greenshop/src/modules/plants-module/PlantsModule.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/greenshop/src/pages/shop/Shop.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/greenshop/src/pages/shop/Shop.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/greenshop/src/types/plants.types.ts" beforeDir="false" afterPath="$PROJECT_DIR$/greenshop/src/types/plants.types.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/greenshop/src/modules/login-register-module/LoginRegisterModule.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/greenshop/src/modules/login-register-module/LoginRegisterModule.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/greenshop/src/modules/login-register-module/components/login-register-modal/LoginRegisterModal.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/greenshop/src/modules/login-register-module/components/login-register-modal/LoginRegisterModal.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/greenshop/src/modules/login-register-module/components/styles/styles.module.css" beforeDir="false" afterPath="$PROJECT_DIR$/greenshop/src/modules/login-register-module/components/styles/styles.module.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/greenshop/src/modules/login-register-module/styles/styles.module.css" beforeDir="false" afterPath="$PROJECT_DIR$/greenshop/src/modules/login-register-module/styles/styles.module.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/greenshop/src/modules/plants-administraror/PlantsAdministrator.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/greenshop/src/modules/plants-administraror/PlantsAdministrator.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/greenshop/src/pages/admin-profile/AdminProfile.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/greenshop/src/pages/admin-profile/AdminProfile.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/greenshop/src/pages/login-page/LoginPage.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/greenshop/src/pages/login-page/LoginPage.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/greenshop/src/pages/profile/Profile.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/greenshop/src/pages/profile/Profile.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/greenshop/src/services/plantService.ts" beforeDir="false" afterPath="$PROJECT_DIR$/greenshop/src/services/plantService.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/greenshop/src/types/user.types.ts" beforeDir="false" afterPath="$PROJECT_DIR$/greenshop/src/types/user.types.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/greenshop/src/ui/button-icon/Icon.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/greenshop/src/ui/button-icon/Icon.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/greenshop/src/ui/nav-menu/NavMenu.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/greenshop/src/ui/nav-menu/NavMenu.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/greenshop/src/ui/not-found-img/NotFoundImg.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/greenshop/src/ui/not-found-img/NotFoundImg.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/greenshop/src/ui/plant-card/PlantCard.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/greenshop/src/ui/plant-card/PlantCard.tsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -89,7 +98,7 @@
       <workItem from="1747850757398" duration="3189000" />
       <workItem from="1747853973106" duration="8358000" />
       <workItem from="1747905892591" duration="30132000" />
-      <workItem from="1748009271518" duration="14207000" />
+      <workItem from="1748009271518" duration="27247000" />
     </task>
     <servers />
   </component>

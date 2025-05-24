@@ -9,6 +9,7 @@ export const AdminRouter = () => {
     return (
         <Routes>
             <Route path="/" element={<Navigate to="/home" replace />} />
+            <Route path="/cart" element={<Navigate to="/home" replace />} />
             <Route path="/home" element={<Home />} />
             <Route path="/shop/:id" element={<Shop />} />
             <Route path="/admin" element={<AdminProfile />} />

@@ -23,15 +23,15 @@ namespace greenshopApp.Endpoints
                 UserLoginRequest request
             )
         {
-            var (status, token) = await userService.LoginAsync(
+            var (status, userId) = await userService.LoginAsync(
                 request.Email,
                 request.Password);
 
             return status switch
             {
-                USER_STATUS_CODES.SUCCESSFUL_LOGIN => Results.Ok(new { Token = token }),
+                USER_STATUS_CODES.SUCCESSFUL_LOGIN => Results.Ok(new UserLoginResponse { UserId = userId, IsAdmin = false }),
                 USER_STATUS_CODES.INVALID_CREDENTIALS => Results.Unauthorized(),
-                USER_STATUS_CODES.IS_ADMIN => Results.Ok(new { Token = token, IsAdmin = true }),
+                USER_STATUS_CODES.IS_ADMIN => Results.Ok(new UserLoginResponse { UserId = userId, IsAdmin = true }),
                 _ => Results.StatusCode(StatusCodes.Status500InternalServerError)
             };
         }
@@ -55,7 +55,7 @@ namespace greenshopApp.Endpoints
 
             return status switch
             {
-                USER_STATUS_CODES.SUCCESSFUL_REGISTRATION => Results.Ok(),
+                USER_STATUS_CODES.SUCCESSFUL_REGISTRATION => Results.Ok(new UserRegisterResponse { UserId = (await userService.GetByEmailAsync(request.Email))?.Id}),
                 USER_STATUS_CODES.EMAIL_IS_BUSY => Results.Conflict("Email is already in use"),
                 _ => Results.StatusCode(StatusCodes.Status500InternalServerError)
             };

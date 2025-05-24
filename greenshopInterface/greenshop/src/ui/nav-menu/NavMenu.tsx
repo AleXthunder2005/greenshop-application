@@ -23,7 +23,7 @@ export function NavMenu({ activeItem, onChangeActiveTab }: NavMenuProps) {
               className={cn(styles['nav-menu__item'], {
                 [styles['nav-menu__item_active']]: activeItem === item,
               })}
-              onClick={(e) => (item === activeItem ? e.preventDefault() : onChangeActiveTab(item))}
+              onClick={() => onChangeActiveTab(item)}
           >
             {item}
           </a>

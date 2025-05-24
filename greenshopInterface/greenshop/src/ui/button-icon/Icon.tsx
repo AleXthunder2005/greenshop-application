@@ -29,9 +29,11 @@ export type IconPosition =
 
 interface  ButtonIconProps {
     iconType: IconType;
+    className?: string;
+    onClick?: () => void;
 }
 
-const Icon = ({iconType} : ButtonIconProps) => {
+const Icon = ({iconType, className = '', onClick} : ButtonIconProps) => {
     // Создаем объект для сопоставления имен иконок с импортированными файлами
     const icons = {
         cart: cartIcon,
@@ -48,9 +50,10 @@ const Icon = ({iconType} : ButtonIconProps) => {
     const iconSrc = icons[iconType];
 
     return (
-        <img className={styles['icon-image']}
+        <img className={`${styles['icon-image']} ${className}`}
             src={iconSrc}
             alt={`${iconType}-icon`}
+            onClick={onClick}
         />
     );
 };
