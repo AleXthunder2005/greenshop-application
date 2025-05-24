@@ -1,166 +1,80 @@
 import styles from './styles/styles.module.css'
-import {OrderedPlantData} from "@/types/plants.types.ts";
-import {DBOrder, OrderStatus} from "@/types/order.types.ts";
-import {calculateTotalPrice} from "@/helpers/order.helpers.ts";
 import {OrderAdminTable} from "@components/order-admin-table";
-import {useState} from "react";
-
-const plantsInCart: OrderedPlantData[] = [
-    {
-        id: 1,
-        name: "Barberton Daisy",
-        price: 119.00,
-        sale: 13,
-        image: "../../assets/plants/plant_1/plant_1.png",
-        quantity: 1,
-    },
-    {
-        id: 2, // Предполагаемый ID, так как в данных его нет
-        name: "Angel Wing Begonia",
-        price: 169.00,
-        image: "../../assets/plants/plant_2/plant_2.png",
-        quantity: 1,
-    },
-    {
-        id: 3, // Предполагаемый ID
-        name: "African Violet",
-        price: 229.00,
-        sale: 13,
-        image: "../../assets/plants/plant_3/plant_3.png",
-        quantity: 1,
-    }
-];
-
-const initialOrders: DBOrder[] =
-    [
-        {
-            plants: plantsInCart,
-            deliveryDate: new Date(),
-            orderNumber: 1,
-            paymentMethod: "Cash on delivery",
-            total: calculateTotalPrice(plantsInCart),
-            status: "delivered",
-        },
-        {
-            plants: plantsInCart,
-            deliveryDate: new Date(),
-            orderNumber: 3,
-            paymentMethod: "Cash on delivery",
-            total: calculateTotalPrice(plantsInCart),
-            status: "in transit",
-        },
-        {
-            plants: plantsInCart,
-            deliveryDate: new Date(),
-            orderNumber: 5,
-            paymentMethod: "Cash on delivery",
-            total: calculateTotalPrice(plantsInCart),
-            status: "is processed",
-        },
-        {
-            plants: plantsInCart,
-            deliveryDate: new Date(),
-            orderNumber: 7,
-            paymentMethod: "Cash on delivery",
-            total: calculateTotalPrice(plantsInCart),
-            status: "delivered",
-        },
-        {
-            plants: plantsInCart,
-            deliveryDate: new Date(),
-            orderNumber: 8,
-            paymentMethod: "Cash on delivery",
-            total: calculateTotalPrice(plantsInCart),
-            status: "in transit",
-        },
-        {
-            plants: plantsInCart,
-            deliveryDate: new Date(),
-            orderNumber: 9,
-            paymentMethod: "Cash on delivery",
-            total: calculateTotalPrice(plantsInCart),
-            status: "is processed",
-        },
-        {
-            plants: plantsInCart,
-            deliveryDate: new Date(),
-            orderNumber: 11,
-            paymentMethod: "Cash on delivery",
-            total: calculateTotalPrice(plantsInCart),
-            status: "delivered",
-        },
-        {
-            plants: plantsInCart,
-            deliveryDate: new Date(),
-            orderNumber: 13,
-            paymentMethod: "Cash on delivery",
-            total: calculateTotalPrice(plantsInCart),
-            status: "in transit",
-        },
-        {
-            plants: plantsInCart,
-            deliveryDate: new Date(),
-            orderNumber: 15,
-            paymentMethod: "Cash on delivery",
-            total: calculateTotalPrice(plantsInCart),
-            status: "is processed",
-        },
-        {
-            plants: plantsInCart,
-            deliveryDate: new Date(),
-            orderNumber: 16,
-            paymentMethod: "Cash on delivery",
-            total: calculateTotalPrice(plantsInCart),
-            status: "delivered",
-        },
-        {
-            plants: plantsInCart,
-            deliveryDate: new Date(),
-            orderNumber: 37,
-            paymentMethod: "Cash on delivery",
-            total: calculateTotalPrice(plantsInCart),
-            status: "in transit",
-        },
-        {
-            plants: plantsInCart,
-            deliveryDate: new Date(),
-            orderNumber: 58,
-            paymentMethod: "Cash on delivery",
-            total: calculateTotalPrice(plantsInCart),
-            status: "is processed",
-        },
-    ]
+import {useEffect, useState} from "react";
+import {FullOrderData} from "@/types/order.types.ts";
+import {API_BASE_URL} from "@/configures/server.config.ts";
+import {Loader} from "@ui/loader";
 
 const OrderAdministrator = () => {
-    const [orders, setOrders] = useState<DBOrder[]>(initialOrders);
+    const [orders, setOrders] = useState<FullOrderData[]>([]);
+    const [isLoading, setIsLoading] = useState(true);
 
-    // Функция для изменения статуса заказа
-    const handleStatusChange = async (orderNumber: number, newStatus: OrderStatus) => {
-        try {
-            // Здесь будет вызов API для обновления статуса
-            // await api.updateOrderStatus(orderNumber, newStatus);
+    useEffect(() => {
+        const fetchOrders = async () => {
+            try {
+                const response = await fetch(`${API_BASE_URL}/orders`);
 
-            // Временное обновление состояния локально
-            setOrders(prevOrders =>
-                prevOrders.map(order =>
-                    order.orderNumber === orderNumber
-                        ? { ...order, status: newStatus }
-                        : order
-                )
-            );
+                if (response.status === 204) {
+                    // Нет содержимого - устанавливаем пустой массив
+                    setOrders([]);
+                    setIsLoading(false);
+                    return;
+                }
 
-            console.log(`Order ${orderNumber} status changed to ${newStatus}`);
-        } catch (error) {
-            console.error('Failed to update order status:', error);
-        }
-    };
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
+
+                const data = await response.json();
+
+                // Преобразуем данные из API в формат FullOrderData
+                const formattedOrders: FullOrderData[] = data.map((order: any) => ({
+                    orderNumber: order.id,
+                    plants: order.plants.map((plant: any) => ({
+                        id: plant.id,
+                        name: plant.name,
+                        price: plant.price,
+                        sale: plant.sale,
+                        size: plant.size,
+                        quantity: plant.quantity,
+                    })),
+                    deliveryDate: new Date(order.deliveryDate),
+                    paymentMethod: "Cash on delivery",
+                    total: order.plants.reduce(
+                        (sum: number, plant: any) => sum + (plant.price * plant.quantity * (plant.sale ? (1 - plant.sale/100) : 1)),
+                        0
+                    ),
+                    status: "is processed",
+                    firstName: order.user.firstName,
+                    lastName: order.user.lastName,
+                    country: order.user.countryry,
+                    city: order.user.city,
+                    address: order.user.streetAddress,
+                    email: order.user.email,
+                    phone: order.user.phone,
+                }));
+
+                setOrders(formattedOrders);
+            } catch (error) {
+                console.error('Error fetching orders:', error);
+                alert(`Failed to load orders: ${error instanceof Error ? error.message : String(error)}`);
+            } finally {
+                setIsLoading(false);
+            }
+        };
+
+        fetchOrders();
+    }, []); // Пустой массив зависимостей - выполняется только при монтировании
+
+    if (isLoading) {
+        return <Loader/>;
+    }
 
     return (
         <div className={styles['user-orders']}>
             <h2 className={styles['user-orders__title']}>Our orders</h2>
             <OrderAdminTable
                 orders={orders}
-                onStatusChange={handleStatusChange}
             />
         </div>
     );

@@ -3,12 +3,12 @@ import {CartViewer} from "@components/cart-viewer";
 import styles from './styles/styles.module.css'
 import {DarkGreenButton} from "@ui/dark-green-button";
 import thankYouImage from "@components/order-modal/assets/thank-you.svg";
-import {DBOrder, OrderStatus} from "@/types/order.types.ts";
+import {FullOrderData, OrderStatus} from "@/types/order.types.ts";
 import {prepareOrderDateForTable} from "@components/order-modal/helpers/orderModal.helpers.ts";
 import {useNavigate} from "react-router-dom";
 
 interface OrderModalProps {
-    order: DBOrder;
+    order: FullOrderData;
     isOpen: boolean;
     onClose: () => void;
     isUserModal?: boolean;
@@ -66,18 +66,15 @@ const orderAdminModalVariants: Record<OrderStatus, OrderModalVariant> = {
 };
 
 const OrderModal = ({ order, isOpen, onClose, isUserModal = true }: OrderModalProps) => {
-    // Получаем вариант модалки по статусу заказа
     const modalVariant = isUserModal
-        ?
-        orderModalVariants[order.status] || orderModalVariants["is processed"]
-        :
-        orderAdminModalVariants[order.status] || orderAdminModalVariants["is processed"];
+        ? orderModalVariants[order.status] || orderModalVariants["is processed"]
+        : orderAdminModalVariants[order.status] || orderAdminModalVariants["is processed"];
 
     const navigate = useNavigate();
 
     const handleButtonClick = () => {
         onClose();
-        if (modalVariant.locationTo) {navigate(modalVariant.locationTo)}
+        if (modalVariant.locationTo) { navigate(modalVariant.locationTo) }
     }
 
     return (
@@ -109,6 +106,38 @@ const OrderModal = ({ order, isOpen, onClose, isUserModal = true }: OrderModalPr
                     plants={order.plants}
                     isShortMode={true}
                 />
+
+                {/* Добавлен блок с информацией о пользователе для админа */}
+                {!isUserModal && (
+                    <div className={styles['user-info-container']}>
+                        <h4 className={styles['user-info-container__title']}>Customer Information</h4>
+                        <table className={styles['user-info-container__table']}>
+                            <tbody>
+                            <tr>
+                                <td className={styles['user-info-table__cell']}>Name:</td>
+                                <td className={styles['user-info-table__cell-value']}>{order.firstName} {order.lastName}</td>
+                            </tr>
+                            <tr>
+                                <td className={styles['user-info-table__cell']}>Email:</td>
+                                <td className={styles['user-info-table__cell-value']}>{order.email}</td>
+                            </tr>
+                            {order.phone && (
+                                <tr>
+                                    <td className={styles['user-info-table__cell']}>Phone:</td>
+                                    <td className={styles['user-info-table__cell-value']}>{order.phone}</td>
+                                </tr>
+                            )}
+                            <tr>
+                                <td className={styles['user-info-table__cell']}>Address:</td>
+                                <td className={styles['user-info-table__cell-value']}>
+                                    {order.country}, {order.city}, {order.address}
+                                </td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                )}
+
                 <p className={styles['order-modal-content__footer-text']}>
                     {modalVariant.footerText}
                 </p>

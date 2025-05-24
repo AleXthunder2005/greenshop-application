@@ -3,7 +3,6 @@ import { Home } from "@pages/home";
 import { Shop } from "@pages/shop";
 import { Profile } from "@pages/profile";
 import { Blogs } from "@pages/blogs";
-import { ErrorPage } from "@pages/error-page";
 import { ShoppingCart } from '@/pages/shoping-cart';
 import { CheckoutPage } from "@pages/checkout";
 
@@ -17,7 +16,7 @@ export const UserRouter = () => {
             <Route path="/blogs" element={<Blogs />} />
             <Route path="/cart" element={<ShoppingCart />} />
             <Route path="/checkout" element={<CheckoutPage />} />
-            <Route path="*" element={<ErrorPage errorCode="404" />} />
+            <Route path="*" element={<Navigate to="/home" replace />} />
         </Routes>
     );
 };

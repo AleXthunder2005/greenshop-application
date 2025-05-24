@@ -13,7 +13,7 @@ export interface BillingFormData {
 
 export interface OrderData {
     plants: OrderedPlantData[];
-    orderNumber: number;
+    orderNumber: string;
     deliveryDate: Date;
     paymentMethod: PaymentMethod
 
@@ -24,7 +24,7 @@ export interface DBOrder extends OrderData {
     total: number;
 }
 
-export interface FullOrderData extends OrderData, BillingFormData {
+export interface FullOrderData extends DBOrder, BillingFormData {
 
 }
 
