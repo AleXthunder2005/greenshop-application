@@ -21,7 +21,7 @@
     padding: 0 10px;
     font-family: var(--font-family);
     font-size: 15px;
-    color: var(--secondary-light-gray-color);
+    color: var(--primary-gray-color);
     background-color: white;
     transition: border-color ease-in-out 0.3s;
 }

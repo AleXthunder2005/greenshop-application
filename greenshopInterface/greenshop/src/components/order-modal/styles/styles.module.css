@@ -1,9 +1,10 @@
 .order-modal-content {
-    margin: 20px;
+    margin: 20px auto;
     display: flex;
     flex-direction: column;
     align-items: center;
-    max-width: 500px;
+    justify-content: center;
+    max-width: 650px;
 }
 
 .order-modal-content__content-title {

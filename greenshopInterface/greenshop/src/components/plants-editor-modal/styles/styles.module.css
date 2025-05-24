@@ -3,6 +3,8 @@
     display: flex;
     flex-direction: column;
     gap: 20px;
+
+    width: 600px;
 }
 
 .plants-editor-modal__title {
@@ -21,4 +23,26 @@
     flex-direction: row;
     justify-content: space-between;
     gap: 20px;
+}
+
+
+.plants-editor-modal__actions {
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+    width: 100%;
+}
+
+.dark-green-button {
+    flex: 1;
+}
+
+/* styles.module.css */
+.validation-error {
+    font-family: var(--font-family);
+    color: var(--primary-red-color);
+    margin-top: 10px;
+    padding: 8px;
+    border-radius: 4px;
+    text-align: center;
 }

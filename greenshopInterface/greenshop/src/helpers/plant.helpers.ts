@@ -8,5 +8,5 @@ export const formatID = (id: number) => {
 
 export const getActualPrice = (price: number, sale: number | undefined) =>
 {
-    return sale ? price * (1 - (sale / 100)) : price;
+    return (sale && sale !== 0) ? price * (1 - (sale / 100)) : price;
 }

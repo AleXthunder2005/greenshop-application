@@ -6,19 +6,24 @@ import {useState} from "react";
 
 interface PlantsViewerProps {
     plants: PlantCardData[];
-    itemsPerPage?: number; // Добавляем опциональный параметр для количества элементов на странице
+    itemsPerPage?: number;
+    onCardClick?: (id: string) => void; // Уточняем тип
 }
 
-const PlantsViewer = ({ plants, itemsPerPage = 6 }: PlantsViewerProps) => {
+const PlantsViewer = ({ plants, itemsPerPage = 6, onCardClick }: PlantsViewerProps) => {
     const [currentPage, setCurrentPage] = useState(1);
 
-    // Вычисляем общее количество страниц
     const totalPages = Math.ceil(plants.length / itemsPerPage);
-
-    // Получаем растения для текущей страницы
     const startIndex = (currentPage - 1) * itemsPerPage;
     const endIndex = startIndex + itemsPerPage;
     const currentPlants = plants.slice(startIndex, endIndex);
+
+    // Обработчик клика по карточке
+    const handleCardClick = (id: string) => {
+        if (onCardClick) {
+            onCardClick(id);
+        }
+    };
 
     return (
         <div className={styles['plants-viewer']}>
@@ -27,10 +32,11 @@ const PlantsViewer = ({ plants, itemsPerPage = 6 }: PlantsViewerProps) => {
                     <PlantCard
                         key={plant.id}
                         plant={plant}
+                        onClick={handleCardClick} // Правильно передаем обработчик
                     />
                 ))}
             </div>
-            {totalPages > 1 && ( // Показываем пагинацию только если страниц больше одной
+            {totalPages > 1 && (
                 <div className={styles['pagination-container']}>
                     <Pagination
                         currentPage={currentPage}

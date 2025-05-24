@@ -19,7 +19,7 @@ namespace greenshopApp.Application.RepositoryServices
         {
             return await _repository.GetAsync();
         }
-        public async Task<PlantEntity> GetByIdAsync(Guid plantId)
+        public async Task<PlantEntity?> GetByIdAsync(Guid plantId)
         {
             return await _repository.GetByIdAsync(plantId);
         }
@@ -32,6 +32,11 @@ namespace greenshopApp.Application.RepositoryServices
         public async Task DeleteAsync(Guid plantId)
         {
             await _repository.DeleteAsync(plantId);
+        }
+
+        public async Task UpdateAsync(PlantEntity plant)
+        {
+            await _repository.UpdateAsync(plant);
         }
 
 

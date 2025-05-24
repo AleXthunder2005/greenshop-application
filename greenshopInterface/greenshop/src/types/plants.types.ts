@@ -1,9 +1,8 @@
 export interface PlantData {
-    id: number,
+    id: string,
     name: string,
     price: number,
     sale?: number,
-    rate: number,
     shortDescription: string,
     size: PlantSize,
     category: string
@@ -11,7 +10,7 @@ export interface PlantData {
 }
 
 export interface DBPlant {
-    id: number,
+    id: string,
     name: string,
     price: number,
     sale?: number,
@@ -23,7 +22,7 @@ export interface DBPlant {
 }
 
 export interface OrderedPlantData {
-    id: number;
+    id: string;
     name: string;
     price: number;
     sale?: number;
@@ -38,9 +37,10 @@ export interface PlantCardData {
     name: string;
     price: number;
     category?: string;
+    shortDescription?: string;
     size?: PlantSize;
     sale?: number;
-    images: string[];
+    images?: string[];
 }
 export type PlantSize = 'Small' | 'Medium' | 'Large';
 export const PLANT_SIZES = ['Small', 'Medium', 'Large'];

@@ -3,60 +3,73 @@ import {Modal} from "@ui/modal";
 import React, {useState, useEffect} from "react";
 import {TextBox} from "@ui/text-box";
 import {Select} from "@ui/select";
-import {DBPlant, PLANT_SIZES, PlantData, PlantSize} from "@/types/plants.types.ts";
+import {PlantCardData, PLANT_SIZES, PlantSize} from "@/types/plants.types.ts";
 import {TextArea} from "@ui/textarea";
 import {FileUpload} from "@ui/file-upload";
 import {DarkGreenButton} from "@ui/dark-green-button";
 
 interface PlantsEditorModalProps {
-    initialPlant?: PlantData;
+    initialPlant?: PlantCardData;
     isOpen: boolean;
-    onSave: (plantData: DBPlant) => void;
+    onSave: (plantData: PlantCardData) => void;
+    onDelete?: (id: string) => void;
     onClose: () => void;
 }
 
-const PlantsEditorModal = ({initialPlant, isOpen, onSave, onClose}: PlantsEditorModalProps) => {
-    const [currentPlant, setCurrentPlant] = useState<DBPlant>({
-        id: 0,
+const PlantsEditorModal = ({initialPlant, isOpen, onSave, onDelete, onClose}: PlantsEditorModalProps) => {
+    const [currentPlant, setCurrentPlant] = useState<PlantCardData>({
+        id: '',
         name: '',
         price: 0,
         sale: undefined,
-        rate: 0,
         shortDescription: '',
         size: 'Small',
-        categories: [],
+        category: '',
         images: []
     });
 
-    // Инициализация состояния при изменении initialPlant
+    const [validationError, setValidationError] = useState<string | null>(null);
+
     useEffect(() => {
         if (initialPlant) {
             setCurrentPlant({
-                id: initialPlant.id,
-                name: initialPlant.name,
-                price: initialPlant.price,
-                sale: initialPlant.sale,
-                rate: initialPlant.rate,
-                shortDescription: initialPlant.shortDescription,
-                size: initialPlant.size,
-                categories: [...initialPlant.categories],
-                images: [] // Начинаем с пустого массива для новых изображений
+                ...initialPlant,
+                category: initialPlant.category || '',
+                shortDescription: initialPlant.shortDescription || '',
+                size: initialPlant.size || 'Small',
             });
         } else {
-            // Сброс состояния для нового растения
             setCurrentPlant({
-                id: 0,
+                id: '',
                 name: '',
                 price: 0,
                 sale: undefined,
-                rate: 0,
                 shortDescription: '',
                 size: 'Small',
-                categories: [],
+                category: '',
                 images: []
             });
         }
+        // Сбрасываем ошибку при открытии модалки
+        setValidationError(null);
     }, [initialPlant, isOpen]);
+
+    const validateForm = (): boolean => {
+        if (!currentPlant.name.trim()) {
+            setValidationError('Plant name is required');
+            return false;
+        }
+        if (!currentPlant.category && !currentPlant.category?.trim()) {
+            setValidationError('Category is required');
+            return false;
+        }
+        if (currentPlant.price <= 0) {
+            setValidationError('Price must be greater than 0');
+            return false;
+        }
+        setValidationError(null);
+        return true;
+    };
 
     const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         const {name, value} = e.target;
@@ -64,6 +77,8 @@ const PlantsEditorModal = ({initialPlant, isOpen, onSave, onClose}: PlantsEditor
             ...prev,
             [name]: name === 'price' || name === 'sale' ? parseFloat(value) || 0 : value
         }));
+        // Сбрасываем ошибку при изменении поля
+        if (validationError) setValidationError(null);
     };
 
     const handleTextareaChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
@@ -81,43 +96,28 @@ const PlantsEditorModal = ({initialPlant, isOpen, onSave, onClose}: PlantsEditor
         }));
     };
 
-    const handleCategoriesChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-        const categories = e.target.value.split(',').map(cat => cat.trim());
-        setCurrentPlant(prev => ({
-            ...prev,
-            categories
-        }));
-    };
-
-    const handleFileUpload = (files: FileList | null) => {
-        if (files) {
-            const newImages = Array.from(files);
-            setCurrentPlant(prev => ({
-                ...prev,
-                images: [...prev.images, ...newImages]
-            }));
+    const handleSubmit = (e: React.FormEvent) => {
+        e.preventDefault();
+        if (validateForm()) {
+            onSave(currentPlant);
         }
     };
 
-    const removeImage = (index: number) => {
-        setCurrentPlant(prev => {
-            const newImages = [...prev.images];
-            newImages.splice(index, 1);
-            return {...prev, images: newImages};
-        });
+    const handleDelete = () => {
+        if (onDelete && currentPlant.id) {
+            onDelete(currentPlant.id);
+        }
     };
 
-    const handleSubmit = (e: React.FormEvent) => {
-        e.preventDefault();
-        onSave(currentPlant);
-        onClose();
+    const handleFileUpload = () => {
+        // Реализация загрузки файлов
     };
 
     return (
         <Modal isOpen={isOpen} onClose={onClose}>
             <form className={styles['plants-editor-modal']} onSubmit={handleSubmit}>
                 <h2 className={styles['plants-editor-modal__title']}>
-                    {initialPlant ? 'Plant editor' : 'Plant creator'}
+                    {initialPlant ? 'Edit Plant' : 'Add New Plant'}
                 </h2>
 
                 <div className={styles['plants-editor-modal__row']}>
@@ -138,6 +138,8 @@ const PlantsEditorModal = ({initialPlant, isOpen, onSave, onClose}: PlantsEditor
                         label="Price"
                         placeholder="Price"
                         type="number"
+                        step="0.01"
+                        min="0"
                         value={currentPlant.price.toString()}
                         onChange={handleInputChange}
                         required
@@ -145,9 +147,11 @@ const PlantsEditorModal = ({initialPlant, isOpen, onSave, onClose}: PlantsEditor
                     />
                     <TextBox
                         name="sale"
-                        label="Sale"
+                        label="Sale (%)"
                         placeholder="Sale"
                         type="number"
+                        min="0"
+                        max="100"
                         value={currentPlant.sale?.toString() || ''}
                         onChange={handleInputChange}
                         className={styles['plants-editor-modal__input']}
@@ -156,11 +160,11 @@ const PlantsEditorModal = ({initialPlant, isOpen, onSave, onClose}: PlantsEditor
 
                 <div className={styles['plants-editor-modal__row']}>
                     <TextBox
-                        name="categories"
-                        label="Categories (comma separated)"
-                        placeholder="Category1, Category2"
-                        value={currentPlant.categories.join(', ')}
-                        onChange={handleCategoriesChange}
+                        name="category"
+                        label="Category"
+                        placeholder="Plant category"
+                        value={currentPlant.category}
+                        onChange={handleInputChange}
                         required
                         className={styles['plants-editor-modal__input']}
                     />
@@ -170,10 +174,11 @@ const PlantsEditorModal = ({initialPlant, isOpen, onSave, onClose}: PlantsEditor
                     <TextArea
                         name="shortDescription"
                         label="Short description (optional)"
-                        value={currentPlant.shortDescription}
+                        value={currentPlant.shortDescription || ''}
                         onChange={handleTextareaChange}
                         className={styles['plants-editor-modal__input']}
-                        placeholder="About this plant."
+                        placeholder="About this plant..."
+                        rows={3}
                     />
                 </div>
 
@@ -181,7 +186,7 @@ const PlantsEditorModal = ({initialPlant, isOpen, onSave, onClose}: PlantsEditor
                     <Select
                         name="size"
                         options={PLANT_SIZES}
-                        value={currentPlant.size}
+                        value={currentPlant.size || 'Small'}
                         onChange={handleSelectChange}
                         label="Size"
                         className={styles['plants-editor-modal__input']}
@@ -192,38 +197,36 @@ const PlantsEditorModal = ({initialPlant, isOpen, onSave, onClose}: PlantsEditor
                     <FileUpload
                         name="gallery"
                         label="Upload images"
-                        accept="image/jpeg, image/png"
+                        accept="image/*"
                         multiple
                         onChange={handleFileUpload}
                     />
-
-                    {currentPlant.images.length > 0 && (
-                        <div className={styles['uploaded-images']}>
-                            <h4>New images to upload:</h4>
-                            <ul className={styles['images-list']}>
-                                {currentPlant.images.map((file, index) => (
-                                    <li key={index} className={styles['image-item']}>
-                                        <span>{file.name}</span>
-                                        <button
-                                            type="button"
-                                            onClick={() => removeImage(index)}
-                                            className={styles['remove-image']}
-                                        >
-                                            ×
-                                        </button>
-                                    </li>
-                                ))}
-                            </ul>
-                        </div>
-                    )}
                 </div>
 
-                <DarkGreenButton
-                    type="submit"
-                    className={styles['dark-green-button']}
-                >
-                    Save changes
-                </DarkGreenButton>
+                {validationError && (
+                    <div className={styles['validation-error']}>
+                        {validationError}
+                    </div>
+                )}
+
+                <div className={styles['plants-editor-modal__actions']}>
+                    {initialPlant && onDelete && (
+                        <DarkGreenButton
+                            type="button"
+                            onClick={handleDelete}
+                            className={styles['dark-green-button']}
+                        >
+                            Delete Plant
+                        </DarkGreenButton>
+                    )}
+
+                    <DarkGreenButton
+                        type="submit"
+                        className={styles['dark-green-button']}
+                    >
+                        {initialPlant ? 'Save Changes' : 'Add Plant'}
+                    </DarkGreenButton>
+                </div>
             </form>
         </Modal>
     );

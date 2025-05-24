@@ -14,6 +14,7 @@ namespace greenshopApp.Endpoints
             group.MapGet("/{id:guid}", GetPlantByID);
             group.MapPost("/", AddPlant);
             group.MapDelete("/{id:guid}", RemovePlant);
+            group.MapPut("/{id:guid}", UpdatePlant);
 
             return app;
         }
@@ -107,5 +108,32 @@ namespace greenshopApp.Endpoints
                 return Results.Problem(ex.Message);
             }
         }
+
+        private static async Task<IResult> UpdatePlant(
+            PlantRepositoryService plantService,
+            Guid id,
+            PlantUpdateRequest request)
+        {
+            try
+            {
+                var existingPlant = await plantService.GetByIdAsync(id);
+                if (existingPlant is null) return Results.NotFound();
+
+                existingPlant.Name = request.Name;
+                existingPlant.Price = request.Price;
+                existingPlant.Sale = request.Sale;
+                existingPlant.Size = request.Size;
+                existingPlant.Category = request.Category;
+                existingPlant.ShortDescription = request.ShortDescription;
+
+                await plantService.UpdateAsync(existingPlant);
+                return Results.Ok(existingPlant);
+            }
+            catch (Exception ex)
+            {
+                return Results.Problem(ex.Message);
+            }
+        }
+
     }
 }

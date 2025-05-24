@@ -5,6 +5,7 @@ import { Filter } from "@modules/filter";
 import { PlantCardData } from "@/types/plants.types.ts";
 import {fetchPlants} from "@/services/plantService.ts";
 import {Loader} from "@ui/loader";
+import {useNavigate} from "react-router-dom";
 
 interface PlantsModuleProps {
     withFilters?: boolean;
@@ -24,6 +25,7 @@ const PlantsModule = ({ withFilters = true }: PlantsModuleProps) => {
     const [sizes, setSizes] = useState<{ size: string; count: number }[]>([]);
     const [isLoading, setIsLoading] = useState(true);
     const [error, setError] = useState<string | null>(null);
+    const navigate = useNavigate();
 
     useEffect(() => {
         const loadPlants = async () => {
@@ -81,7 +83,7 @@ const PlantsModule = ({ withFilters = true }: PlantsModuleProps) => {
 
     const handleCategoryChange = (category: string) => {
         setFilterState({
-            category, // Устанавливаем только категорию, остальные фильтры сбрасываем
+            category,
             priceRange: undefined,
             size: undefined
         });
@@ -89,7 +91,7 @@ const PlantsModule = ({ withFilters = true }: PlantsModuleProps) => {
 
     const handleSizeChange = (size: string) => {
         setFilterState({
-            size, // Устанавливаем только размер, остальные фильтры сбрасываем
+            size,
             category: undefined,
             priceRange: undefined
         });
@@ -97,11 +99,15 @@ const PlantsModule = ({ withFilters = true }: PlantsModuleProps) => {
 
     const handlePriceChange = (priceRange: [number, number]) => {
         setFilterState({
-            priceRange, // Устанавливаем только цену, остальные фильтры сбрасываем
+            priceRange,
             category: undefined,
             size: undefined
         });
     };
+
+    const handleCardClick = (id: string) => {
+        navigate(`/shop/${id}`);
+    }
 
     if (isLoading) {
         return <Loader />;
@@ -124,7 +130,7 @@ const PlantsModule = ({ withFilters = true }: PlantsModuleProps) => {
                 />
             )}
             <div className={styles['plants-viewer-container']}>
-                <PlantsViewer plants={filteredPlants} />
+                <PlantsViewer plants={filteredPlants} onCardClick={handleCardClick}/>
             </div>
         </div>
     );
