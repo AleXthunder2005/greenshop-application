@@ -6,11 +6,12 @@ import { BillingFormData } from "@/types/order.types.ts";
 interface BillingInfoFormProps {
     initialData?: Partial<BillingFormData>;
     onChange?: (data: Partial<BillingFormData>) => void;
+    disabledFields?: (keyof BillingFormData)[];
 }
 
-const BillingInfoForm = ({ initialData, onChange }: BillingInfoFormProps) => {
+const BillingInfoForm = ({ initialData, onChange, disabledFields = [] }: BillingInfoFormProps) => {
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-        if (onChange) {
+        if (onChange && !disabledFields.includes(e.target.name as keyof BillingFormData)) {
             onChange({
                 [e.target.name]: e.target.value
             });
@@ -25,6 +26,10 @@ const BillingInfoForm = ({ initialData, onChange }: BillingInfoFormProps) => {
         }
     };
 
+    const isFieldDisabled = (fieldName: keyof BillingFormData) => {
+        return disabledFields.includes(fieldName);
+    };
+
     return (
         <div className={styles['billing-info-form']}>
             <h2 className={styles['billing-info-form__title']}>Billing Address</h2>
@@ -36,7 +41,10 @@ const BillingInfoForm = ({ initialData, onChange }: BillingInfoFormProps) => {
                         required
                         value={initialData?.firstName || ''}
                         onChange={handleChange}
-                        className={styles['billing-info-form__input']}
+                        disabled={isFieldDisabled('firstName')}
+                        className={`${styles['billing-info-form__input']} ${
+                            isFieldDisabled('firstName') ? styles['disabled-field'] : ''
+                        }`}
                     />
                 </div>
                 <div className={styles['billing-info-form__column']}>
@@ -46,7 +54,10 @@ const BillingInfoForm = ({ initialData, onChange }: BillingInfoFormProps) => {
                         required
                         value={initialData?.lastName || ''}
                         onChange={handleChange}
-                        className={styles['billing-info-form__input']}
+                        disabled={isFieldDisabled('lastName')}
+                        className={`${styles['billing-info-form__input']} ${
+                            isFieldDisabled('lastName') ? styles['disabled-field'] : ''
+                        }`}
                     />
                 </div>
             </div>
@@ -60,7 +71,10 @@ const BillingInfoForm = ({ initialData, onChange }: BillingInfoFormProps) => {
                         placeholder="Select a country / region"
                         value={initialData?.country || ''}
                         onChange={handleChange}
-                        className={styles['billing-info-form__input']}
+                        disabled={isFieldDisabled('country')}
+                        className={`${styles['billing-info-form__input']} ${
+                            isFieldDisabled('country') ? styles['disabled-field'] : ''
+                        }`}
                     />
                 </div>
                 <div className={styles['billing-info-form__column']}>
@@ -70,7 +84,10 @@ const BillingInfoForm = ({ initialData, onChange }: BillingInfoFormProps) => {
                         required
                         value={initialData?.city || ''}
                         onChange={handleChange}
-                        className={styles['billing-info-form__input']}
+                        disabled={isFieldDisabled('city')}
+                        className={`${styles['billing-info-form__input']} ${
+                            isFieldDisabled('city') ? styles['disabled-field'] : ''
+                        }`}
                     />
                 </div>
             </div>
@@ -83,7 +100,10 @@ const BillingInfoForm = ({ initialData, onChange }: BillingInfoFormProps) => {
                     placeholder="House number and street name"
                     value={initialData?.address || ''}
                     onChange={handleChange}
-                    className={styles['billing-info-form__input']}
+                    disabled={isFieldDisabled('address')}
+                    className={`${styles['billing-info-form__input']} ${
+                        isFieldDisabled('address') ? styles['disabled-field'] : ''
+                    }`}
                 />
             </div>
 
@@ -96,7 +116,10 @@ const BillingInfoForm = ({ initialData, onChange }: BillingInfoFormProps) => {
                         type="email"
                         value={initialData?.email || ''}
                         onChange={handleChange}
-                        className={styles['billing-info-form__input']}
+                        disabled={isFieldDisabled('email')}
+                        className={`${styles['billing-info-form__input']} ${
+                            isFieldDisabled('email') ? styles['disabled-field'] : ''
+                        }`}
                     />
                 </div>
 
@@ -107,7 +130,10 @@ const BillingInfoForm = ({ initialData, onChange }: BillingInfoFormProps) => {
                         type="tel"
                         value={initialData?.phone || ''}
                         onChange={handleChange}
-                        className={styles['billing-info-form__input']}
+                        disabled={isFieldDisabled('phone')}
+                        className={`${styles['billing-info-form__input']} ${
+                            isFieldDisabled('phone') ? styles['disabled-field'] : ''
+                        }`}
                     />
                 </div>
             </div>
