@@ -47,3 +47,34 @@ export const fetchUserOrders = async (userId: string): Promise<FullOrderData[]> 
         throw error;
     }
 };
+
+export const addOrder = async (orderData: OrderAddRequest): Promise<{success: boolean, orderId?: string, error?: string}> => {
+    try {
+        const response = await fetch(`${API_BASE_URL}/orders`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(orderData),
+        });
+
+        if (response.status === 201) {
+            const data = await response.json();
+            return {success: true, orderId: data.id};
+        }
+
+        if (response.status === 400) {
+            const error = await response.text();
+            return {success: false, error: error || 'Invalid order data'};
+        }
+
+        if (response.status === 404) {
+            return {success: false, error: 'User or plant not found'};
+        }
+
+        return {success: false, error: 'Failed to create order'};
+    } catch (error) {
+        console.error('Error adding order:', error);
+        return {success: false, error: 'Network error'};
+    }
+};

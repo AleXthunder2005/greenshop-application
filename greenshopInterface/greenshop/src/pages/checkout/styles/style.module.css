@@ -23,3 +23,23 @@
     background-color: var(--light-transparent-color);
     margin-top: 10px;
 }
+
+.message-container {
+    padding: 12px 16px;
+    margin: 16px;
+    border-radius: 4px;
+    text-align: center;
+}
+
+.message-container.error {
+    background-color: rgba(255, 0, 0, 0.1);
+    color: var(--primary-red-color);
+    border: 1px solid rgba(220, 53, 69, 0.3);
+}
+
+.message-container.success {
+    background-color: rgba(40, 167, 69, 0.1);
+    color: var(--primary-green-color);
+    border: 1px solid rgba(40, 167, 69, 0.3);
+}
+

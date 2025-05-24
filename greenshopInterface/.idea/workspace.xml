@@ -6,8 +6,10 @@
   <component name="ChangeListManager">
     <list default="true" id="3c661422-b22c-495b-a3a4-baa5776a26b1" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/greenshop/src/modules/checkout-module/CheckoutModule.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/greenshop/src/modules/checkout-module/CheckoutModule.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/greenshop/src/modules/checkout-module/styles/style.module.css" beforeDir="false" afterPath="$PROJECT_DIR$/greenshop/src/modules/checkout-module/styles/style.module.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/greenshop/src/pages/checkout/CheckoutPage.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/greenshop/src/pages/checkout/CheckoutPage.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/greenshop/src/pages/checkout/styles/style.module.css" beforeDir="false" afterPath="$PROJECT_DIR$/greenshop/src/pages/checkout/styles/style.module.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/greenshop/src/services/orderService.ts" beforeDir="false" afterPath="$PROJECT_DIR$/greenshop/src/services/orderService.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/greenshop/src/types/order.types.ts" beforeDir="false" afterPath="$PROJECT_DIR$/greenshop/src/types/order.types.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -78,7 +80,7 @@
       <workItem from="1747850757398" duration="3189000" />
       <workItem from="1747853973106" duration="8358000" />
       <workItem from="1747905892591" duration="30132000" />
-      <workItem from="1748009271518" duration="44367000" />
+      <workItem from="1748009271518" duration="45786000" />
     </task>
     <servers />
   </component>

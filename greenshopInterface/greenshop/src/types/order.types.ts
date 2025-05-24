@@ -31,3 +31,13 @@ export interface FullOrderData extends DBOrder, BillingFormData {
 export type OrderStatus = 'delivered' | 'in transit' | 'is processed';
 
 export type PaymentMethod = 'Cash on delivery'
+
+export interface OrderAddRequest {
+    userId: string;
+    plants: OrderPlantItem[];
+}
+
+export interface OrderPlantItem {
+    plantId: string;
+    quantity: number;
+}
