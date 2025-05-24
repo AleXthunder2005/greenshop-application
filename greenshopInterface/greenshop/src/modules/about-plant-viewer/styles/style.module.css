@@ -128,3 +128,33 @@
 .additional-info-container__categories__value {
     color: var(--primary-light-gray-color);
 }
+.message-container {
+    position: fixed;
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    padding: 12px 24px;
+    border-radius: 4px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    z-index: 1000;
+    max-width: 90%;
+    text-align: center;
+    animation: slideIn 0.3s ease-out;
+}
+
+.message-container.error {
+    background-color: #ffebee;
+    color: var(--primary-red-color);
+    font-family: var(--font-family);
+}
+
+@keyframes slideIn {
+    from {
+        top: -50px;
+        opacity: 0;
+    }
+    to {
+        top: 20px;
+        opacity: 1;
+    }
+}

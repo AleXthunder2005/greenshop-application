@@ -9,6 +9,7 @@ import { PlantData } from '@/types/plants.types.ts';
 import { formatPrice, getActualPrice } from "@/helpers/plant.helpers.ts";
 import { useNavigate } from "react-router-dom";
 import { useCart } from "@/contexts/cart-context/CartContext.tsx";
+import {useAuth} from "@/contexts/auth-context/AuthContext.tsx";
 
 interface AboutPlantViewerProps {
     plantData: PlantData;
@@ -16,8 +17,10 @@ interface AboutPlantViewerProps {
 
 const AboutPlantViewer = ({ plantData }: AboutPlantViewerProps) => {
     const [quantity, setQuantity] = useState(1);
+    const [message, setMessage] = useState<{text: string, isError: boolean} | null>(null);
     const navigate = useNavigate();
-    const { dispatch } = useCart(); // Выносим хук на верхний уровень компонента
+    const { dispatch } = useCart();
+    const {isAuthenticated} = useAuth();
 
     const handleIncrement = () => {
         setQuantity(prev => Math.min(prev + 1, 100));
@@ -27,7 +30,20 @@ const AboutPlantViewer = ({ plantData }: AboutPlantViewerProps) => {
         setQuantity(prev => Math.max(prev - 1, 1));
     };
 
+    const showAuthMessage = () => {
+        setMessage({
+            text: 'Please sign in to add items to cart or make purchases',
+            isError: true
+        });
+        setTimeout(() => setMessage(null), 5000); // Автоматическое скрытие через 5 сек
+    };
+
     const handleAddToCartClick = () => {
+        if (!isAuthenticated) {
+            showAuthMessage();
+            return;
+        }
+
         dispatch({
             type: 'ADD_ITEM',
             payload: {
@@ -36,19 +52,32 @@ const AboutPlantViewer = ({ plantData }: AboutPlantViewerProps) => {
                 price: plantData.price,
                 sale: plantData.sale,
                 image: plantData.images ? plantData.images[0] : '',
-                category: plantData.category,
                 quantity: quantity
             }
         });
     };
 
     const handleBuyClick = () => {
+        if (!isAuthenticated) {
+            showAuthMessage();
+            return;
+        }
+
         handleAddToCartClick();
         navigate("/cart");
     };
 
     return (
         <div className={styles['about-plant-viewer-container']}>
+            {/* Message container */}
+            {message && (
+                <div className={`${styles['message-container']} ${
+                    message.isError ? styles['error'] : styles['success']
+                }`}>
+                    {message.text}
+                </div>
+            )}
+
             <div className={styles['galery-container']}>
                 <PlantGallery images={plantData.images} />
             </div>

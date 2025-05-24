@@ -1,5 +1,6 @@
 import React, { createContext, useContext, useState, useEffect } from 'react';
 import { UserData } from "@/types/user.types.ts";
+import {useCart} from "@/contexts/cart-context/CartContext.tsx";
 
 interface AuthContextType {
     user: UserData | null;
@@ -16,6 +17,7 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
     const [user, setUser] = useState<UserData | null>(null);
     const [userId, setUserId] = useState<string | null>(null);
     const [isAdmin, setIsAdmin] = useState<boolean>(false);
+    const { clearCart } = useCart();
 
     const login = (userId: string, isAdmin: boolean) => {
         localStorage.setItem('userId', userId);
@@ -30,6 +32,7 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
         setUser(null);
         setUserId(null);
         setIsAdmin(false);
+        clearCart(); // Очищаем корзину при выходе
     };
 
     // Проверяем наличие userId при инициализации

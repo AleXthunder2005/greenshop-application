@@ -8,15 +8,15 @@ import { CartProvider } from "@/contexts/cart-context/CartContext.tsx";
 
 function App() {
     return (
-        <AuthProvider>
-            <CartProvider>
-                <BrowserRouter>
-                    <Layout>
-                        <RouterSelector />
-                    </Layout>
-                </BrowserRouter>
-            </CartProvider>
-        </AuthProvider>
+        <CartProvider>
+            <AuthProvider>
+                    <BrowserRouter>
+                        <Layout>
+                            <RouterSelector />
+                        </Layout>
+                    </BrowserRouter>
+            </AuthProvider>
+        </CartProvider>
     );
 }
 

@@ -1,6 +1,6 @@
 // src/services/ordersService.ts
 import {API_BASE_URL} from "@/configures/server.config.ts";
-import {FullOrderData} from "@/types/order.types.ts";
+import {FullOrderData, OrderAddRequest} from "@/types/order.types.ts";
 
 export const fetchUserOrders = async (userId: string): Promise<FullOrderData[]> => {
     try {

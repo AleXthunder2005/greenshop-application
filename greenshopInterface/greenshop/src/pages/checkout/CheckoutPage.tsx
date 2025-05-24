@@ -3,7 +3,7 @@ import { CheckoutModule } from '@modules/checkout-module';
 import { useState } from 'react';
 import { OrderManagerModule } from '@modules/order-manager-module';
 import { BillingFormData, FullOrderData } from '@/types/order.types.ts';
-import {calculateDeliveryDate, calculateTotalPrice, generateOrderNumber} from '@/helpers/order.helpers.ts';
+import {calculateDeliveryDate, calculateTotalPrice} from '@/helpers/order.helpers.ts';
 import { useCart } from '@/contexts/cart-context/CartContext.tsx';
 import { useAuth } from '@/contexts/auth-context/AuthContext.tsx';
 import { addOrder } from '@/services/orderService';

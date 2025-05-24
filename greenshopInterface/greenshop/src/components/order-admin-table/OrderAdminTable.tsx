@@ -1,7 +1,6 @@
 import styles from './styles/styles.module.css';
 import {useState} from "react";
 import {FullOrderData} from "@/types/order.types.ts";
-import {formatOrderNumber} from "@/helpers/order.helpers.ts";
 import {formatDate} from "@/helpers/date.helpers.ts";
 import {formatPrice} from "@/helpers/plant.helpers.ts";
 import {OrderModal} from "@components/order-modal";
@@ -90,7 +89,7 @@ const OrderAdminTable = ({orders} : OrderAdminTableProps) => {
                         className={styles['user-orders__table__row']}
                         onClick={() => handleClick(order)}
                     >
-                        <td className={styles['user-orders__table__cell']}>{formatOrderNumber(order.orderNumber)}</td>
+                        <td className={styles['user-orders__table__cell']}>{order.orderNumber}</td>
                         <td className={styles['user-orders__table__cell']}>{formatDate(order.deliveryDate)}</td>
                         <td className={styles['user-orders__table__cell']}>{formatPrice(order.total)}</td>
                         <td className={styles['user-orders__table__cell']}>{order.paymentMethod}</td>

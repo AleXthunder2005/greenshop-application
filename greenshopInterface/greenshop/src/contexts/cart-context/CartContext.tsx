@@ -1,11 +1,12 @@
 import React, { createContext, useContext, useReducer, useEffect } from 'react';
+import {OrderedPlantData} from "@/types/plants.types.ts";
 
 type CartState = OrderedPlantData[];
 
 type CartAction =
     | { type: 'ADD_ITEM'; payload: OrderedPlantData }
-    | { type: 'REMOVE_ITEM'; payload: number }
-    | { type: 'UPDATE_QUANTITY'; payload: { id: number; quantity: number } }
+    | { type: 'REMOVE_ITEM'; payload: string }
+    | { type: 'UPDATE_QUANTITY'; payload: { id: string; quantity: number } }
     | { type: 'CLEAR_CART' }
     | { type: 'LOAD_CART'; payload: CartState };
 
@@ -76,5 +77,8 @@ export const useCart = () => {
     if (!context) {
         throw new Error('useCart must be used within a CartProvider');
     }
-    return context;
+    return {
+        ...context,
+        clearCart: () => context.dispatch({ type: 'CLEAR_CART' })
+    };
 };
