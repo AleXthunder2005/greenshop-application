@@ -35,7 +35,8 @@ const AboutPlantViewer = ({ plantData }: AboutPlantViewerProps) => {
                 name: plantData.name,
                 price: plantData.price,
                 sale: plantData.sale,
-                image: plantData.images[0],
+                image: plantData.images ? plantData.images[0] : '',
+                category: plantData.category,
                 quantity: quantity
             }
         });
@@ -86,7 +87,6 @@ const AboutPlantViewer = ({ plantData }: AboutPlantViewerProps) => {
                     <LightGreenButton onClick={handleAddToCartClick}>
                         ADD TO CART
                     </LightGreenButton>
-                    <LightGreenButton iconType="heart" />
                 </div>
                 <div className={styles['about-plant-container__additional-info-container']}>
                     <p className={styles['additional-info-container__id']}>
@@ -98,7 +98,7 @@ const AboutPlantViewer = ({ plantData }: AboutPlantViewerProps) => {
                     <p className={styles['additional-info-container__categories']}>
                         Categories:
                         <span className={styles['additional-info-container__categories__value']}>
-                            {plantData.categories.join(', ')}
+                            {plantData.category}
                         </span>
                     </p>
                 </div>

@@ -9,7 +9,7 @@ export const GuestRouter = () => {
         <Routes>
             <Route path="/" element={<Navigate to="/home" replace />} />
             <Route path="/home" element={<Home />} />
-            <Route path="/shop" element={<Shop />} />
+            <Route path="/shop/:id" element={<Shop />} />
             <Route path="/blogs" element={<Blogs />} />
             <Route path="/cart" element={<LoginPage />} />
             <Route path="*" element={<Navigate to="/home" replace />} />

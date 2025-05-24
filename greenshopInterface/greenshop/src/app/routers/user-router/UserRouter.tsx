@@ -12,7 +12,7 @@ export const UserRouter = () => {
         <Routes>
             <Route path="/" element={<Navigate to="/home" replace />} />
             <Route path="/home" element={<Home />} />
-            <Route path="/shop" element={<Shop />} />
+            <Route path="/shop/:id" element={<Shop/>} />
             <Route path="/profile" element={<Profile />} />
             <Route path="/blogs" element={<Blogs />} />
             <Route path="/cart" element={<ShoppingCart />} />

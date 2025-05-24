@@ -18,11 +18,13 @@ builder.WebHost.ConfigureKestrel(serverOptions => {
 });
 
 // Включите все возможные CORS
-builder.Services.AddCors(options => {
-    options.AddPolicy("AllowAll", builder => {
-        builder.AllowAnyOrigin()
-               .AllowAnyMethod()
-               .AllowAnyHeader();
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("AllowFrontend", policy =>
+    {
+        policy.WithOrigins("http://localhost:5173") // Укажите клиентский адрес
+              .AllowAnyMethod()                    // Разрешите все HTTP-методы
+              .AllowAnyHeader();                    // Разрешите любые заголовки
     });
 });
 
@@ -54,6 +56,7 @@ builder.Services.AddDbContext<GreenshopDbContext>(
 
 var app = builder.Build();
 
+app.UseCors("AllowFrontend");
 
 // Включение middleware Swagger
 if (app.Environment.IsDevelopment())
@@ -65,13 +68,8 @@ if (app.Environment.IsDevelopment())
     });
 }
 
-app.UseCors();
-
-//app.UseHttpsRedirection();
-
 app.MapGet("/", () => "API is running. Use /swagger for documentation");
 app.MapUsersEndpoints();
 app.MapPlantsEndpoints();
 app.MapOrdersEndpoints();   
-app.MapPost("test", () => Results.Ok(new { Message = "Test OK" }));
 app.Run();

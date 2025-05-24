@@ -6,7 +6,7 @@ export interface PlantData {
     rate: number,
     shortDescription: string,
     size: PlantSize,
-    categories: string[],
+    category: string
     images?: string[]
 }
 
@@ -18,7 +18,7 @@ export interface DBPlant {
     rate: number,
     shortDescription: string,
     size: PlantSize,
-    categories: string[],
+    category: string,
     images: File[]
 }
 
@@ -33,7 +33,8 @@ export interface OrderedPlantData {
 
 
 export interface PlantCardData {
-    id: number;
+    // id: number;
+    id: string;
     name: string;
     price: number;
     category?: string;

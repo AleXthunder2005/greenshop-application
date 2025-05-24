@@ -1,30 +1,42 @@
-import {AboutPlantViewer} from "@modules/about-plant-viewer";
-import {PlantData} from '@/types/plants.types.ts'
+import { useEffect, useState } from 'react';
+import { useParams } from 'react-router-dom';
+import { Loader } from '@ui/loader';
+import {AboutPlantViewer} from '@modules/about-plant-viewer';
+import { fetchPlantById } from '@/services/plantService';
+import { PlantData } from '@/types/plants.types';
 
-const plantInfo: PlantData = {
-    name: "Barberton Daisy",
-    price: 119.00,
-    sale: 13,
-    rate: 4,
-    shortDescription: 'The ceramic cylinder planters come with ' +
-        'a wooden stand to help elevate your plants off the ground. ' +
-        'The ceramic cylinder planters come with a wooden stand to ' +
-        'help elevate your plants off the ground.',
-    size: 'Small',
-    id: 1,
-    categories: ['Potter plants'],
-    images: ["../../assets/plants/plant_1/plant_1.png",
-        "../../assets/plants/plant_1/plant_1(2).png",
-        "../../assets/plants/plant_1/plant_1(3).png",
-        "../../assets/plants/plant_1/plant_1(4).png"]
-}
+const ShopPage = () => {
+    const { id } = useParams<{ id: string }>();
+    const [plant, setPlant] = useState<PlantData | null>(null);
+    const [loading, setLoading] = useState(true);
+    const [error, setError] = useState<string | null>(null);
 
-const Shop = () => {
+    useEffect(() => {
+        const loadPlant = async () => {
+            try {
+                if (!id) throw new Error('No plant ID provided');
+
+                const data = await fetchPlantById(id);
+                setPlant(data);
+            } catch (err) {
+                setError(err instanceof Error ? err.message : 'Failed to load plant');
+            } finally {
+                setLoading(false);
+            }
+        };
+
+        loadPlant();
+    }, [id]);
+
+    if (loading) return <Loader />;
+    if (error) return <div>Error: {error}</div>;
+    if (!plant) return <div>Plant not found</div>;
+
     return (
-        <div>
-            <AboutPlantViewer plantData={plantInfo}/>
+        <div className="shop-page">
+            <AboutPlantViewer plantData={plant} />
         </div>
     );
 };
 
-export default Shop;
+export default ShopPage;

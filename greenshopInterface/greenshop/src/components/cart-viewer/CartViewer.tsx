@@ -3,6 +3,7 @@ import { Counter } from "@ui/counter";
 import { Icon } from "@ui/button-icon";
 import {formatID, formatPrice, getActualPrice} from "@/helpers/plant.helpers.ts";
 import {OrderedPlantData} from "@/types/plants.types.ts";
+import {NotFoundImg} from "@ui/not-found-img";
 
 interface CartViewerProps {
     plants: OrderedPlantData[];
@@ -33,11 +34,15 @@ const CartViewer = ({ plants, onQuantityChange, onRemove, isShortMode = false, c
                 {plants.map((plant) => (
                     <tr className={styles['table__product-info-container']} key={plant.id}>
                         <td className={styles['product-info-container__cell']}>
-                            <img
-                                className={styles['product-info-container__image']}
-                                src={plant.image}
-                                alt={plant.name}
-                            />
+                            {
+                                plant.image
+                                ? ( <img
+                                    className={styles['product-info-container__image']}
+                                    src={plant.image}
+                                    alt={plant.name}
+                                />)
+                                : (<NotFoundImg className={styles['product-info-container__image']}/>)
+                            }
                         </td>
                         <td className={styles['product-info-container__cell']}>
                             <div className={styles['product-info-container__description-container']}>

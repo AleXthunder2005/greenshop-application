@@ -10,7 +10,7 @@ export const AdminRouter = () => {
         <Routes>
             <Route path="/" element={<Navigate to="/home" replace />} />
             <Route path="/home" element={<Home />} />
-            <Route path="/shop" element={<Shop />} />
+            <Route path="/shop/:id" element={<Shop />} />
             <Route path="/admin" element={<AdminProfile />} />
             <Route path="/blogs" element={<Blogs />} />
             <Route path="*" element={<ErrorPage errorCode="404" />} />
