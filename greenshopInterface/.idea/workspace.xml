@@ -6,12 +6,11 @@
   <component name="ChangeListManager">
     <list default="true" id="3c661422-b22c-495b-a3a4-baa5776a26b1" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/../greenshopApp/greenshopApp/Endpoints/PlantsEndpoints.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../greenshopApp/greenshopApp/Endpoints/PlantsEndpoints.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../greenshopApp/greenshopApp/Program.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../greenshopApp/greenshopApp/Program.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../greenshopApp/greenshopApp/greenshopApp.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/../greenshopApp/greenshopApp/greenshopApp.csproj" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/greenshop/src/components/plants-editor-modal/PlantsEditorModal.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/greenshop/src/components/plants-editor-modal/PlantsEditorModal.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/greenshop/src/components/plants-editor-modal/styles/styles.module.css" beforeDir="false" afterPath="$PROJECT_DIR$/greenshop/src/components/plants-editor-modal/styles/styles.module.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/greenshop/src/services/plantService.ts" beforeDir="false" afterPath="$PROJECT_DIR$/greenshop/src/services/plantService.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/greenshop/src/types/plants.types.ts" beforeDir="false" afterPath="$PROJECT_DIR$/greenshop/src/types/plants.types.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/greenshop/src/ui/plant-card/PlantCard.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/greenshop/src/ui/plant-card/PlantCard.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/greenshop/src/ui/plant-card/styles/style.module.css" beforeDir="false" afterPath="$PROJECT_DIR$/greenshop/src/ui/plant-card/styles/style.module.css" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -82,7 +81,7 @@
       <workItem from="1747850757398" duration="3189000" />
       <workItem from="1747853973106" duration="8358000" />
       <workItem from="1747905892591" duration="30132000" />
-      <workItem from="1748009271518" duration="57602000" />
+      <workItem from="1748009271518" duration="59670000" />
     </task>
     <servers />
   </component>

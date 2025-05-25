@@ -8,6 +8,8 @@
 
   <ItemGroup>
     <Compile Remove="Contracts\Orders\OrderAddResponse.cs" />
+    <Compile Remove="Contracts\Plants\PlantImageResponse.cs" />
+    <Compile Remove="Contracts\Plants\PlantImageUploadRequest.cs" />
   </ItemGroup>
 
   <ItemGroup>

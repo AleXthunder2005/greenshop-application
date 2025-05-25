@@ -36,6 +36,7 @@
 .image-container__image {
     width: 250px;
     height: 250px;
+    object-fit: scale-down;
 }
 .image-container__icons-container {
     display: none;
@@ -98,4 +99,32 @@
 }
 
 
+/*//////////////////////////////////////////////////////////////*/
+.image-container__skeleton {
+    width: 100%;
+    height: 200px;
+    background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+    background-size: 200% 100%;
+    animation: shimmer 1.5s infinite;
+    border-radius: 8px;
+}
 
+.name-skeleton {
+    width: 80%;
+    height: 20px;
+    background: #f0f0f0;
+    margin-bottom: 8px;
+    border-radius: 4px;
+}
+
+.price-skeleton {
+    width: 40%;
+    height: 16px;
+    background: #f0f0f0;
+    border-radius: 4px;
+}
+
+@keyframes shimmer {
+    0% { background-position: 200% 0; }
+    100% { background-position: -200% 0; }
+}

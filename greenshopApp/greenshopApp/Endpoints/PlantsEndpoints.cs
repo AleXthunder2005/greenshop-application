@@ -20,7 +20,7 @@ namespace greenshopApp.Endpoints
             group.MapPut("/{id:guid}", UpdatePlant);
 
             group.MapPost("/images/{id:guid}", UploadPlantImages);
-            //group.MapGet("/{id:guid}/images/{imageName}", GetPlantImages);
+            group.MapGet("/images/{id:guid}", GetPlantImages);
 
             return app;
         }
@@ -193,17 +193,33 @@ namespace greenshopApp.Endpoints
             Guid id,
             IWebHostEnvironment environment)
         {
-            var plantImagesFolder = Path.Combine(environment.WebRootPath, "images", id.ToString());
+            try
+            {
+                var plantImagesFolder = Path.Combine(environment.WebRootPath, "plants", "images", id.ToString());
 
-            if (!Directory.Exists(plantImagesFolder))
-                return Results.Ok(new PlantImagesResponse(new List<string>()));
+                // Если папка не существует или пуста - возвращаем пустой массив
+                if (!Directory.Exists(plantImagesFolder) || !Directory.EnumerateFiles(plantImagesFolder).Any())
+                {
+                    return Results.Ok(new { imageUrls = Array.Empty<string>() });
+                }
 
-            var imageFiles = Directory.GetFiles(plantImagesFolder)
-                .Select(Path.GetFileName)
-                .Select(fileName => $"/plants/{id}/images/{fileName}")
-                .ToList();
+                // Получаем все файлы из папки и формируем URL
+                var imageUrls = Directory.GetFiles(plantImagesFolder)
+                    .Where(filePath =>
+                        filePath.EndsWith(".jpg", StringComparison.OrdinalIgnoreCase) ||
+                        filePath.EndsWith(".jpeg", StringComparison.OrdinalIgnoreCase) ||
+                        filePath.EndsWith(".png", StringComparison.OrdinalIgnoreCase))
+                    .Select(filePath => Path.GetFileName(filePath))
+                    .Select(fileName => $"/plants/images/{id}/{fileName}")
+                    .ToList();
 
-            return Results.Ok(new PlantImagesResponse(imageFiles));
+                return Results.Ok(new { imageUrls });
+            }
+            catch (Exception ex)
+            {
+                // В случае ошибки возвращаем пустой массив
+                return Results.Ok(new { imageUrls = Array.Empty<string>() });
+            }
         }
     }
 }

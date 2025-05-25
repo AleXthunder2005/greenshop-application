@@ -96,12 +96,27 @@ export const uploadPlantImages = async (plantId: string, files: File[]): Promise
 };
 
 export const getPlantImages = async (plantId: string): Promise<string[]> => {
-    const response = await fetch(`/plants/${plantId}/images`);
+    try {
+        const response = await fetch(`${API_BASE_URL}/plants/images/${plantId}`);
 
-    if (!response.ok) {
-        throw new Error('Failed to load images');
+        if (!response.ok) {
+            const errorData = await response.json().catch(() => null);
+            const errorMessage = errorData?.message || `HTTP error! status: ${response.status}`;
+            throw new Error(`Failed to load images: ${errorMessage}`);
+        }
+
+        const data = await response.json();
+
+        const formattedImageUrls = data.imageUrls.map((imageUrl: string) => {
+            if (imageUrl.startsWith(API_BASE_URL)) {
+                return imageUrl;
+            }
+            return `${API_BASE_URL}${imageUrl}`;
+        });
+
+        return formattedImageUrls;
+    } catch (error) {
+        console.error('Error fetching plant images:', error);
+        return [];
     }
-
-    const data = await response.json();
-    return data.imageUrls;
 };
