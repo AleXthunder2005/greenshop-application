@@ -1,14 +1,14 @@
 import styles from './styles/style.module.css';
 import { Counter } from "@ui/counter";
 import { Icon } from "@ui/button-icon";
-import {formatID, formatPrice, getActualPrice} from "@/helpers/plant.helpers.ts";
+import {formatPrice, getActualPrice} from "@/helpers/plant.helpers.ts";
 import {OrderedPlantData} from "@/types/plants.types.ts";
 import {NotFoundImg} from "@ui/not-found-img";
 
 interface CartViewerProps {
     plants: OrderedPlantData[];
-    onQuantityChange?: (id: number, newQuantity: number) => void;
-    onRemove?: (id: number) => void;
+    onQuantityChange?: (id: string, newQuantity: number) => void;
+    onRemove?: (id: string) => void;
     isShortMode?: boolean;
     className?: string;
 }
@@ -48,7 +48,7 @@ const CartViewer = ({ plants, onQuantityChange, onRemove, isShortMode = false, c
                             <div className={styles['product-info-container__description-container']}>
                                 <span className={styles['description-container__name']}>{plant.name}</span>
                                 <span className={styles['description-container__id']}>
-                                    <span className={styles['description-container__id-title']}>SCU:</span>{formatID(plant.id)}
+                                    <span className={styles['description-container__id-title']}>SCU:</span>{plant.id}
                                 </span>
                             </div>
                         </td>

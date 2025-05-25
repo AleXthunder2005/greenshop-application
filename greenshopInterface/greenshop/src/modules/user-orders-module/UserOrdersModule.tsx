@@ -1,4 +1,3 @@
-// src/modules/user-orders-module/UserOrdersModule.tsx
 import styles from './styles/styles.module.css'
 import {OrderTable} from "@components/order-table";
 import {useEffect, useState} from "react";
@@ -11,7 +10,7 @@ const UserOrdersModule = () => {
     const [orders, setOrders] = useState<FullOrderData[]>([]);
     const [isLoading, setIsLoading] = useState(true);
     const [error, setError] = useState<string | null>(null);
-    const {userId} = useAuth(); // Предполагается, что у вас есть хук useAuth
+    const {userId} = useAuth();
 
     useEffect(() => {
         if (!userId) {

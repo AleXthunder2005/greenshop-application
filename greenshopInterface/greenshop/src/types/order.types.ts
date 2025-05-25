@@ -25,7 +25,6 @@ export interface DBOrder extends OrderData {
 }
 
 export interface FullOrderData extends DBOrder, BillingFormData {
-
 }
 
 export type OrderStatus = 'delivered' | 'in transit' | 'is processed';

@@ -1,8 +1,8 @@
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { Loader } from '@ui/loader';
-import {AboutPlantViewer} from '@modules/about-plant-viewer';
-import { fetchPlantById } from '@/services/plantService';
+import { AboutPlantViewer } from '@modules/about-plant-viewer';
+import { fetchPlantById, getPlantImages } from '@/services/plantService';
 import { PlantData } from '@/types/plants.types';
 
 const ShopPage = () => {
@@ -12,20 +12,35 @@ const ShopPage = () => {
     const [error, setError] = useState<string | null>(null);
 
     useEffect(() => {
-        const loadPlant = async () => {
+        const loadPlantAndImages = async () => {
             try {
                 if (!id) throw new Error('No plant ID provided');
 
-                const data = await fetchPlantById(id);
-                setPlant(data);
+                // 1. Загружаем данные о растении
+                const plantData = await fetchPlantById(id);
+
+                // 2. Загружаем изображения растения
+                const images = await getPlantImages(id);
+
+                // 3. Обновляем состояние с объединенными данными
+                setPlant({
+                    ...plantData,
+                    images: images
+                });
             } catch (err) {
                 setError(err instanceof Error ? err.message : 'Failed to load plant');
+                if (plant) {
+                    setPlant({
+                        ...plant,
+                        images: []
+                    });
+                }
             } finally {
                 setLoading(false);
             }
         };
 
-        loadPlant();
+        loadPlantAndImages();
     }, [id]);
 
     if (loading) return <Loader />;

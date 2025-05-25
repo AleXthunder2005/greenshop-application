@@ -17,14 +17,14 @@ const CartModule = ({ isShortMode = false }: CartModuleProps) => {
         navigate('/checkout');
     };
 
-    const handleQuantityChange = (id: number, newQuantity: number) => {
+    const handleQuantityChange = (id: string, newQuantity: number) => {
         dispatch({
             type: 'UPDATE_QUANTITY',
             payload: { id, quantity: newQuantity }
         });
     };
 
-    const handleRemove = (id: number) => {
+    const handleRemove = (id: string) => {
         dispatch({
             type: 'REMOVE_ITEM',
             payload: id
