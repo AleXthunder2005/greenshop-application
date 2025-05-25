@@ -1,6 +1,8 @@
 ﻿using greenshopApp.Application.RepositoryServices;
 using greenshopApp.Contracts.Plants;
 using greenshopApp.Persistence.Models;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.StaticFiles;
 
 namespace greenshopApp.Endpoints
 {
@@ -8,13 +10,17 @@ namespace greenshopApp.Endpoints
     {
         public static IEndpointRouteBuilder MapPlantsEndpoints(this IEndpointRouteBuilder app)
         {
-            var group = app.MapGroup("plants");
+            var group = app.MapGroup("plants")
+               .DisableAntiforgery();
 
             group.MapGet("/", GetPlantsAsync);
             group.MapGet("/{id:guid}", GetPlantByID);
             group.MapPost("/", AddPlant);
             group.MapDelete("/{id:guid}", RemovePlant);
             group.MapPut("/{id:guid}", UpdatePlant);
+
+            group.MapPost("/images/{id:guid}", UploadPlantImages);
+            //group.MapGet("/{id:guid}/images/{imageName}", GetPlantImages);
 
             return app;
         }
@@ -93,7 +99,8 @@ namespace greenshopApp.Endpoints
 
         private static async Task<IResult> RemovePlant(
             PlantRepositoryService plantService,
-            Guid id)
+            Guid id,
+            IWebHostEnvironment environment)
         {
             try
             {
@@ -101,6 +108,13 @@ namespace greenshopApp.Endpoints
                 if (plant is null) return Results.NotFound();
 
                 await plantService.DeleteAsync(id);
+
+                var imagesPath = Path.Combine(environment.WebRootPath, "plants", "images", id.ToString());
+                if (Directory.Exists(imagesPath))
+                {
+                    Directory.Delete(imagesPath, true);
+                }
+
                 return Results.NoContent();
             }
             catch (Exception ex)
@@ -134,6 +148,62 @@ namespace greenshopApp.Endpoints
                 return Results.Problem(ex.Message);
             }
         }
+        private static async Task<IResult> UploadPlantImages(
+            Guid id,
+            [FromForm] IFormFileCollection imageFiles,
+            IWebHostEnvironment environment)
+        {
+            if (imageFiles == null || imageFiles.Count == 0)
+                return Results.BadRequest();
 
+            var uploadPath = Path.Combine("plants", "images", id.ToString());
+            var fullPath = Path.Combine(environment.WebRootPath, uploadPath);
+
+            try
+            {
+                if (Directory.Exists(fullPath))
+                {
+                    Directory.Delete(fullPath, true);
+                }
+                Directory.CreateDirectory(fullPath);
+
+                var uploadedUrls = new List<string>();
+                foreach (var file in imageFiles)
+                {
+                    if (file.Length == 0) continue;
+
+                    var fileName = Guid.NewGuid().ToString() + Path.GetExtension(file.FileName);
+                    var filePath = Path.Combine(fullPath, fileName);
+
+                    await using var stream = new FileStream(filePath, FileMode.Create);
+                    await file.CopyToAsync(stream);
+
+                    uploadedUrls.Add($"/{uploadPath}/{fileName}");
+                }
+
+                return Results.Ok(new { imageUrls = uploadedUrls });
+            }
+            catch
+            {
+                return Results.StatusCode(500);
+            }
+        }
+
+        private static IResult GetPlantImages(
+            Guid id,
+            IWebHostEnvironment environment)
+        {
+            var plantImagesFolder = Path.Combine(environment.WebRootPath, "images", id.ToString());
+
+            if (!Directory.Exists(plantImagesFolder))
+                return Results.Ok(new PlantImagesResponse(new List<string>()));
+
+            var imageFiles = Directory.GetFiles(plantImagesFolder)
+                .Select(Path.GetFileName)
+                .Select(fileName => $"/plants/{id}/images/{fileName}")
+                .ToList();
+
+            return Results.Ok(new PlantImagesResponse(imageFiles));
+        }
     }
 }

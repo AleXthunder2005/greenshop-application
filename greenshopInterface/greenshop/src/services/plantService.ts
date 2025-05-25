@@ -65,3 +65,43 @@ export const deletePlant = async (id: string): Promise<void> => {
     const response = await axios.delete(`${API_BASE_URL}/plants/${id}`);
     return response.data;
 };
+
+export const uploadPlantImages = async (plantId: string, files: File[]): Promise<string[]> => {
+    if (!files || files.length === 0) {
+        throw new Error('No files provided');
+    }
+
+    const formData = new FormData();
+    files.forEach(file => {
+        formData.append('imageFiles', file, file.name); // Третий параметр - имя файла
+    });
+
+    try {
+        const response = await fetch(`${API_BASE_URL}/plants/images/${plantId}`, {
+            method: 'POST',
+            body: formData,
+        });
+
+        if (!response.ok) {
+            const errorData = await response.json().catch(() => null);
+            throw new Error(errorData?.message || 'Failed to upload images');
+        }
+
+        const data = await response.json();
+        return data.imageUrls;
+    } catch (error) {
+        console.error('Upload error:', error);
+        throw new Error('Network error during upload');
+    }
+};
+
+export const getPlantImages = async (plantId: string): Promise<string[]> => {
+    const response = await fetch(`/plants/${plantId}/images`);
+
+    if (!response.ok) {
+        throw new Error('Failed to load images');
+    }
+
+    const data = await response.json();
+    return data.imageUrls;
+};

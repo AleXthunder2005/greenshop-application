@@ -46,3 +46,30 @@
     border-radius: 4px;
     text-align: center;
 }
+
+.file-upload-container {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    width: 100%;
+}
+
+.file-upload-preview {
+    font-family: var(--font-family);
+    font-weight: 400;
+    font-size: 14px;
+    color: var(--primary-gray-color);
+}
+
+.message-container{
+    width: 100%;
+    background-color: rgba(255, 130, 130, 0.31);
+    border-radius: 10px;
+}
+
+.upload-error .validation-error {
+    font-family: var(--font-family);
+    font-weight: 400;
+    font-size: 14px;
+    color: var(--primary-red-color);
+}

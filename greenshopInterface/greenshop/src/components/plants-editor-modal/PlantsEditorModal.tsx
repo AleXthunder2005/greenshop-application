@@ -1,12 +1,13 @@
 import styles from './styles/styles.module.css';
-import {Modal} from "@ui/modal";
-import React, {useState, useEffect} from "react";
-import {TextBox} from "@ui/text-box";
-import {Select} from "@ui/select";
-import {PlantCardData, PLANT_SIZES, PlantSize} from "@/types/plants.types.ts";
-import {TextArea} from "@ui/textarea";
-import {FileUpload} from "@ui/file-upload";
-import {DarkGreenButton} from "@ui/dark-green-button";
+import { Modal } from "@ui/modal";
+import React, { useState, useEffect } from "react";
+import { TextBox } from "@ui/text-box";
+import { Select } from "@ui/select";
+import { PlantCardData, PLANT_SIZES, PlantSize } from "@/types/plants.types";
+import { TextArea } from "@ui/textarea";
+import { FileUpload } from "@ui/file-upload";
+import { DarkGreenButton } from "@ui/dark-green-button";
+import { uploadPlantImages, addPlant, updatePlant } from "@/services/plantService";
 
 interface PlantsEditorModalProps {
     initialPlant?: PlantCardData;
@@ -16,7 +17,7 @@ interface PlantsEditorModalProps {
     onClose: () => void;
 }
 
-const PlantsEditorModal = ({initialPlant, isOpen, onSave, onDelete, onClose}: PlantsEditorModalProps) => {
+const PlantsEditorModal = ({ initialPlant, isOpen, onSave, onDelete, onClose }: PlantsEditorModalProps) => {
     const [currentPlant, setCurrentPlant] = useState<PlantCardData>({
         id: '',
         name: '',
@@ -29,6 +30,8 @@ const PlantsEditorModal = ({initialPlant, isOpen, onSave, onDelete, onClose}: Pl
     });
 
     const [validationError, setValidationError] = useState<string | null>(null);
+    const [uploadError, setUploadError] = useState<string | null>(null);
+    const [filesToUpload, setFilesToUpload] = useState<File[]>([]);
 
     useEffect(() => {
         if (initialPlant) {
@@ -50,8 +53,8 @@ const PlantsEditorModal = ({initialPlant, isOpen, onSave, onDelete, onClose}: Pl
                 images: []
             });
         }
-        // Сбрасываем ошибку при открытии модалки
-        setValidationError(null);
+        // Сбрасываем файлы при каждом открытии модалки
+        setFilesToUpload([]);
     }, [initialPlant, isOpen]);
 
     const validateForm = (): boolean => {
@@ -59,7 +62,7 @@ const PlantsEditorModal = ({initialPlant, isOpen, onSave, onDelete, onClose}: Pl
             setValidationError('Plant name is required');
             return false;
         }
-        if (!currentPlant.category && !currentPlant.category?.trim()) {
+        if (!currentPlant.category?.trim()) {
             setValidationError('Category is required');
             return false;
         }
@@ -72,21 +75,21 @@ const PlantsEditorModal = ({initialPlant, isOpen, onSave, onDelete, onClose}: Pl
     };
 
     const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-        const {name, value} = e.target;
+        const { name, value } = e.target;
         setCurrentPlant(prev => ({
             ...prev,
             [name]: name === 'price' || name === 'sale' ? parseFloat(value) || 0 : value
         }));
-        // Сбрасываем ошибку при изменении поля
         if (validationError) setValidationError(null);
     };
 
     const handleTextareaChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
-        const {name, value} = e.target;
+        const { name, value } = e.target;
         setCurrentPlant(prev => ({
             ...prev,
             [name]: value
         }));
+        if (validationError) setValidationError(null);
     };
 
     const handleSelectChange = (value: string) => {
@@ -94,12 +97,44 @@ const PlantsEditorModal = ({initialPlant, isOpen, onSave, onDelete, onClose}: Pl
             ...prev,
             size: value as PlantSize
         }));
+        if (validationError) setValidationError(null);
     };
 
-    const handleSubmit = (e: React.FormEvent) => {
+    const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
-        if (validateForm()) {
-            onSave(currentPlant);
+        if (!validateForm()) return;
+
+        try {
+            // Подготовка данных растения
+            const plantData = {
+                name: currentPlant.name,
+                price: currentPlant.price,
+                sale: currentPlant.sale,
+                category: currentPlant.category,
+                shortDescription: currentPlant.shortDescription,
+                size: currentPlant.size
+            };
+
+            // Сохраняем растение
+            let savedPlant;
+            if (currentPlant.id) {
+                savedPlant = await updatePlant(currentPlant.id, plantData);
+            } else {
+                savedPlant = await addPlant(plantData);
+            }
+
+            // Загружаем изображения, если они есть
+            if (filesToUpload.length > 0) {
+                const newImageUrls = await uploadPlantImages(savedPlant.id, filesToUpload);
+                savedPlant.images = [...newImageUrls];
+                setFilesToUpload([]);
+            }
+
+            // Возвращаем обновленные данные
+            onSave(savedPlant);
+        } catch (error) {
+            console.error('Failed to save plant:', error);
+            setUploadError('Failed to save plant. Please try again.');
         }
     };
 
@@ -109,8 +144,12 @@ const PlantsEditorModal = ({initialPlant, isOpen, onSave, onDelete, onClose}: Pl
         }
     };
 
-    const handleFileUpload = () => {
-        // Реализация загрузки файлов
+    const handleFileUpload = (files: FileList | null) => {
+        if (!files || files.length === 0) return;
+
+        const newFiles = Array.from(files);
+        setFilesToUpload(prev => [...prev, ...newFiles]);
+        setUploadError(null);
     };
 
     return (
@@ -194,20 +233,36 @@ const PlantsEditorModal = ({initialPlant, isOpen, onSave, onDelete, onClose}: Pl
                 </div>
 
                 <div className={styles['plants-editor-modal__row']}>
-                    <FileUpload
-                        name="gallery"
-                        label="Upload images"
-                        accept="image/*"
-                        multiple
-                        onChange={handleFileUpload}
-                    />
+                    <div className={styles['file-upload-container']}>
+                        <FileUpload
+                            name="plantImages"
+                            label="Upload images (JPEG, PNG)"
+                            onChange={handleFileUpload}
+                            accept="image/jpeg,image/png"
+                            multiple
+                        />
+                        {filesToUpload.length > 0 && (
+                            <div className={styles['file-upload-preview']}>
+                                {filesToUpload.length} file(s) selected for upload
+                            </div>
+                        )}
+                    </div>
                 </div>
 
-                {validationError && (
-                    <div className={styles['validation-error']}>
-                        {validationError}
-                    </div>
-                )}
+
+
+                <div className={styles['message-container']}>
+                    {uploadError && (
+                        <div className={styles['upload-error']}>
+                            {uploadError}
+                        </div>
+                    )}
+                    {validationError && (
+                        <div className={styles['validation-error']}>
+                            {validationError}
+                        </div>
+                    )}
+                </div>
 
                 <div className={styles['plants-editor-modal__actions']}>
                     {initialPlant && onDelete && (

@@ -7,6 +7,8 @@ using greenshopApp.Application.Interfaces.Auth;
 using greenshopApp.Persistence.Models;
 using greenshopApp.Persistence.Repositories;
 using greenshopApp.Infrastructure;
+using Microsoft.AspNetCore.Http.Features;
+using Swashbuckle.AspNetCore.SwaggerGen;
 
 var builder = WebApplication.CreateBuilder(args);
 var configuration = builder.Configuration;
@@ -15,6 +17,11 @@ var configuration = builder.Configuration;
 builder.WebHost.ConfigureKestrel(serverOptions => {
     serverOptions.Limits.MaxRequestBodySize = null;
     serverOptions.AllowSynchronousIO = true;
+});
+
+builder.Services.Configure<FormOptions>(options =>
+{
+    options.MultipartBodyLengthLimit = 104857600; // Увеличиваем лимит до 100 МБ
 });
 
 // Включите все возможные CORS
@@ -30,10 +37,20 @@ builder.Services.AddCors(options =>
 
 // Добавление сервисов Swagger
 builder.Services.AddEndpointsApiExplorer();
+//builder.Services.AddSwaggerGen(c =>
+//{
+//    c.SwaggerDoc("v1", new OpenApiInfo { Title = "Greenshop API", Version = "v1" });
+//});
+
 builder.Services.AddSwaggerGen(c =>
 {
-    c.SwaggerDoc("v1", new OpenApiInfo { Title = "Greenshop API", Version = "v1" });
+c.SwaggerDoc("v1", new OpenApiInfo { Title = "Greenshop API", Version = "v1" });
+
+// Добавляем схему для загрузки файлов
+c.OperationFilter<AddFileUploadOperationFilter>();
 });
+
+
 
 
 builder.Services.Configure<JwtOptions>(configuration.GetSection("JwtOptions"));
@@ -54,6 +71,8 @@ builder.Services.AddDbContext<GreenshopDbContext>(
         options.UseNpgsql(configuration.GetConnectionString(nameof(GreenshopDbContext)));
     });
 
+
+
 var app = builder.Build();
 
 app.UseCors("AllowFrontend");
@@ -68,8 +87,60 @@ if (app.Environment.IsDevelopment())
     });
 }
 
+app.UseStaticFiles(); // Разрешает доступ к файлам в wwwroot
+
+var webRootPath = builder.Environment.WebRootPath;
+if (string.IsNullOrEmpty(webRootPath))
+{
+    webRootPath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot");
+    Directory.CreateDirectory(webRootPath);
+    builder.Environment.WebRootPath = webRootPath;
+}
+
+
 app.MapGet("/", () => "API is running. Use /swagger for documentation");
 app.MapUsersEndpoints();
 app.MapPlantsEndpoints();
 app.MapOrdersEndpoints();   
 app.Run();
+
+
+public class AddFileUploadOperationFilter : IOperationFilter
+{
+    public void Apply(OpenApiOperation operation, OperationFilterContext context)
+    {
+        var formFileParameters = context.MethodInfo.GetParameters()
+            .Where(p => p.ParameterType == typeof(List<IFormFile>))
+            .ToList();
+
+        foreach (var parameter in formFileParameters)
+        {
+            operation.RequestBody = new OpenApiRequestBody
+            {
+                Content = new Dictionary<string, OpenApiMediaType>
+                {
+                    ["multipart/form-data"] = new OpenApiMediaType
+                    {
+                        Schema = new OpenApiSchema
+                        {
+                            Type = "object",
+                            Properties =
+                            {
+                                [parameter.Name] = new OpenApiSchema
+                                {
+                                    Type = "array",
+                                    Items = new OpenApiSchema
+                                    {
+                                        Type = "string",
+                                        Format = "binary"
+                                    }
+                                }
+                            },
+                            Required = new HashSet<string> { parameter.Name }
+                        }
+                    }
+                }
+            };
+        }
+    }
+}

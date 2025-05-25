@@ -32,7 +32,6 @@ export interface OrderedPlantData {
 
 
 export interface PlantCardData {
-    // id: number;
     id: string;
     name: string;
     price: number;
@@ -40,7 +39,7 @@ export interface PlantCardData {
     shortDescription?: string;
     size?: PlantSize;
     sale?: number;
-    images?: string[];
+    images: string[];
 }
 export type PlantSize = 'Small' | 'Medium' | 'Large';
 export const PLANT_SIZES = ['Small', 'Medium', 'Large'];
